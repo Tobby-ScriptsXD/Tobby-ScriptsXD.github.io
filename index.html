@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scripts by Tobby | Matrix Edition</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:wght@400;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:wght@400;600;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -42,7 +40,6 @@
             position: relative;
         }
 
-        /* Matrix Background */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -53,7 +50,6 @@
             opacity: 0.3;
         }
 
-        /* Typography & Glitch Effect */
         .hacker-font {
             font-family: 'Courier Prime', monospace;
         }
@@ -140,7 +136,6 @@
             }
         }
 
-        /* Header */
         header {
             display: flex;
             align-items: center;
@@ -176,7 +171,6 @@
             color: var(--matrix-green);
         }
 
-        /* Navigation */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -212,7 +206,6 @@
             text-shadow: 0 0 8px var(--matrix-green);
         }
 
-        /* Mobile Menu */
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -231,7 +224,6 @@
                 top: 0;
                 right: -100%;
                 width: 80%;
-                /* Slightly wider for better mobile feel */
                 height: 100vh;
                 background: linear-gradient(180deg, rgba(0, 10, 0, 0.98) 0%, rgba(0, 0, 0, 1) 100%);
                 flex-direction: column;
@@ -247,7 +239,6 @@
                 right: 0;
             }
 
-            /* Adjust open state elements */
             .hamburger.active .bar:nth-child(1) {
                 transform: rotate(-45deg) translate(-5px, 6px);
             }
@@ -257,10 +248,9 @@
             }
 
             .hamburger.active .bar:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
+                transform: rotate(45deg) translate(-5px, -5px);
             }
 
-            /* General Mobile Sizing Fixes */
             .section-title {
                 font-size: 1.5rem;
             }
@@ -277,7 +267,6 @@
                 font-size: 1.1rem;
             }
 
-            /* Modal Adjustments for Mobile */
             .modal-content {
                 width: 95%;
                 padding: 1rem;
@@ -286,7 +275,6 @@
 
             .script-box {
                 height: 200px;
-                /* Reduced height for mobile */
                 font-size: 0.8rem;
             }
 
@@ -321,14 +309,12 @@
             visibility: visible;
         }
 
-        /* Main Content */
         main {
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* Search Section */
         .search-container {
             margin: 2rem 0 4rem;
             text-align: center;
@@ -344,7 +330,6 @@
             color: var(--white);
             font-size: 1.1rem;
             border-radius: 4px;
-            /* Hacker sharp edges or slightly rounded */
             outline: none;
             transition: 0.3s;
         }
@@ -363,7 +348,6 @@
             padding-bottom: 0.5rem;
         }
 
-        /* Scripts Grid */
         .scripts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -442,7 +426,6 @@
             box-shadow: 0 0 15px var(--matrix-green);
         }
 
-        /* Credits Section */
         .credits-container {
             display: flex;
             flex-wrap: wrap;
@@ -486,7 +469,6 @@
             font-family: 'Courier Prime', monospace;
         }
 
-        /* Footer */
         footer {
             margin-top: 5rem;
             padding: 2rem;
@@ -503,7 +485,6 @@
             margin-right: 0.5rem;
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -607,7 +588,6 @@
         <section id="scripts">
             <h2 class="section-title"><i class="fas fa-terminal"></i> Lista De Scripts</h2>
             <div class="scripts-grid" id="scriptsGrid">
-                <!-- Scripts will be injected here via JS -->
             </div>
         </section>
 
@@ -642,7 +622,6 @@
         </div>
     </footer>
 
-    <!-- Script Modal -->
     <div class="modal" id="scriptModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -934,5 +913,4 @@ end`
 
     </script>
 </body>
-
 </html>
