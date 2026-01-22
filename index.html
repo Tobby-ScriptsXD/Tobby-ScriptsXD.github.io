@@ -27,12 +27,19 @@
             scrollbar-color: var(--matrix-green) var(--black);
         }
 
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            touch-action: manipulation;
+        }
+
         body {
             background-color: var(--black);
             color: var(--matrix-green);
             font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
             min-height: 100vh;
+            position: relative;
         }
 
         /* Matrix Background */
@@ -210,24 +217,28 @@
             .hamburger {
                 display: flex;
                 position: fixed;
-                top: 25px;
-                right: 25px;
+                top: 15px;
+                right: 15px;
                 z-index: 2001;
-                /* Ensure above everything */
+                background: rgba(0, 0, 0, 0.6);
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid var(--matrix-green);
             }
 
             .nav-menu {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 70%;
+                width: 80%;
+                /* Slightly wider for better mobile feel */
                 height: 100vh;
                 background: linear-gradient(180deg, rgba(0, 10, 0, 0.98) 0%, rgba(0, 0, 0, 1) 100%);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                transition: 0.4s ease-in-out;
-                border-left: 2px solid var(--matrix-green);
+                transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                border-left: 1px solid var(--matrix-green);
                 z-index: 1000;
                 box-shadow: -10px 0 30px rgba(0, 255, 0, 0.1);
             }
@@ -236,6 +247,7 @@
                 right: 0;
             }
 
+            /* Adjust open state elements */
             .hamburger.active .bar:nth-child(1) {
                 transform: rotate(-45deg) translate(-5px, 6px);
             }
@@ -246,6 +258,47 @@
 
             .hamburger.active .bar:nth-child(3) {
                 transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* General Mobile Sizing Fixes */
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .site-title {
+                font-size: 1.2rem;
+            }
+
+            .script-card {
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 1.1rem;
+            }
+
+            /* Modal Adjustments for Mobile */
+            .modal-content {
+                width: 95%;
+                padding: 1rem;
+                max-height: 90vh;
+            }
+
+            .script-box {
+                height: 200px;
+                /* Reduced height for mobile */
+                font-size: 0.8rem;
+            }
+
+            .close-modal {
+                top: 0.5rem;
+                right: 0.5rem;
+                font-size: 1.5rem;
+            }
+
+            #modalTitle {
+                font-size: 1.2rem;
+                margin-top: 1rem;
             }
         }
 
