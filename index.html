@@ -35,6 +35,7 @@
             min-height: 100vh;
         }
 
+        /* Matrix Background */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -45,6 +46,7 @@
             opacity: 0.3;
         }
 
+        /* Typography & Glitch Effect */
         .hacker-font {
             font-family: 'Courier Prime', monospace;
         }
@@ -131,6 +133,7 @@
             }
         }
 
+        /* Header */
         header {
             display: flex;
             align-items: center;
@@ -166,6 +169,7 @@
             color: var(--matrix-green);
         }
 
+        /* Navigation */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -201,9 +205,15 @@
             text-shadow: 0 0 8px var(--matrix-green);
         }
 
+        /* Mobile Menu */
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
+                position: fixed;
+                top: 25px;
+                right: 25px;
+                z-index: 2001;
+                /* Ensure above everything */
             }
 
             .nav-menu {
@@ -212,13 +222,14 @@
                 right: -100%;
                 width: 70%;
                 height: 100vh;
-                background: linear-gradient(180deg, rgba(0, 10, 0, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+                background: linear-gradient(180deg, rgba(0, 10, 0, 0.98) 0%, rgba(0, 0, 0, 1) 100%);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 transition: 0.4s ease-in-out;
                 border-left: 2px solid var(--matrix-green);
                 z-index: 1000;
+                box-shadow: -10px 0 30px rgba(0, 255, 0, 0.1);
             }
 
             .nav-menu.active {
@@ -238,12 +249,33 @@
             }
         }
 
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(3px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Main Content */
         main {
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
+        /* Search Section */
         .search-container {
             margin: 2rem 0 4rem;
             text-align: center;
@@ -259,6 +291,7 @@
             color: var(--white);
             font-size: 1.1rem;
             border-radius: 4px;
+            /* Hacker sharp edges or slightly rounded */
             outline: none;
             transition: 0.3s;
         }
@@ -277,6 +310,7 @@
             padding-bottom: 0.5rem;
         }
 
+        /* Scripts Grid */
         .scripts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -355,6 +389,7 @@
             box-shadow: 0 0 15px var(--matrix-green);
         }
 
+        /* Credits Section */
         .credits-container {
             display: flex;
             flex-wrap: wrap;
@@ -398,6 +433,7 @@
             font-family: 'Courier Prime', monospace;
         }
 
+        /* Footer */
         footer {
             margin-top: 5rem;
             padding: 2rem;
@@ -414,6 +450,7 @@
             margin-right: 0.5rem;
         }
 
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -486,6 +523,7 @@
 
 <body>
 
+    <div class="nav-overlay" id="nav-overlay"></div>
     <canvas id="matrix-canvas"></canvas>
 
     <header>
@@ -516,6 +554,7 @@
         <section id="scripts">
             <h2 class="section-title"><i class="fas fa-terminal"></i> Lista De Scripts</h2>
             <div class="scripts-grid" id="scriptsGrid">
+                <!-- Scripts will be injected here via JS -->
             </div>
         </section>
 
@@ -549,7 +588,8 @@
                 style="color: grey; text-decoration: none; margin: 0 10px;">YouTube</a>
         </div>
     </footer>
-  
+
+    <!-- Script Modal -->
     <div class="modal" id="scriptModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -820,15 +860,23 @@ end`
 
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
+        const navOverlay = document.getElementById('nav-overlay');
 
-        hamburger.addEventListener('click', () => {
+        function toggleMenu() {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
-        });
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
 
         document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         }));
 
     </script>
