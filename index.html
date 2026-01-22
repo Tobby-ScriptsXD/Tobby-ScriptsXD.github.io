@@ -1,1 +1,837 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripts by Tobby | Matrix Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --matrix-green: #00FF00;
+            --dark-green: #003300;
+            --black: #000000;
+            --cyan-accent: #00FFFF;
+            --white: #FFFFFF;
+            --glass: rgba(0, 20, 0, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: var(--matrix-green) var(--black);
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--matrix-green);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .hacker-font {
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .glitch {
+            position: relative;
+            color: var(--matrix-green);
+            font-weight: bold;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 red;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 blue;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(38px, 9999px, 81px, 0);
+            }
+
+            5% {
+                clip: rect(61px, 9999px, 86px, 0);
+            }
+
+            10% {
+                clip: rect(48px, 9999px, 11px, 0);
+            }
+
+            15% {
+                clip: rect(6px, 9999px, 92px, 0);
+            }
+
+            20% {
+                clip: rect(66px, 9999px, 4px, 0);
+            }
+
+            100% {
+                clip: rect(10px, 9999px, 89px, 0);
+            }
+        }
+
+        @keyframes glitch-anim2 {
+            0% {
+                clip: rect(9px, 9999px, 58px, 0);
+            }
+
+            5% {
+                clip: rect(41px, 9999px, 57px, 0);
+            }
+
+            10% {
+                clip: rect(2px, 9999px, 93px, 0);
+            }
+
+            15% {
+                clip: rect(78px, 9999px, 92px, 0);
+            }
+
+            20% {
+                clip: rect(22px, 9999px, 8px, 0);
+            }
+
+            100% {
+                clip: rect(6px, 9999px, 19px, 0);
+            }
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid var(--matrix-green);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--matrix-green);
+            background: var(--black);
+            object-fit: contain;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px var(--matrix-green);
+            text-decoration: none;
+            color: var(--matrix-green);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--matrix-green);
+            transition: 0.3s;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Courier Prime', monospace;
+            font-weight: bold;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover {
+            color: var(--matrix-green);
+            text-shadow: 0 0 8px var(--matrix-green);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: linear-gradient(180deg, rgba(0, 10, 0, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s ease-in-out;
+                border-left: 2px solid var(--matrix-green);
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .search-container {
+            margin: 2rem 0 4rem;
+            text-align: center;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            padding: 1rem 1.5rem;
+            font-family: 'Courier Prime', monospace;
+            background: rgba(0, 20, 0, 0.6);
+            border: 2px solid var(--matrix-green);
+            color: var(--white);
+            font-size: 1.1rem;
+            border-radius: 4px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-bar:focus {
+            box-shadow: 0 0 15px var(--matrix-green), inset 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+
+        .section-title {
+            font-family: 'Courier Prime', monospace;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--matrix-green);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .script-card {
+            background: rgba(0, 10, 0, 0.85);
+            border: 1px solid var(--dark-green);
+            padding: 1.5rem;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .script-card:hover {
+            border-color: var(--matrix-green);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .script-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--matrix-green);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .script-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-title {
+            color: var(--white);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .card-desc {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .card-btn {
+            background: transparent;
+            border: 1px solid var(--matrix-green);
+            color: var(--matrix-green);
+            padding: 0.75rem;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Courier Prime', monospace;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: auto;
+        }
+
+        .card-btn:hover {
+            background: var(--matrix-green);
+            color: var(--black);
+            box-shadow: 0 0 15px var(--matrix-green);
+        }
+
+        .credits-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .credit-card {
+            background: rgba(5, 5, 5, 0.9);
+            border: 1px solid var(--matrix-green);
+            padding: 2rem;
+            text-align: center;
+            width: 300px;
+            transition: 0.3s;
+        }
+
+        .credit-card:hover {
+            box-shadow: 0 0 15px var(--matrix-green);
+        }
+
+        .credit-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--matrix-green);
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        .credit-name {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .credit-role {
+            color: var(--cyan-accent);
+            font-size: 0.9rem;
+            font-family: 'Courier Prime', monospace;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 2rem;
+            border-top: 1px solid var(--dark-green);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            background: var(--black);
+        }
+
+        .footer-logo {
+            width: 30px;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #111;
+            border: 2px solid var(--matrix-green);
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--matrix-green);
+        }
+
+        .script-box {
+            background: #000;
+            color: var(--matrix-green);
+            padding: 1rem;
+            font-family: 'Courier Prime', monospace;
+            border: 1px solid var(--dark-green);
+            height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .action-btn {
+            background: var(--matrix-green);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            background: var(--white);
+            box-shadow: 0 0 15px var(--white);
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="matrix-canvas"></canvas>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://tobby-scriptsxd.github.io/Logo.png" alt="Tobby Scripts Logo" class="logo">
+            <a href="#" class="site-title glitch" data-text="Scripts by Tobby">Scripts by Tobby</a>
+        </div>
+
+        <nav>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#scripts" class="nav-link">Scripts</a>
+                <a href="#credits" class="nav-link">Créditos</a>
+                <a href="https://m.youtube.com/@Tobby-scripts" target="_blank" class="nav-link">Canal de YouTube</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-bar" placeholder="> Buscar scripts_">
+        </div>
+
+        <section id="scripts">
+            <h2 class="section-title"><i class="fas fa-terminal"></i> Lista De Scripts</h2>
+            <div class="scripts-grid" id="scriptsGrid">
+            </div>
+        </section>
+
+        <section id="credits">
+            <h2 class="section-title" style="margin-top: 4rem;"><i class="fas fa-users"></i> System_Admins</h2>
+            <div class="credits-container">
+                <div class="credit-card">
+                    <img src="https://antihambreadoscriptteam.github.io/Foto/Miembros/TheRealBanHammer.png"
+                        alt="TheRealBanHammer" class="credit-img">
+                    <div class="credit-name">TheRealBanHammer</div>
+                    <div class="credit-role">Desarrollador Principal<br>Creador del Sitio</div>
+                </div>
+                <div class="credit-card">
+                    <img src="https://antihambreadoscriptteam.github.io/Foto/Miembros/Mw_Anonymous.gif"
+                        alt="Mw_Anonymous" class="credit-img">
+                    <div class="credit-name">Mw_Anonymous</div>
+                    <div class="credit-role">Propietario del Host<br>Soporte Técnico</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://tobby-scriptsxd.github.io/Logo.png" alt="Small Logo" class="footer-logo">
+        <span>&copy; 2026 Tobby Scripts. System Secure.</span>
+        <br><br>
+        <div style="font-size: 0.8rem;">
+            <a href="#" style="color: grey; text-decoration: none; margin: 0 10px;">Inicio</a>
+            <a href="#scripts" style="color: grey; text-decoration: none; margin: 0 10px;">Scripts</a>
+            <a href="https://m.youtube.com/@Tobby-scripts"
+                style="color: grey; text-decoration: none; margin: 0 10px;">YouTube</a>
+        </div>
+    </footer>
+  
+    <div class="modal" id="scriptModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modalTitle" style="color: var(--white); margin-bottom: 1rem;">Script Name</h2>
+            <div class="script-box" id="modalCode">-- Loading code...</div>
+            <button class="action-btn" id="copyBtn"><i class="fas fa-copy"></i> COPIAR SCRIPT</button>
+        </div>
+    </div>
+
+    <script>
+        const scripts = [
+            {
+                title: "Infinite Yield",
+                desc: "Yield infinito. Admin comandos y utilidades universales.",
+                icon: "fa-globe",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()`
+            },
+            {
+                title: "Marvellous TNT",
+                desc: "Basicacamente te hace un dios para este juego. Poder destructivo masivo.",
+                icon: "fa-bomb",
+                code: `loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Wimply-Scripts-Basically-Makes-you-a-god-for-this-game-79987"))()`
+            },
+            {
+                title: "Marvellous Kill & Invisible",
+                desc: "El mejor script para PvP y sigilo. Playground utility.",
+                icon: "fa-ghost",
+                code: `loadstring(game:HttpGet("https://rawscripts.net/raw/WEDNESDAYMarvellous-Playground-mp-best-SCRIPT-48262"))()`
+            },
+            {
+                title: "Marvellous No CD",
+                desc: "Cooldown Bypass UI. Elimina tiempos de espera en habilidades.",
+                icon: "fa-stopwatch",
+                code: `local lp = game.Players.LocalPlayer
+local CoreGui = game:GetService("CoreGui")
+ 
+if not hookfunction then
+    lp:Kick("Seu exploit não suporta hookfunction. Tente outro executor. ("..identifyexecutor()..")")
+    return
+end
+ 
+local enabled = false
+ 
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "CooldownBypassUI"
+screenGui.Parent = CoreGui
+ 
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0, 120, 0, 40)
+button.Position = UDim2.new(0, 20, 0, 200)
+button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.Font = Enum.Font.SourceSansBold
+button.TextSize = 20
+button.Text = "Bypass OFF"
+button.Parent = screenGui
+ 
+local function updateButton()
+    if enabled then
+        button.Text = "Bypass ON"
+        button.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+    else
+        button.Text = "Bypass OFF"
+        button.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+    end
+end
+ 
+local oldWait
+oldWait = hookfunction(wait, function(seconds)
+    if enabled then
+        return oldWait(0)
+    else
+        return oldWait(seconds)
+    end
+end)
+ 
+local oldTaskWait
+oldTaskWait = hookfunction(task.wait, function(seconds)
+    if enabled then
+        return oldTaskWait(0)
+    else
+        return oldTaskWait(seconds)
+    end
+end)
+ 
+local oldTick
+oldTick = hookfunction(tick, function()
+    if enabled then
+        return 0
+    else
+        return oldTick()
+    end
+end)
+ 
+local oldClock
+oldClock = hookfunction(os.clock, function()
+    if enabled then
+        return 0
+    else
+        return oldClock()
+    end
+end)
+ 
+button.MouseButton1Click:Connect(function()
+    enabled = not enabled
+    updateButton()
+end)
+ 
+print("Bypass de cooldown carregado com botão ON/OFF.")
+updateButton()`
+            },
+            {
+                title: "Superman (Universal)",
+                desc: "Vuelo universal para cualquier juego. Auto-detecta móvil o PC.",
+                icon: "fa-plane",
+                code: `local UserInputService = game:GetService("UserInputService")
+local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
+if isMobile then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/396abc/Script/refs/heads/main/MobileFly.lua"))()
+else
+loadstring(game:HttpGet("https://raw.githubusercontent.com/396abc/Script/refs/heads/main/FlyR15.lua"))()
+end`
+            },
+            {
+                title: "99 Noches en el Bosque",
+                desc: "Script completo para el juego 99 Noches en el Bosque con funciones premium.",
+                icon: "fa-tree",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()`
+            },
+            {
+                title: "Dead Rails",
+                desc: "Script exclusivo para Dead Rails con funciones de supervivencia avanzadas.",
+                icon: "fa-skull",
+                code: `loadstring(game:HttpGet('https://raw.githubusercontent.com/hungquan99/SkullHub/main/loader.lua'))()`
+            },
+            {
+                title: "Campos de Batalla",
+                desc: "Script de combate con múltiples funciones ofensivas.",
+                icon: "fa-fist-raised",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/yes1nt/yes/refs/heads/main/Trashcan%20Man", true))()`
+            },
+            {
+                title: "Hitbox Universal",
+                desc: "Mejora el tamaño de las hitboxes en cualquier juego.",
+                icon: "fa-expand-arrows-alt",
+                code: `loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Update-script-hitbox-9326"))()`
+            },
+            {
+                title: "Aimbot Weaponry",
+                desc: "Aimbot especializado para Weaponry con FOV ajustable.",
+                icon: "fa-crosshairs",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Sasaki-999/AIMBOT-FOV/refs/heads/main/Weaponry", true))()`
+            },
+            {
+                title: "Aimlok Universal",
+                desc: "Sistema de aimlock universal compatible con múltiples juegos de disparos.",
+                icon: "fa-lock",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Totocoems/Ace/main/Ace"))()`
+            }
+        ];
+
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 30);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const grid = document.getElementById('scriptsGrid');
+
+        function renderScripts(filterText = '') {
+            grid.innerHTML = '';
+            const filtered = scripts.filter(s =>
+                s.title.toLowerCase().includes(filterText.toLowerCase()) ||
+                s.desc.toLowerCase().includes(filterText.toLowerCase())
+            );
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="color: #666; width: 100%; text-align: center;">No matches found_</p>';
+                return;
+            }
+
+            filtered.forEach((script, index) => {
+                const card = document.createElement('div');
+                card.className = 'script-card';
+                card.innerHTML = `
+                    <div class="card-title"><i class="fas ${script.icon}" style="margin-right: 10px;"></i>${script.title}</div>
+                    <div class="card-desc">${script.desc}</div>
+                    <a href="#" class="card-btn" onclick="openScriptModal(${scripts.indexOf(script)}); return false;">
+                        <i class="fas fa-download"></i> Obtener Script
+                    </a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        renderScripts();
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderScripts(e.target.value);
+        });
+
+        const modal = document.getElementById('scriptModal');
+        const closeModal = document.querySelector('.close-modal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCode = document.getElementById('modalCode');
+        const copyBtn = document.getElementById('copyBtn');
+
+        window.openScriptModal = function (index) {
+            const script = scripts[index];
+            modalTitle.innerHTML = `<i class="fas ${script.icon}"></i> ${script.title}`;
+            modalCode.innerText = script.code;
+            modal.style.display = 'flex';
+        };
+
+        closeModal.onclick = () => modal.style.display = 'none';
+        window.onclick = (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        };
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(modalCode.innerText).then(() => {
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> COPIADO';
+                copyBtn.style.background = '#fff';
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.background = 'var(--matrix-green)';
+                }, 2000);
+            });
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+    </script>
+</body>
+
+</html>
