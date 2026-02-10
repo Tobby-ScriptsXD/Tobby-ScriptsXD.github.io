@@ -2,30 +2,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scripts by Tobby | Matrix Edition</title>
-    
+
     <meta property="og:title" content="Tobby Scripts | Suscribete">
     <meta property="og:description" content="Colección premium de scripts - Seguridad y potencia garantizada">
     <meta property="og:image" content="https://tobby-scriptsxd.github.io/TobbyBanner.png">
     <meta property="og:url" content="https://tobby-scriptsxd.github.io">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Scripts by Tobby">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Scripts by Tobby | Suscribete">
     <meta name="twitter:description" content="Colección premium de scripts">
     <meta name="twitter:image" content="https://tobby-scriptsxd.github.io/TobbyBanner.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:wght@400;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Montserrat:wght@400;600;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --matrix-green: #00FF00;
-            --dark-green: #003300;
-            --black: #000000;
-            --cyan-accent: #00FFFF;
-            --white: #FFFFFF;
-            --glass: rgba(0, 20, 0, 0.8);
+            --matrix-green: #00ff41;
+            /* Brighter neon green */
+            --matrix-glow: #00ff41;
+            --dark-bg: #050505;
+            --glass-bg: rgba(0, 20, 0, 0.4);
+            --glass-border: rgba(0, 255, 65, 0.3);
+            --text-main: #e0e0e0;
+            --neon-shadow: 0 0 10px var(--matrix-glow), 0 0 20px var(--matrix-glow);
         }
 
         * {
@@ -33,21 +36,20 @@
             padding: 0;
             box-sizing: border-box;
             scrollbar-width: thin;
-            scrollbar-color: var(--matrix-green) var(--black);
+            scrollbar-color: var(--matrix-green) #000;
         }
 
         html,
         body {
             overflow-x: hidden;
             width: 100%;
-            touch-action: manipulation;
+            height: 100%;
         }
 
         body {
-            background-color: var(--black);
-            color: var(--matrix-green);
+            background-color: var(--dark-bg);
+            color: var(--text-main);
             font-family: 'Montserrat', sans-serif;
-            min-height: 100vh;
             position: relative;
         }
 
@@ -58,92 +60,56 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.3;
+            opacity: 0.25;
+            /* Slightly subtler to let UI pop */
         }
 
         .hacker-font {
             font-family: 'Courier Prime', monospace;
         }
 
+        /* Neon Glitch Effect */
         .glitch {
             position: relative;
             color: var(--matrix-green);
-            font-weight: bold;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .glitch::before {
-            left: 2px;
-            text-shadow: -1px 0 red;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-
-        .glitch::after {
-            left: -2px;
-            text-shadow: -1px 0 blue;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
+            font-weight: 800;
+            text-shadow: 0 0 5px var(--matrix-green);
         }
 
         @keyframes glitch-anim {
             0% {
-                clip: rect(38px, 9999px, 81px, 0);
+                clip: rect(44px, 9999px, 56px, 0);
+                transform: skew(0.5deg);
             }
 
             5% {
-                clip: rect(61px, 9999px, 86px, 0);
+                clip: rect(12px, 9999px, 88px, 0);
+                transform: skew(0.5deg);
             }
 
             10% {
-                clip: rect(48px, 9999px, 11px, 0);
+                clip: rect(66px, 9999px, 12px, 0);
+                transform: skew(0.2deg);
             }
 
             15% {
-                clip: rect(6px, 9999px, 92px, 0);
+                clip: rect(89px, 9999px, 2px, 0);
+                transform: skew(0.7deg);
             }
 
             20% {
-                clip: rect(66px, 9999px, 4px, 0);
+                clip: rect(4px, 9999px, 69px, 0);
+                transform: skew(0.1deg);
+            }
+
+            25% {
+                clip: rect(54px, 9999px, 34px, 0);
+                transform: skew(0.4deg);
             }
 
             100% {
-                clip: rect(10px, 9999px, 89px, 0);
-            }
-        }
-
-        @keyframes glitch-anim2 {
-            0% {
-                clip: rect(9px, 9999px, 58px, 0);
-            }
-
-            5% {
-                clip: rect(41px, 9999px, 57px, 0);
-            }
-
-            10% {
-                clip: rect(2px, 9999px, 93px, 0);
-            }
-
-            15% {
-                clip: rect(78px, 9999px, 92px, 0);
-            }
-
-            20% {
-                clip: rect(22px, 9999px, 8px, 0);
-            }
-
-            100% {
-                clip: rect(6px, 9999px, 19px, 0);
+                clip: rect(6px, 9999px, 99px, 0);
+                transform: skew(0.6deg);
             }
         }
 
@@ -152,12 +118,14 @@
             align-items: center;
             justify-content: space-between;
             padding: 1rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 2px solid var(--matrix-green);
+            background: rgba(5, 5, 5, 0.7);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(5px);
         }
 
         .logo-container {
@@ -171,30 +139,34 @@
             height: 50px;
             border-radius: 50%;
             border: 2px solid var(--matrix-green);
-            background: var(--black);
+            background: var(--dark-bg);
             object-fit: contain;
+            box-shadow: 0 0 15px var(--matrix-green);
         }
 
         .site-title {
             font-size: 1.5rem;
-            text-shadow: 0 0 10px var(--matrix-green);
             text-decoration: none;
             color: var(--matrix-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
-            gap: 5px;
+            gap: 6px;
             z-index: 1001;
         }
 
         .bar {
-            width: 25px;
+            width: 30px;
             height: 3px;
             background-color: var(--matrix-green);
             transition: 0.3s;
+            box-shadow: 0 0 5px var(--matrix-green);
+            border-radius: 2px;
         }
 
         .nav-menu {
@@ -203,13 +175,27 @@
         }
 
         .nav-link {
-            color: var(--white);
+            color: var(--text-main);
             text-decoration: none;
             font-family: 'Courier Prime', monospace;
             font-weight: bold;
             transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--matrix-green);
+            transition: width 0.3s;
+            box-shadow: 0 0 10px var(--matrix-green);
         }
 
         .nav-link:hover {
@@ -217,33 +203,30 @@
             text-shadow: 0 0 8px var(--matrix-green);
         }
 
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
-                position: fixed;
-                top: 15px;
-                right: 15px;
-                z-index: 2001;
-                background: rgba(0, 0, 0, 0.6);
-                padding: 10px;
-                border-radius: 5px;
-                border: 1px solid var(--matrix-green);
             }
 
             .nav-menu {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
+                width: 70%;
                 height: 100vh;
-                background: linear-gradient(180deg, rgba(0, 10, 0, 0.98) 0%, rgba(0, 0, 0, 1) 100%);
+                background: rgba(5, 5, 5, 0.95);
+                backdrop-filter: blur(15px);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 border-left: 1px solid var(--matrix-green);
                 z-index: 1000;
-                box-shadow: -10px 0 30px rgba(0, 255, 0, 0.1);
+                box-shadow: -10px 0 30px rgba(0, 255, 65, 0.2);
             }
 
             .nav-menu.active {
@@ -251,7 +234,7 @@
             }
 
             .hamburger.active .bar:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
+                transform: rotate(-45deg) translate(-7px, 6px);
             }
 
             .hamburger.active .bar:nth-child(2) {
@@ -259,45 +242,7 @@
             }
 
             .hamburger.active .bar:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -5px);
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .site-title {
-                font-size: 1.2rem;
-            }
-
-            .script-card {
-                padding: 1rem;
-            }
-
-            .card-title {
-                font-size: 1.1rem;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 1rem;
-                max-height: 90vh;
-            }
-
-            .script-box {
-                height: 200px;
-                font-size: 0.8rem;
-            }
-
-            .close-modal {
-                top: 0.5rem;
-                right: 0.5rem;
-                font-size: 1.5rem;
-            }
-
-            #modalTitle {
-                font-size: 1.2rem;
-                margin-top: 1rem;
+                transform: rotate(45deg) translate(-7px, -6px);
             }
         }
 
@@ -308,7 +253,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(3px);
+            backdrop-filter: blur(5px);
             z-index: 999;
             opacity: 0;
             visibility: hidden;
@@ -322,65 +267,74 @@
 
         main {
             padding: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .search-container {
-            margin: 2rem 0 4rem;
+            margin: 3rem 0 5rem;
             text-align: center;
         }
 
         .search-bar {
             width: 100%;
-            max-width: 600px;
-            padding: 1rem 1.5rem;
+            max-width: 700px;
+            padding: 1.2rem 2rem;
             font-family: 'Courier Prime', monospace;
-            background: rgba(0, 20, 0, 0.6);
-            border: 2px solid var(--matrix-green);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             color: var(--white);
-            font-size: 1.1rem;
-            border-radius: 4px;
+            font-size: 1.2rem;
+            border-radius: 50px;
             outline: none;
-            transition: 0.3s;
+            transition: 0.4s;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .search-bar:focus {
-            box-shadow: 0 0 15px var(--matrix-green), inset 0 0 10px rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 25px var(--matrix-glow), inset 0 0 10px rgba(0, 255, 65, 0.1);
+            border-color: var(--matrix-green);
+            transform: scale(1.02);
         }
 
         .section-title {
             font-family: 'Courier Prime', monospace;
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
             text-align: center;
-            border-bottom: 1px solid var(--matrix-green);
-            display: inline-block;
-            padding-bottom: 0.5rem;
+            display: block;
+            text-shadow: 0 0 10px var(--matrix-green);
         }
 
         .scripts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            padding: 1rem;
         }
 
         .script-card {
-            background: rgba(0, 10, 0, 0.85);
-            border: 1px solid var(--dark-green);
-            padding: 1.5rem;
-            transition: 0.3s;
+            background: rgba(10, 15, 10, 0.6);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            border-radius: 5px;
+            border-radius: 15px;
             display: flex;
             flex-direction: column;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .script-card:hover {
             border-color: var(--matrix-green);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.15), 0 0 20px var(--matrix-glow);
+            transform: translateY(-8px) scale(1.01);
+            background: rgba(10, 20, 10, 0.7);
         }
 
         .script-card::before {
@@ -389,11 +343,10 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 2px;
-            background: var(--matrix-green);
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
             transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s;
+            transition: transform 0.5s;
         }
 
         .script-card:hover::before {
@@ -402,24 +355,30 @@
 
         .card-title {
             color: var(--white);
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            font-family: 'Courier Prime', monospace;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
         }
 
         .card-desc {
             color: #ccc;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
             flex-grow: 1;
-            line-height: 1.5;
+            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .card-btn {
             background: transparent;
             border: 1px solid var(--matrix-green);
             color: var(--matrix-green);
-            padding: 0.75rem;
+            padding: 1rem;
             text-align: center;
             text-transform: uppercase;
             font-weight: bold;
@@ -427,73 +386,102 @@
             transition: 0.3s;
             font-family: 'Courier Prime', monospace;
             text-decoration: none;
-            display: inline-block;
+            display: block;
             margin-top: auto;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .card-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--matrix-green);
+            transition: 0.3s;
+            z-index: -1;
         }
 
         .card-btn:hover {
-            background: var(--matrix-green);
             color: var(--black);
-            box-shadow: 0 0 15px var(--matrix-green);
+            box-shadow: 0 0 20px var(--matrix-green);
+            border-color: var(--matrix-green);
+        }
+
+        .card-btn:hover::before {
+            left: 0;
         }
 
         .credits-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
+            gap: 3rem;
             margin-top: 4rem;
         }
 
         .credit-card {
-            background: rgba(5, 5, 5, 0.9);
-            border: 1px solid var(--matrix-green);
-            padding: 2rem;
+            background: rgba(5, 5, 5, 0.8);
+            border: 1px solid var(--glass-border);
+            padding: 3rem 2rem;
             text-align: center;
-            width: 300px;
-            transition: 0.3s;
+            width: 320px;
+            transition: 0.4s;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
         }
 
         .credit-card:hover {
-            box-shadow: 0 0 15px var(--matrix-green);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+            transform: translateY(-5px);
+            border-color: var(--matrix-green);
         }
 
         .credit-img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 2px solid var(--matrix-green);
-            margin-bottom: 1rem;
+            border: 3px solid var(--matrix-green);
+            margin-bottom: 1.5rem;
             object-fit: cover;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
         }
 
         .credit-name {
             color: var(--white);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
-            font-weight: bold;
+            font-weight: 800;
+            text-transform: uppercase;
         }
 
         .credit-role {
-            color: var(--cyan-accent);
+            color: var(--matrix-green);
             font-size: 0.9rem;
             font-family: 'Courier Prime', monospace;
+            letter-spacing: 1px;
         }
 
         footer {
-            margin-top: 5rem;
-            padding: 2rem;
-            border-top: 1px solid var(--dark-green);
+            margin-top: 8rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--glass-border);
             text-align: center;
             font-size: 0.9rem;
             color: #888;
-            background: var(--black);
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
         }
 
         .footer-logo {
-            width: 30px;
+            width: 40px;
             vertical-align: middle;
             margin-right: 0.5rem;
+            filter: drop-shadow(0 0 5px var(--matrix-green));
         }
 
         .modal {
@@ -503,22 +491,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
 
         .modal-content {
-            background: #111;
-            border: 2px solid var(--matrix-green);
-            padding: 2rem;
+            background: rgba(10, 15, 10, 0.95);
+            border: 1px solid var(--matrix-green);
+            padding: 2.5rem;
             width: 90%;
             max-width: 800px;
-            border-radius: 5px;
+            border-radius: 10px;
             position: relative;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 50px rgba(0, 255, 65, 0.2);
         }
 
         .close-modal {
@@ -533,35 +521,65 @@
 
         .close-modal:hover {
             color: var(--matrix-green);
+            text-shadow: 0 0 10px var(--matrix-green);
+            transform: rotate(90deg);
         }
 
         .script-box {
             background: #000;
             color: var(--matrix-green);
-            padding: 1rem;
+            padding: 1.5rem;
             font-family: 'Courier Prime', monospace;
             border: 1px solid var(--dark-green);
-            height: 300px;
+            height: 350px;
             overflow-y: auto;
             white-space: pre-wrap;
-            margin: 1rem 0;
-            font-size: 0.9rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            border-radius: 5px;
+            box-shadow: inset 0 0 20px rgba(0, 20, 0, 0.8);
         }
 
         .action-btn {
             background: var(--matrix-green);
             color: var(--black);
             border: none;
-            padding: 0.8rem 2rem;
-            font-weight: bold;
+            padding: 1rem 3rem;
+            font-weight: 800;
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
             transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            box-shadow: 0 0 15px var(--matrix-green);
         }
 
         .action-btn:hover {
             background: var(--white);
-            box-shadow: 0 0 15px var(--white);
+            box-shadow: 0 0 30px var(--white);
+            transform: scale(1.05);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .script-card {
+                padding: 1.5rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
+
+            .search-bar {
+                padding: 1rem;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -644,6 +662,12 @@
 
     <script>
         const scripts = [
+            {
+                title: "Jujutsu Shenanigans",
+                desc: "Script for Jujutsu Shenanigans (TBO).",
+                icon: "fa-bolt",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/cool5013/TBO/main/TBOscript"))()`
+            },
             {
                 title: "Infinite Yield",
                 desc: "Yield infinito. Admin comandos y utilidades universales.",
@@ -924,4 +948,5 @@ end`
 
     </script>
 </body>
+
 </html>
