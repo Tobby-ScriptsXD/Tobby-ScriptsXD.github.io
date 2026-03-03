@@ -1,3 +1,12 @@
+<!-- 
+Hola 🗣️
+Programa utilizado: Antigravity Pro
+Desarrollador: TheRealBanHammer
+Última Actualización: 02/03/2026
+-->
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -38,6 +47,10 @@
             --panel: rgba(255, 255, 255, 0.04);
             --panel2: rgba(255, 255, 255, 0.06);
 
+            --accent: #8a2be2;
+            --accent-glow: rgba(138, 43, 226, 0.4);
+            --accent-light: #b565f5;
+
             --border: rgba(255, 255, 255, 0.10);
             --border2: rgba(255, 255, 255, 0.14);
 
@@ -72,8 +85,8 @@
         }
 
         body {
-            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 60%),
-                radial-gradient(circle at bottom, rgba(255, 255, 255, 0.04), transparent 60%),
+            background: radial-gradient(circle at top, rgba(138, 43, 226, 0.08), transparent 60%),
+                radial-gradient(circle at bottom, rgba(0, 212, 255, 0.05), transparent 60%),
                 linear-gradient(180deg, #040404, #070707);
             color: var(--text);
             min-height: 100vh;
@@ -112,13 +125,13 @@
         .orb.one {
             top: 12%;
             left: 8%;
-            background: rgba(255, 255, 255, 0.09);
+            background: rgba(138, 43, 226, 0.15);
         }
 
         .orb.two {
             bottom: 12%;
             right: 8%;
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(0, 212, 255, 0.12);
             animation-delay: 1.7s;
         }
 
@@ -296,13 +309,16 @@
         }
 
         .btn-primary {
-            background: rgba(255, 255, 255, 0.11);
+            background: linear-gradient(135deg, var(--accent), #6a1b9a);
             border: 1px solid rgba(255, 255, 255, 0.20);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+            color: white;
         }
 
         .btn-primary:hover {
-            background: rgba(255, 255, 255, 0.16);
-            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            border: 1px solid rgba(255, 255, 255, 0.40);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.6);
         }
 
 
@@ -360,9 +376,11 @@
         }
 
         .hero-title span {
-            background: linear-gradient(90deg, #ffffff, #bdbdbd);
+            background: linear-gradient(90deg, var(--accent-light), #00d4ff);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
         }
 
         .hero-desc {
@@ -1200,6 +1218,10 @@
                             alt="TheRealBanHammer" class="credit-img">
                         <div class="credit-name">TheRealBanHammer</div>
                         <div class="credit-role">Desarrollador Principal<br>Creador del Sitio</div>
+                        <a href="https://www.youtube.com/@Anti-Hambreado-Script-Team" target="_blank"
+                            class="btn btn-primary" style="margin-top: 16px; width: 100%;">
+                            <i class="fa-brands fa-youtube"></i> Visitar Canal
+                        </a>
                     </div>
 
                     <div class="credit-card">
