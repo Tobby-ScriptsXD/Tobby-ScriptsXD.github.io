@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página en Mantenimiento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at top, rgba(255, 0, 0, 0.05) 0%, #000000 60%);
+        }
 
+        h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.6), 0 0 20px rgba(255, 0, 0, 0.4);
+            animation: red-pulse 2.5s infinite;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            margin-bottom: 4rem;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .video-container:hover {
+            box-shadow: 0 0 60px rgba(255, 0, 0, 0.25);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .gifs-container {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .gifs-container img {
+            max-width: 280px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.1);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .gifs-container img:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.3);
+            border-color: rgba(255, 0, 0, 0.3);
+        }
+
+        @keyframes red-pulse {
+            0% { text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+            50% { text-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.5); }
+            100% { text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+            .video-container {
+                width: 90%;
+                margin-bottom: 2rem;
+            }
+            .gifs-container {
+                gap: 1.5rem;
+            }
+            .gifs-container img {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Página en mantenimiento</h1>
+    <div class="video-container">
+        <iframe src="https://drive.google.com/file/d/18xrB4F07t9sMMuDxbLG3kC-T9b8r6bN2/preview" allow="autoplay" allowfullscreen></iframe>
+    </div>
+    <div class="gifs-container">
+        <img src="https://i.pinimg.com/originals/14/47/55/144755565c24d6c65b77707ae08e352a.gif" alt="Mantenimiento 1">
+        <img src="https://i.pinimg.com/originals/4c/aa/74/4caa74ad64a3a14f8db4d3e9dea667b1.gif" alt="Mantenimiento 2">
+    </div>
+</body>
+</html>
