@@ -1207,11 +1207,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
             const animate = () => {
                 const mobileMode = isMobileDevice();
                 if (!isUserActive && mobileMode) {
-                    autoMoveAngle += 0.015;
+                    autoMoveAngle += 0.02;
                     const centerX = window.innerWidth / 2;
-                    const centerY = window.innerHeight / 3;
-                    const radiusX = window.innerWidth * 0.35;
-                    const radiusY = window.innerHeight * 0.15;
+                    const centerY = window.innerHeight / 2;
+                    const radiusX = window.innerWidth * 0.45;
+                    const radiusY = window.innerHeight * 0.45;
                     
                     const x = centerX + Math.cos(autoMoveAngle) * radiusX;
                     const y = centerY + Math.sin(autoMoveAngle * 0.7) * radiusY;
