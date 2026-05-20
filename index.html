@@ -244,6 +244,14 @@
                             class="size-1.5 rounded-full bg-js-yellow animate-pulse shadow-[0_0_8px_rgba(247,223,30,0.6)]"></span></a>
                     <a href="#videos"
                         class="text-sm font-medium text-gray-400 hover:text-js-yellow transition-colors">Videos</a>
+                    <a href="#roblox-clon"
+                        class="text-sm font-medium text-gray-400 hover:text-js-yellow transition-colors flex items-center gap-1.5">Roblox Clon
+                        <span
+                            class="size-1.5 rounded-full bg-js-yellow animate-pulse shadow-[0_0_8px_rgba(147,51,234,0.6)]"></span></a>
+                    <a href="#ugphone"
+                        class="text-sm font-medium text-gray-400 hover:text-js-yellow transition-colors flex items-center gap-1.5">UgPhone
+                        <span
+                            class="size-1.5 rounded-full bg-orange-500 animate-pulse shadow-[0_0_8px_rgba(249,115,22,0.6)]"></span></a>
                     <a href="#credits"
                         class="text-sm font-medium text-gray-400 hover:text-js-yellow transition-colors">Créditos</a>
                     <a href="#about"
@@ -282,6 +290,14 @@
                     class="size-3 rounded-full bg-js-yellow animate-pulse shadow-[0_0_15px_rgba(247,223,30,0.8)]"></span></a>
             <a href="#videos"
                 class="text-4xl font-black font-display text-white hover:text-js-yellow transition-colors mobile-link uppercase tracking-tighter">Videos</a>
+            <a href="#roblox-clon"
+                class="text-4xl font-black font-display text-white hover:text-js-yellow transition-colors mobile-link uppercase tracking-tighter flex items-center gap-2.5">Roblox Clon
+                <span
+                    class="size-3 rounded-full bg-js-yellow animate-pulse shadow-[0_0_15px_rgba(147,51,234,0.8)]"></span></a>
+            <a href="#ugphone"
+                class="text-4xl font-black font-display text-white hover:text-js-yellow transition-colors mobile-link uppercase tracking-tighter flex items-center gap-2.5">UgPhone
+                <span
+                    class="size-3 rounded-full bg-orange-500 animate-pulse shadow-[0_0_15px_rgba(249,115,22,0.8)]"></span></a>
             <a href="#credits"
                 class="text-4xl font-black font-display text-white hover:text-js-yellow transition-colors mobile-link uppercase tracking-tighter">Créditos</a>
             <a href="#about"
@@ -430,6 +446,253 @@
                         Like <i class="fa-solid fa-thumbs-up text-js-yellow"></i></p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="videoGrid">
+                </div>
+            </div>
+        </section>
+
+        <section id="roblox-clon" class="relative py-24 bg-dark-bg border-t border-white/5 overflow-hidden">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
+                <div class="absolute top-1/4 right-1/4 w-[450px] h-[450px] bg-js-yellow/5 rounded-full blur-[120px] opacity-30"></div>
+                <div class="absolute bottom-1/4 left-1/4 w-[450px] h-[450px] bg-js-yellow/5 rounded-full blur-[120px] opacity-30"></div>
+            </div>
+            
+            <div class="container relative z-10 mx-auto px-5">
+                <div class="text-center mb-16">
+                    <span class="text-js-yellow font-bold uppercase tracking-[0.2em] text-xs mb-3 block">MÚLTIPLES CUENTAS SIMULTÁNEAS</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-display mb-6 text-white tracking-tighter">Roblox <span class="text-js-yellow">Clon</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Ejecuta múltiples instancias de Roblox en tu dispositivo con el poder de ArceusX.</p>
+                </div>
+
+                <div id="roblox-clon-card" class="max-w-5xl mx-auto bg-dark-surface rounded-2xl border border-white/5 p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-js-yellow/30 hover:shadow-[0_20px_50px_rgba(147,51,234,0.1)] group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-js-yellow/5 via-transparent to-transparent pointer-events-none"></div>
+                    
+                    <!-- Capa de Bloqueo Glassmorphic -->
+                    <div id="locker-overlay" class="absolute inset-0 bg-black/85 backdrop-blur-md z-[80] flex flex-col items-center justify-center p-6 text-center transition-all duration-500">
+                        <div class="w-16 h-16 rounded-full bg-js-yellow/10 border border-js-yellow/30 flex items-center justify-center text-js-yellow shadow-[0_0_20px_rgba(147,51,234,0.3)] animate-pulse mb-6">
+                            <i class="fa-solid fa-lock text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold font-display text-white mb-2">Contenido Bloqueado</h3>
+                        <p class="text-gray-400 text-sm max-w-md mb-8 leading-relaxed">
+                            Para acceder a la descarga de Roblox Clon APK y a las guías de uso, apoya el canal completando los dos pasos requeridos:
+                        </p>
+                        <div class="flex flex-col gap-3 w-full max-w-xs mb-8">
+                            <button id="step-sub-btn" onclick="handleStepSub()" class="w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-white/10 rounded-xl hover:border-js-yellow hover:bg-js-yellow/5 hover:scale-[1.01] transition-all group/btn outline-none focus:ring-2 focus:ring-js-yellow text-left cursor-pointer">
+                                <span class="flex items-center gap-3">
+                                    <i id="icon-sub" class="fa-solid fa-play text-red-500 text-lg transition-all duration-300"></i>
+                                    <span id="text-sub" class="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all">Paso 1: Suscribirse</span>
+                                </span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-gray-600 text-xs group-hover/btn:text-white transition-colors"></i>
+                            </button>
+                            
+                            <button id="step-like-btn" onclick="handleStepLike()" class="w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-white/10 rounded-xl hover:border-js-yellow hover:bg-js-yellow/5 hover:scale-[1.01] transition-all group/btn outline-none focus:ring-2 focus:ring-js-yellow text-left cursor-pointer">
+                                <span class="flex items-center gap-3">
+                                    <i id="icon-like" class="fa-solid fa-thumbs-up text-js-yellow text-lg transition-all duration-300"></i>
+                                    <span id="text-like" class="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all">Paso 2: Dar Like al Video</span>
+                                </span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-gray-600 text-xs group-hover/btn:text-white transition-colors"></i>
+                            </button>
+                        </div>
+                        
+                        <button id="btn-unlock" onclick="handleUnlock()" disabled class="w-full max-w-xs px-8 py-4 font-bold font-display uppercase tracking-widest bg-white/5 border border-white/10 text-gray-500 rounded-md cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 outline-none focus:ring-2 focus:ring-js-yellow">
+                            <i class="fa-solid fa-key"></i> Verificar y Desbloquear
+                        </button>
+                    </div>
+
+                    <div id="roblox-clon-content" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10 transition-all duration-500 filter blur-md select-none pointer-events-none">
+                        <div class="lg:col-span-5 flex flex-col items-center justify-center">
+                            <div class="relative flex items-center justify-center gap-6 md:gap-10 py-6">
+                                <div class="relative w-28 h-28 md:w-32 md:h-32 bg-black/60 border border-white/10 rounded-2xl flex items-center justify-center p-5 shadow-lg group-hover:border-white/20 transition-all duration-500 hover:scale-105">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Roblox_%282025%29_%28App_Icon%29.svg/500px-Roblox_%282025%29_%28App_Icon%29.svg.png" 
+                                         alt="Roblox Logo" 
+                                         class="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                                    <span class="absolute -bottom-2 bg-zinc-900 border border-white/10 text-[9px] px-2.5 py-0.5 rounded-full text-gray-400 font-bold uppercase tracking-wider">Roblox</span>
+                                </div>
+
+                                <div class="flex flex-col items-center justify-center z-10">
+                                    <div class="w-10 h-10 rounded-full bg-js-yellow/10 border border-js-yellow/30 flex items-center justify-center animate-pulse text-js-yellow shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+                                        <i class="fa-solid fa-copy text-sm"></i>
+                                    </div>
+                                    <div class="h-8 w-[1px] bg-gradient-to-b from-js-yellow/50 to-transparent my-1"></div>
+                                </div>
+
+                                <div class="relative w-28 h-28 md:w-32 md:h-32 bg-black/60 border border-js-yellow/20 rounded-2xl flex items-center justify-center p-5 shadow-lg group-hover:border-js-yellow/40 transition-all duration-500 hover:scale-105 shadow-[0_0_20px_rgba(147,51,234,0.1)]">
+                                    <img src="https://raw.githubusercontent.com/SPDM-Team/Arceus-X-NEO-public/main/Images/Logo%20NEO%20512x.png" 
+                                         alt="ArceusX Logo" 
+                                         class="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+                                    <span class="absolute -bottom-2 bg-js-yellow/90 border border-js-yellow text-[9px] px-2.5 py-0.5 rounded-full text-black font-bold uppercase tracking-wider">Arceus X</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 flex flex-wrap gap-2.5 justify-center">
+                                <span class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Activo / Funcional
+                                </span>
+                                <span class="bg-js-yellow/10 border border-js-yellow/30 text-js-yellow text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full flex items-center gap-1.5">
+                                    <i class="fa-solid fa-mobile-screen"></i> Android APK
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 text-left flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold font-display text-white mb-4 tracking-tight leading-tight">
+                                    ¿Qué es Roblox Clon con ArceusX?
+                                </h3>
+                                <p class="text-gray-300 text-base leading-relaxed mb-6 font-light">
+                                    ¿Quieres jugar en varias cuentas al mismo tiempo o farmear de manera ultra-eficiente? Te presentamos las <strong>APKs clon de ArceusX</strong>. Estas aplicaciones son copias idénticas modificadas del popular ejecutor ArceusX para Android, lo que te permite instalar y abrir múltiples instancias de Roblox de forma simultánea en un mismo dispositivo móvil, cada una con una cuenta y script independiente. ¡Leva tu experiencia al siguiente nivel!
+                                </p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-js-yellow/10 border border-js-yellow/30 flex items-center justify-center text-js-yellow shrink-0">
+                                            <i class="fa-solid fa-clone text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Multi-Cuentas</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Ejecuta múltiples apps de Roblox a la vez sin interferencias.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-js-yellow/10 border border-js-yellow/30 flex items-center justify-center text-js-yellow shrink-0">
+                                            <i class="fa-solid fa-bolt text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">ArceusX Integrado</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Ejecutor pre-instalado en cada clon para correr scripts al instante.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-js-yellow/10 border border-js-yellow/30 flex items-center justify-center text-js-yellow shrink-0">
+                                            <i class="fa-solid fa-shield-halved text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Anti-Cierre</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Optimizado para evitar el cierre por falta de recursos de memoria.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-js-yellow/10 border border-js-yellow/30 flex items-center justify-center text-js-yellow shrink-0">
+                                            <i class="fa-solid fa-circle-nodes text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Fácil Instalación</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Descarga la APK, instálala como app independiente y listo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-4 mt-2">
+                                <a href="https://gofile.io/d/LUkdrt" target="_blank"
+                                   class="px-8 py-4 font-bold font-display uppercase tracking-widest bg-js-yellow text-js-black border-2 border-js-yellow hover:bg-transparent hover:text-js-yellow transition-all flex items-center justify-center gap-3 text-sm md:text-base rounded-md shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_30px_rgba(147,51,234,0.5)] w-full sm:w-auto">
+                                    <i class="fa-solid fa-download text-lg animate-bounce"></i> Descargar Roblox Clon APK
+                                </a>
+                                <button onclick="openInfoModal()" 
+                                        class="px-8 py-4 font-bold font-display uppercase tracking-widest bg-transparent text-white border-2 border-white/20 hover:border-white/50 hover:bg-white/5 transition-all flex items-center justify-center gap-3 text-sm md:text-base rounded-md w-full sm:w-auto outline-none focus:ring-2 focus:ring-js-yellow">
+                                    ¿Cómo usarlo?
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ugphone" class="relative py-24 bg-dark-bg border-t border-white/5 overflow-hidden">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
+                <div class="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-orange-500/5 rounded-full blur-[120px] opacity-30"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-amber-600/5 rounded-full blur-[120px] opacity-30"></div>
+            </div>
+            
+            <div class="container relative z-10 mx-auto px-5">
+                <div class="text-center mb-16">
+                    <span class="text-orange-500 font-bold uppercase tracking-[0.2em] text-xs mb-3 block">TELÉFONO ANDROID EN LA NUBE</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-display mb-6 text-white tracking-tighter">UgPhone <span class="text-orange-500">Cloud Phone</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Ejecuta tus cuentas de Roblox y juegos en la nube 24/7 sin apagar tu móvil y con cero consumo de batería.</p>
+                </div>
+
+                <div class="max-w-5xl mx-auto bg-dark-surface rounded-2xl border border-white/5 p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-orange-500/30 hover:shadow-[0_20px_50px_rgba(249,115,22,0.1)] group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                        <div class="lg:col-span-5 flex flex-col items-center justify-center">
+                            <div class="relative w-40 h-40 md:w-48 md:h-48 bg-black/60 border border-orange-500/20 rounded-3xl flex items-center justify-center p-6 shadow-2xl transition-all duration-500 group-hover:border-orange-500/40 hover:scale-105 shadow-[0_0_30px_rgba(249,115,22,0.1)]">
+                                <img src="https://play-lh.googleusercontent.com/3EEJLviqFWAuHJWpmILUotvTfaFtV34KaEDoZrYAhGziOGVaHNbRZ1z7xwG-VdcdxQs" 
+                                     alt="UgPhone Logo" 
+                                     class="w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(249,115,22,0.3)] rounded-2xl">
+                                <span class="absolute -bottom-2.5 bg-orange-900/90 border border-orange-500 text-[10px] px-3.5 py-0.5 rounded-full text-orange-200 font-bold uppercase tracking-wider">Código: tobby1</span>
+                            </div>
+                            
+                            <div class="mt-8 bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-center cursor-pointer group/code relative overflow-hidden w-full max-w-[280px]" onclick="copyPromoCode()">
+                                <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Código de Invitación</p>
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="text-2xl font-black font-display text-orange-500 tracking-wider">tobby1</span>
+                                    <i class="fa-solid fa-copy text-gray-500 group-hover/code:text-orange-500 transition-colors"></i>
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/code:opacity-100 transition-opacity bg-black/80 backdrop-blur-[1px]">
+                                    <span class="text-orange-500 text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-copy mr-1.5"></i> Copiar Código</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 text-left flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold font-display text-white mb-4 tracking-tight leading-tight">
+                                    ¿Por qué usar UgPhone para Roblox?
+                                </h3>
+                                <p class="text-gray-300 text-base leading-relaxed mb-6 font-light">
+                                    UgPhone es un servicio premium de <strong>teléfono Android en la nube</strong> que te permite ejecutar aplicaciones y juegos las 24 horas del día sin interrupciones. Es la herramienta definitiva para los jugadores de Roblox que quieren farmear de forma automática, ejecutar scripts pesados o abrir múltiples cuentas simultáneamente sin calentar su celular ni consumir su batería o datos de internet.
+                                </p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
+                                            <i class="fa-solid fa-cloud text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Funcionamiento 24/7</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Tus juegos y scripts siguen corriendo en la nube aunque apagues tu móvil o PC.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
+                                            <i class="fa-solid fa-battery-three-quarters text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Cero Consumo</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">No gasta la batería de tu dispositivo ni consume tus datos móviles de internet.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
+                                            <i class="fa-solid fa-server text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Multi-Instancia</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Controla múltiples teléfonos virtuales para farmear con varias cuentas a la vez.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
+                                            <i class="fa-solid fa-shield-halved text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Seguro y Estable</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Entorno virtual aislado y de alto rendimiento óptimo para ejecutores de scripts.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-4 mt-2">
+                                <a href="https://www.ugphone.com/toc-page/promotion/#/r?partner_id=7a777eaf-3f47-033d-af23-cce4f3492d47&invitation_code=tobby1" target="_blank"
+                                   class="px-8 py-4 font-bold font-display uppercase tracking-widest bg-orange-500 text-black border-2 border-orange-500 hover:bg-transparent hover:text-orange-500 transition-all flex items-center justify-center gap-3 text-sm md:text-base rounded-md shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] w-full text-center">
+                                    <i class="fa-solid fa-gift text-lg animate-bounce"></i> Canjear Código UgPhone
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -590,6 +853,30 @@
                     <i class="fa-brands fa-youtube mr-2"></i> Ver Canal
                 </a>
             </div>
+        </div>
+    </dialog>
+
+    <dialog id="info-modal"
+        class="fixed inset-0 m-auto bg-transparent backdrop:bg-black/80 backdrop:backdrop-blur-sm border-none p-4 w-[95%] max-w-md max-h-[95vh] overflow-y-auto overflow-x-hidden z-[200]">
+        <div class="relative bg-zinc-950 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl my-4 text-center">
+            <button onclick="closeInfoModal()"
+                class="absolute -top-3 -right-3 bg-zinc-900 text-white rounded-full p-2.5 hover:bg-zinc-800 hover:text-js-yellow border border-white/10 transition-colors z-[100] cursor-pointer shadow-lg outline-none focus:ring-2 focus:ring-js-yellow"
+                aria-label="Cerrar modal">
+                <i class="fa-solid fa-xmark text-lg leading-none block w-5 h-5 text-center"></i>
+            </button>
+            <div class="flex flex-col items-center gap-4 mb-6">
+                <div class="w-16 h-16 rounded-full bg-js-yellow/10 border border-js-yellow/30 flex items-center justify-center text-js-yellow shadow-[0_0_20px_rgba(147,51,234,0.3)] animate-pulse">
+                    <i class="fa-solid fa-clock text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-display text-white tracking-tight">Video en progreso...</h3>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                Estamos preparando el video tutorial de cómo usar los clones de Roblox con ArceusX. ¡Estará disponible muy pronto!
+            </p>
+            <button onclick="closeInfoModal()"
+                class="w-full inline-flex items-center justify-center px-8 py-3.5 font-bold uppercase tracking-wider text-sm bg-js-yellow text-js-black border-2 border-js-yellow rounded hover:bg-transparent hover:text-js-yellow transition-all outline-none focus:ring-2 focus:ring-white">
+                Entendido
+            </button>
         </div>
     </dialog>
 
@@ -1085,6 +1372,134 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
             if (e.target === modal) closeModal();
         });
 
+        const infoModal = document.getElementById("info-modal");
+
+        function openInfoModal() {
+            infoModal.showModal();
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeInfoModal() {
+            infoModal.close();
+            document.body.style.overflow = "";
+        }
+
+        infoModal.addEventListener("click", (e) => {
+            if (e.target === infoModal) closeInfoModal();
+        });
+
+        let subClicked = false;
+        let likeClicked = false;
+
+        // Asegurar que el contenido esté bloqueado al cargar/recargar la página
+        window.addEventListener('pageshow', () => {
+            subClicked = false;
+            likeClicked = false;
+            
+            // Limpiar cualquier estado heredado de versiones anteriores en localStorage
+            localStorage.removeItem('roblox_clon_unlocked');
+            localStorage.removeItem('roblox-clon-unlocked');
+            localStorage.removeItem('locker-unlocked');
+            
+            // Forzar el estado visual inicial bloqueado
+            const overlay = document.getElementById('locker-overlay');
+            const content = document.getElementById('roblox-clon-content');
+            
+            if (overlay && content) {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                content.classList.add('blur-md', 'select-none', 'pointer-events-none');
+            }
+            
+            // Restaurar botones de los pasos a su estado inicial
+            const btnSub = document.getElementById('step-sub-btn');
+            const iconSub = document.getElementById('icon-sub');
+            const textSub = document.getElementById('text-sub');
+            if (btnSub && iconSub && textSub) {
+                btnSub.className = "w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-white/10 rounded-xl hover:border-js-yellow hover:bg-js-yellow/5 hover:scale-[1.01] transition-all group/btn outline-none focus:ring-2 focus:ring-js-yellow text-left cursor-pointer";
+                iconSub.className = "fa-solid fa-play text-red-500 text-lg transition-all duration-300";
+                textSub.innerText = "Paso 1: Suscribirse";
+                textSub.className = "text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all";
+            }
+            
+            const btnLike = document.getElementById('step-like-btn');
+            const iconLike = document.getElementById('icon-like');
+            const textLike = document.getElementById('text-like');
+            if (btnLike && iconLike && textLike) {
+                btnLike.className = "w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-white/10 rounded-xl hover:border-js-yellow hover:bg-js-yellow/5 hover:scale-[1.01] transition-all group/btn outline-none focus:ring-2 focus:ring-js-yellow text-left cursor-pointer";
+                iconLike.className = "fa-solid fa-thumbs-up text-js-yellow text-lg transition-all duration-300";
+                textLike.innerText = "Paso 2: Dar Like al Video";
+                textLike.className = "text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all";
+            }
+            
+            // Deshabilitar y restablecer el botón de verificación
+            const btnUnlock = document.getElementById('btn-unlock');
+            if (btnUnlock) {
+                btnUnlock.setAttribute('disabled', 'true');
+                btnUnlock.className = "w-full max-w-xs px-8 py-4 font-bold font-display uppercase tracking-widest bg-white/5 border border-white/10 text-gray-500 rounded-md cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 outline-none focus:ring-2 focus:ring-js-yellow";
+                btnUnlock.innerHTML = `<i class="fa-solid fa-key"></i> Verificar y Desbloquear`;
+            }
+        });
+
+        function handleStepSub() {
+            window.open('https://youtube.com/@tobby-scripts', '_blank');
+            subClicked = true;
+            
+            const btn = document.getElementById('step-sub-btn');
+            const icon = document.getElementById('icon-sub');
+            const text = document.getElementById('text-sub');
+            
+            btn.classList.add('border-green-500/50', 'bg-green-500/5');
+            icon.className = 'fa-solid fa-circle-check text-green-500 text-lg transition-all duration-300';
+            text.innerText = 'Paso 1: Suscribirse (Listo)';
+            text.classList.remove('text-gray-400');
+            text.classList.add('text-green-400');
+            
+            checkSteps();
+        }
+
+        function handleStepLike() {
+            const latestVideoId = youtubeVideos[0] ? youtubeVideos[0].id : '8AB5gljSCzE';
+            window.open(`https://youtu.be/${latestVideoId}`, '_blank');
+            likeClicked = true;
+            
+            const btn = document.getElementById('step-like-btn');
+            const icon = document.getElementById('icon-like');
+            const text = document.getElementById('text-like');
+            
+            btn.classList.add('border-green-500/50', 'bg-green-500/5');
+            icon.className = 'fa-solid fa-circle-check text-green-500 text-lg transition-all duration-300';
+            text.innerText = 'Paso 2: Dar Like al Video (Listo)';
+            text.classList.remove('text-gray-400');
+            text.classList.add('text-green-400');
+            
+            checkSteps();
+        }
+
+        function checkSteps() {
+            if (subClicked && likeClicked) {
+                const btn = document.getElementById('btn-unlock');
+                btn.removeAttribute('disabled');
+                btn.className = 'w-full max-w-xs px-8 py-4 font-bold font-display uppercase tracking-widest bg-js-yellow text-js-black border-2 border-js-yellow rounded-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(147,51,234,0.4)]';
+            }
+        }
+
+        function handleUnlock() {
+            const btn = document.getElementById('btn-unlock');
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Verificando apoyo...`;
+            btn.setAttribute('disabled', 'true');
+            btn.classList.add('cursor-not-allowed', 'opacity-70');
+            
+            setTimeout(() => {
+                showToast("¡Apoyo verificado! Contenido desbloqueado 🎉");
+                
+                const overlay = document.getElementById('locker-overlay');
+                const content = document.getElementById('roblox-clon-content');
+                
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.remove('blur-md', 'select-none', 'pointer-events-none');
+            }, 1500);
+        }
+
         function showToast(message) {
             const toast = document.getElementById("toast");
             toast.innerHTML = message;
@@ -1092,6 +1507,14 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
             setTimeout(() => {
                 toast.classList.remove("active");
             }, 2500);
+        }
+
+        function copyPromoCode() {
+            navigator.clipboard.writeText("tobby1").then(() => {
+                showToast("¡Código copiado! Canjéalo en UgPhone 🎁");
+            }).catch(() => {
+                showToast("No se pudo copiar <i class='fa-solid fa-xmark ml-1 text-red-500'></i>");
+            });
         }
 
         document.getElementById("searchInput").addEventListener("input", () => {
