@@ -352,10 +352,10 @@
             border-radius: 999px !important;
         }
 
-        .container > .text-center,
+        .container>.text-center,
         .card-reveal,
         #roblox-clon-card,
-        dialog > div {
+        dialog>div {
             backdrop-filter: blur(24px) saturate(180%);
         }
 
@@ -1179,8 +1179,8 @@
             opacity: 1;
         }
 
-        #scriptsGrid > div,
-        #videoGrid > div > div,
+        #scriptsGrid>div,
+        #videoGrid>div>div,
         #roblox-clon-card,
         #ugphone .max-w-5xl,
         #credits .relative.aspect-square,
@@ -1188,8 +1188,8 @@
             transition: transform 320ms ease, border-color 320ms ease, box-shadow 320ms ease, background 320ms ease !important;
         }
 
-        #scriptsGrid > div:hover,
-        #videoGrid > div:hover > div,
+        #scriptsGrid>div:hover,
+        #videoGrid>div:hover>div,
         #roblox-clon-card:hover,
         #ugphone .max-w-5xl:hover,
         #about .bg-dark-surface:hover {
@@ -1222,7 +1222,7 @@
             backdrop-filter: blur(18px) saturate(150%) !important;
         }
 
-        dialog > div {
+        dialog>div {
             background: rgba(14, 18, 27, 0.96) !important;
             border-color: rgba(255, 255, 255, 0.14) !important;
             box-shadow: var(--premium-shadow) !important;
@@ -1276,6 +1276,7 @@
                 opacity: 0;
                 transform: translateY(28px) scale(0.985);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -1283,10 +1284,12 @@
         }
 
         @keyframes titleFlow {
+
             0%,
             100% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
@@ -1297,6 +1300,7 @@
                 opacity: 0;
                 transform: translateY(34px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1304,6 +1308,7 @@
         }
 
         @supports ((animation-timeline: view()) and (animation-range: entry)) {
+
             .premium-feature,
             #scripts .text-center,
             #videos .text-center,
@@ -1356,17 +1361,17 @@
                 max-width: 24rem;
             }
 
-            #home .container > .flex:first-child {
+            #home .container>.flex:first-child {
                 gap: 0.75rem !important;
                 margin-bottom: 1.25rem !important;
             }
 
-            #home .container > .flex:first-child .inline-flex {
+            #home .container>.flex:first-child .inline-flex {
                 padding: 0.7rem 1.15rem !important;
                 font-size: 0.72rem !important;
             }
 
-            #home .container > .flex:first-child p {
+            #home .container>.flex:first-child p {
                 font-size: 1.2rem !important;
             }
 
@@ -1381,26 +1386,26 @@
                 margin-bottom: 1.5rem !important;
             }
 
-            #home .max-w-2xl > p {
+            #home .max-w-2xl>p {
                 font-size: 1rem !important;
                 margin-bottom: 1.55rem !important;
             }
 
-            #home .max-w-2xl > .flex {
+            #home .max-w-2xl>.flex {
                 display: grid !important;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 0.75rem !important;
                 margin-bottom: 0 !important;
             }
 
-            #home .max-w-2xl > .flex a {
+            #home .max-w-2xl>.flex a {
                 width: 100% !important;
                 min-inline-size: 0;
                 padding: 0.9rem 0.85rem !important;
                 font-size: 0.68rem !important;
             }
 
-            #home .max-w-2xl > .flex a[href="#scripts"] {
+            #home .max-w-2xl>.flex a[href="#scripts"] {
                 grid-column: 1 / -1;
             }
 
@@ -1411,7 +1416,7 @@
 
         }
 
-        .tobby-liquid #scriptsGrid > .script-card.card-reveal {
+        .tobby-liquid #scriptsGrid>.script-card.card-reveal {
             opacity: 0;
             filter: blur(10px);
             transform: translate3d(0, 2rem, 0) scale(0.965);
@@ -1422,17 +1427,18 @@
             transition-delay: var(--reveal-delay, 0ms) !important;
         }
 
-        .tobby-liquid #scriptsGrid > .script-card.card-reveal.active {
+        .tobby-liquid #scriptsGrid>.script-card.card-reveal.active {
             opacity: 1;
             filter: blur(0);
             transform: translate3d(0, 0, 0) scale(1);
         }
 
-        .tobby-liquid #scriptsGrid > .script-card.card-reveal.active:hover {
+        .tobby-liquid #scriptsGrid>.script-card.card-reveal.active:hover {
             transform: translate3d(0, -0.35rem, 0) scale(1.01) !important;
         }
 
         @media (prefers-reduced-motion: reduce) {
+
             #home .container,
             #home h1,
             .premium-feature,
@@ -1456,6 +1462,7 @@
                 opacity: 1 !important;
             }
         }
+
         .tobby-liquid {
             --tobby-bg: #08090b;
             --tobby-bg-raised: #101114;
@@ -1575,12 +1582,12 @@
         }
 
         .tobby-liquid .bg-dark-surface,
-        .tobby-liquid #scriptsGrid > div,
-        .tobby-liquid #videoGrid > div > div,
+        .tobby-liquid #scriptsGrid>div,
+        .tobby-liquid #videoGrid>div>div,
         .tobby-liquid #roblox-clon-card,
         .tobby-liquid #ugphone .max-w-5xl.mx-auto,
         .tobby-liquid #about .bg-dark-surface,
-        .tobby-liquid dialog > div {
+        .tobby-liquid dialog>div {
             background: var(--tobby-surface) !important;
             border-color: var(--tobby-line) !important;
             box-shadow: var(--tobby-shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.065) !important;
@@ -1922,12 +1929,12 @@
             max-width: 68rem;
         }
 
-        .tobby-liquid #home .container > .flex:first-child {
+        .tobby-liquid #home .container>.flex:first-child {
             gap: 0.85rem;
             margin-bottom: 1.75rem !important;
         }
 
-        .tobby-liquid #home .container > .flex:first-child .inline-flex {
+        .tobby-liquid #home .container>.flex:first-child .inline-flex {
             min-height: 2.5rem;
             border-color: rgba(250, 239, 177, 0.15) !important;
             border-radius: 999px !important;
@@ -1936,7 +1943,7 @@
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        .tobby-liquid #home .container > .flex:first-child p {
+        .tobby-liquid #home .container>.flex:first-child p {
             color: var(--tobby-gold) !important;
             font-size: clamp(1rem, 2vw, 1.25rem) !important;
         }
@@ -1970,14 +1977,14 @@
             text-transform: uppercase;
         }
 
-        .tobby-liquid #home .max-w-2xl > p {
+        .tobby-liquid #home .max-w-2xl>p {
             max-width: 39rem;
             color: var(--tobby-muted) !important;
             font-size: clamp(1rem, 2.3vw, 1.18rem) !important;
             font-weight: 450;
         }
 
-        .tobby-liquid #home .max-w-2xl > .flex > a {
+        .tobby-liquid #home .max-w-2xl>.flex>a {
             min-height: 3.15rem;
             border: 1px solid var(--tobby-line) !important;
             border-radius: 1.05rem !important;
@@ -1988,32 +1995,32 @@
             letter-spacing: 0.09em !important;
         }
 
-        .tobby-liquid #home .max-w-2xl > .flex > a:first-child {
+        .tobby-liquid #home .max-w-2xl>.flex>a:first-child {
             border-color: rgba(250, 239, 177, 0.2) !important;
             background: linear-gradient(135deg, var(--tobby-burgundy), var(--tobby-burgundy-deep)) !important;
             box-shadow: 0 15px 34px rgba(78, 34, 51, 0.34) !important;
         }
 
-        .tobby-liquid #home .max-w-2xl > .flex > a[href="#scripts"] {
+        .tobby-liquid #home .max-w-2xl>.flex>a[href="#scripts"] {
             border-color: rgba(230, 176, 61, 0.35) !important;
             background: rgba(230, 176, 61, 0.085) !important;
             color: var(--tobby-gold) !important;
         }
 
-        .tobby-liquid #home .max-w-2xl > .flex > a:hover,
-        .tobby-liquid #home .max-w-2xl > .flex > a:focus-visible {
+        .tobby-liquid #home .max-w-2xl>.flex>a:hover,
+        .tobby-liquid #home .max-w-2xl>.flex>a:focus-visible {
             border-color: var(--tobby-line-strong) !important;
             background: rgba(250, 239, 177, 0.1) !important;
             color: var(--tobby-cream) !important;
             transform: translateY(-2px);
         }
 
-        .tobby-liquid #home .max-w-2xl > .flex > a:first-child:hover,
-        .tobby-liquid #home .max-w-2xl > .flex > a:first-child:focus-visible {
+        .tobby-liquid #home .max-w-2xl>.flex>a:first-child:hover,
+        .tobby-liquid #home .max-w-2xl>.flex>a:first-child:focus-visible {
             background: linear-gradient(135deg, #853b5b, var(--tobby-burgundy-deep)) !important;
         }
 
-        .tobby-liquid #home .max-w-2xl > .grid {
+        .tobby-liquid #home .max-w-2xl>.grid {
             display: grid !important;
             margin-top: 0.75rem;
             padding: 0.9rem;
@@ -2024,16 +2031,16 @@
             backdrop-filter: blur(18px);
         }
 
-        .tobby-liquid #home .max-w-2xl > .grid > div {
+        .tobby-liquid #home .max-w-2xl>.grid>div {
             min-width: 0;
             padding: 0.7rem 0.45rem;
         }
 
-        .tobby-liquid #home .max-w-2xl > .grid > div + div {
+        .tobby-liquid #home .max-w-2xl>.grid>div+div {
             border-left: 1px solid rgba(250, 239, 177, 0.09);
         }
 
-        .tobby-liquid #home .max-w-2xl > .grid p:first-child {
+        .tobby-liquid #home .max-w-2xl>.grid p:first-child {
             color: var(--tobby-gold) !important;
             font-size: clamp(1.55rem, 4vw, 2.2rem) !important;
         }
@@ -2097,7 +2104,7 @@
         }
 
         .tobby-liquid .hub-summary h2,
-        .tobby-liquid #main-content > section h2 {
+        .tobby-liquid #main-content>section h2 {
             color: var(--tobby-ink) !important;
             font-weight: 760;
             letter-spacing: -0.055em !important;
@@ -2218,7 +2225,7 @@
             border-radius: 1.2rem;
         }
 
-        .tobby-liquid #main-content > section:not(#home) {
+        .tobby-liquid #main-content>section:not(#home) {
             border-color: rgba(250, 239, 177, 0.07) !important;
             background: transparent !important;
         }
@@ -2232,11 +2239,11 @@
             padding-block: clamp(4.75rem, 9vw, 7.5rem) !important;
         }
 
-        .tobby-liquid #main-content > section > .container > .text-center {
+        .tobby-liquid #main-content>section>.container>.text-center {
             margin-bottom: clamp(2.4rem, 6vw, 4.25rem) !important;
         }
 
-        .tobby-liquid #main-content > section > .container > .text-center > p {
+        .tobby-liquid #main-content>section>.container>.text-center>p {
             color: var(--tobby-muted) !important;
         }
 
@@ -2287,13 +2294,13 @@
             gap: 1rem !important;
         }
 
-        .tobby-liquid #scriptsGrid > div {
+        .tobby-liquid #scriptsGrid>div {
             min-height: 100%;
             border-radius: 1.45rem !important;
             transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease !important;
         }
 
-        .tobby-liquid #scriptsGrid > div::before {
+        .tobby-liquid #scriptsGrid>div::before {
             position: absolute;
             inset: 0;
             border: 1px solid transparent;
@@ -2306,13 +2313,13 @@
             pointer-events: none;
         }
 
-        .tobby-liquid #scriptsGrid > div:hover {
+        .tobby-liquid #scriptsGrid>div:hover {
             border-color: rgba(230, 176, 61, 0.32) !important;
             box-shadow: 0 22px 48px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.075) !important;
             transform: translateY(-5px);
         }
 
-        .tobby-liquid #scriptsGrid > div > .p-6 {
+        .tobby-liquid #scriptsGrid>div>.p-6 {
             padding: 1.25rem !important;
         }
 
@@ -2359,12 +2366,12 @@
             gap: 1rem !important;
         }
 
-        .tobby-liquid #videoGrid > div > div {
+        .tobby-liquid #videoGrid>div>div {
             border-radius: 1.45rem !important;
             transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease !important;
         }
 
-        .tobby-liquid #videoGrid > div:hover > div {
+        .tobby-liquid #videoGrid>div:hover>div {
             border-color: rgba(230, 176, 61, 0.3) !important;
             box-shadow: 0 22px 48px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
             transform: translateY(-4px);
@@ -2391,9 +2398,9 @@
             overflow: hidden;
         }
 
-        .tobby-liquid #roblox-clon-card > .absolute:first-child,
-        .tobby-liquid #ugphone .max-w-5xl.mx-auto > .absolute:first-child,
-        .tobby-liquid #about .bg-dark-surface > .absolute:first-child {
+        .tobby-liquid #roblox-clon-card>.absolute:first-child,
+        .tobby-liquid #ugphone .max-w-5xl.mx-auto>.absolute:first-child,
+        .tobby-liquid #about .bg-dark-surface>.absolute:first-child {
             background: radial-gradient(circle at 15% 5%, rgba(113, 48, 76, 0.24), transparent 28rem) !important;
         }
 
@@ -2467,7 +2474,7 @@
             letter-spacing: -0.075em !important;
         }
 
-        .tobby-liquid #credits .flex.flex-wrap > span {
+        .tobby-liquid #credits .flex.flex-wrap>span {
             border-color: var(--tobby-line) !important;
             border-radius: 0.8rem !important;
             background: rgba(250, 239, 177, 0.05) !important;
@@ -2500,7 +2507,7 @@
             backdrop-filter: blur(10px) saturate(115%);
         }
 
-        .tobby-liquid dialog > div {
+        .tobby-liquid dialog>div {
             border-radius: 1.5rem !important;
         }
 
@@ -2528,33 +2535,77 @@
         }
 
         @keyframes toby-drift-a {
-            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-            50% { transform: translate3d(1.2rem, 1.7rem, 0) scale(1.06); }
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate3d(1.2rem, 1.7rem, 0) scale(1.06);
+            }
         }
 
         @keyframes toby-drift-b {
-            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-            50% { transform: translate3d(-1.4rem, 1rem, 0) scale(0.94); }
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate3d(-1.4rem, 1rem, 0) scale(0.94);
+            }
         }
 
         @keyframes toby-drift-c {
-            0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
-            50% { transform: translateX(-50%) translateY(-1.1rem) scale(1.04); }
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-1.1rem) scale(1.04);
+            }
         }
 
         @keyframes toby-title-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-0.3rem); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-0.3rem);
+            }
         }
 
         @keyframes toby-card-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-0.35rem); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-0.35rem);
+            }
         }
 
         @keyframes toby-gold-pulse {
-            0%, 100% { opacity: 0.55; transform: scale(0.94); }
-            50% { opacity: 1; transform: scale(1.05); }
+
+            0%,
+            100% {
+                opacity: 0.55;
+                transform: scale(0.94);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
         }
 
         @media (min-width: 768px) {
@@ -2566,13 +2617,14 @@
                 transform: translateX(-50%);
             }
 
-            .tobby-liquid #home .max-w-2xl > .flex {
+            .tobby-liquid #home .max-w-2xl>.flex {
                 max-width: 48rem;
                 margin-inline: auto;
             }
         }
 
         @media (min-width: 1028px) {
+
             .tobby-liquid #menu-toggle,
             .tobby-liquid #mobile-menu {
                 display: none !important;
@@ -2616,19 +2668,19 @@
                 padding-inline: 1.15rem;
             }
 
-            .tobby-liquid #home .container > .flex:first-child {
+            .tobby-liquid #home .container>.flex:first-child {
                 flex-direction: column;
                 gap: 0.7rem;
                 margin-bottom: 1.45rem !important;
             }
 
-            .tobby-liquid #home .container > .flex:first-child .inline-flex {
+            .tobby-liquid #home .container>.flex:first-child .inline-flex {
                 min-height: 2.35rem;
                 padding: 0.55rem 0.9rem !important;
                 font-size: 0.64rem !important;
             }
 
-            .tobby-liquid #home .container > .flex:first-child .inline-flex span {
+            .tobby-liquid #home .container>.flex:first-child .inline-flex span {
                 margin-right: 0 !important;
             }
 
@@ -2642,20 +2694,20 @@
                 letter-spacing: 0.12em !important;
             }
 
-            .tobby-liquid #home .max-w-2xl > p {
+            .tobby-liquid #home .max-w-2xl>p {
                 margin-bottom: 1.45rem !important;
                 font-size: 0.98rem !important;
                 line-height: 1.6 !important;
             }
 
-            .tobby-liquid #home .max-w-2xl > .flex {
+            .tobby-liquid #home .max-w-2xl>.flex {
                 display: grid !important;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 0.65rem !important;
                 margin-bottom: 1.45rem !important;
             }
 
-            .tobby-liquid #home .max-w-2xl > .flex > a {
+            .tobby-liquid #home .max-w-2xl>.flex>a {
                 min-width: 0;
                 min-height: 3.1rem;
                 padding: 0.7rem 0.55rem !important;
@@ -2663,28 +2715,28 @@
                 letter-spacing: 0.045em !important;
             }
 
-            .tobby-liquid #home .max-w-2xl > .flex > a:first-child,
-            .tobby-liquid #home .max-w-2xl > .flex > a[href="#scripts"] {
+            .tobby-liquid #home .max-w-2xl>.flex>a:first-child,
+            .tobby-liquid #home .max-w-2xl>.flex>a[href="#scripts"] {
                 grid-column: 1 / -1;
             }
 
-            .tobby-liquid #home .max-w-2xl > .grid {
+            .tobby-liquid #home .max-w-2xl>.grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
                 gap: 0 !important;
                 margin-top: 0 !important;
                 padding: 0.35rem !important;
             }
 
-            .tobby-liquid #home .max-w-2xl > .grid > div {
+            .tobby-liquid #home .max-w-2xl>.grid>div {
                 padding: 0.8rem 0.4rem !important;
             }
 
-            .tobby-liquid #home .max-w-2xl > .grid > div:nth-child(3) {
+            .tobby-liquid #home .max-w-2xl>.grid>div:nth-child(3) {
                 border-left: 0 !important;
                 border-top: 1px solid rgba(250, 239, 177, 0.09);
             }
 
-            .tobby-liquid #home .max-w-2xl > .grid > div:nth-child(4) {
+            .tobby-liquid #home .max-w-2xl>.grid>div:nth-child(4) {
                 border-top: 1px solid rgba(250, 239, 177, 0.09);
             }
 
@@ -2738,7 +2790,7 @@
                 padding-block: 4.45rem !important;
             }
 
-            .tobby-liquid #main-content > section > .container,
+            .tobby-liquid #main-content>section>.container,
             .tobby-liquid #scripts .container,
             .tobby-liquid #videos .container,
             .tobby-liquid #roblox-clon .container,
@@ -2748,11 +2800,11 @@
                 padding-inline: 1.15rem !important;
             }
 
-            .tobby-liquid #main-content > section > .container > .text-center {
+            .tobby-liquid #main-content>section>.container>.text-center {
                 margin-bottom: 2.35rem !important;
             }
 
-            .tobby-liquid #main-content > section h2 {
+            .tobby-liquid #main-content>section h2 {
                 font-size: clamp(2.25rem, 10vw, 3.05rem) !important;
             }
 
@@ -2786,12 +2838,12 @@
                 gap: 0.8rem !important;
             }
 
-            .tobby-liquid #scriptsGrid > div,
-            .tobby-liquid #videoGrid > div > div {
+            .tobby-liquid #scriptsGrid>div,
+            .tobby-liquid #videoGrid>div>div {
                 border-radius: 1.2rem !important;
             }
 
-            .tobby-liquid #scriptsGrid > div > .p-6,
+            .tobby-liquid #scriptsGrid>div>.p-6,
             .tobby-liquid #videoGrid .p-6 {
                 padding: 1.05rem !important;
             }
@@ -2823,7 +2875,7 @@
                 text-align: center !important;
             }
 
-            .tobby-liquid #credits .flex-1.text-left > .flex {
+            .tobby-liquid #credits .flex-1.text-left>.flex {
                 justify-content: center;
             }
 
@@ -2863,12 +2915,12 @@
                 will-change: transform;
             }
 
-            .tobby-liquid #scriptsGrid > div.card-reveal.active:nth-child(3n + 1) {
+            .tobby-liquid #scriptsGrid>div.card-reveal.active:nth-child(3n + 1) {
                 animation: toby-card-float 6.2s ease-in-out infinite;
                 will-change: transform;
             }
 
-            .tobby-liquid #scriptsGrid > div.card-reveal.active:nth-child(3n + 2) {
+            .tobby-liquid #scriptsGrid>div.card-reveal.active:nth-child(3n + 2) {
                 animation: toby-card-float 7s ease-in-out 0.5s infinite;
                 will-change: transform;
             }
@@ -2881,6 +2933,7 @@
         }
 
         @media (hover: hover) and (min-width: 768px) {
+
             .tobby-liquid #roblox-clon-card:hover,
             .tobby-liquid #ugphone .max-w-5xl.mx-auto:hover,
             .tobby-liquid #about .bg-dark-surface:hover {
@@ -2891,6 +2944,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+
             .tobby-liquid *,
             .tobby-liquid *::before,
             .tobby-liquid *::after {
@@ -2906,10 +2960,11 @@
                 opacity: 1 !important;
             }
 
-            .tobby-liquid #scriptsGrid > .script-card.card-reveal {
+            .tobby-liquid #scriptsGrid>.script-card.card-reveal {
                 filter: none !important;
             }
         }
+
         body.tobby-liquid.superjail-cartoon {
             --toon-ink: #09060f;
             --toon-purple: #6c2bd9;
@@ -3198,7 +3253,7 @@
             opacity: 0.84 !important;
         }
 
-        .superjail-cartoon #home .container > .flex:first-child .inline-flex {
+        .superjail-cartoon #home .container>.flex:first-child .inline-flex {
             border: 3px solid var(--toon-ink) !important;
             background: var(--toon-paper) !important;
             box-shadow: 4px 4px 0 var(--toon-ink) !important;
@@ -3207,7 +3262,7 @@
             transform: rotate(-2deg);
         }
 
-        .superjail-cartoon #home .container > .flex:first-child p {
+        .superjail-cartoon #home .container>.flex:first-child p {
             color: var(--toon-yellow) !important;
             font-family: "Chewy", cursive !important;
             text-shadow: 2px 2px 0 var(--toon-ink);
@@ -3234,7 +3289,7 @@
             text-shadow: 2px 2px 0 var(--toon-ink);
         }
 
-        .superjail-cartoon #home .max-w-2xl > p {
+        .superjail-cartoon #home .max-w-2xl>p {
             max-width: 36rem;
             color: var(--toon-white) !important;
             font-family: "Chewy", cursive !important;
@@ -3243,7 +3298,7 @@
             text-shadow: 2px 2px 0 var(--toon-ink);
         }
 
-        .superjail-cartoon #home .max-w-2xl > .flex > a {
+        .superjail-cartoon #home .max-w-2xl>.flex>a {
             border: 3px solid var(--toon-ink) !important;
             border-radius: 1.3rem !important;
             background: var(--toon-cyan) !important;
@@ -3252,30 +3307,30 @@
             font-size: 0.96rem !important;
         }
 
-        .superjail-cartoon #home .max-w-2xl > .flex > a:first-child {
+        .superjail-cartoon #home .max-w-2xl>.flex>a:first-child {
             background: var(--toon-pink) !important;
         }
 
-        .superjail-cartoon #home .max-w-2xl > .flex > a:nth-child(2) {
+        .superjail-cartoon #home .max-w-2xl>.flex>a:nth-child(2) {
             background: var(--toon-green) !important;
         }
 
-        .superjail-cartoon #home .max-w-2xl > .flex > a:nth-child(3) {
+        .superjail-cartoon #home .max-w-2xl>.flex>a:nth-child(3) {
             background: var(--toon-cyan) !important;
         }
 
-        .superjail-cartoon #home .max-w-2xl > .flex > a[href="#scripts"] {
+        .superjail-cartoon #home .max-w-2xl>.flex>a[href="#scripts"] {
             background: var(--toon-yellow) !important;
             color: var(--toon-ink) !important;
         }
 
-        .superjail-cartoon #home .max-w-2xl > .flex > a:hover,
-        .superjail-cartoon #home .max-w-2xl > .flex > a:focus-visible {
+        .superjail-cartoon #home .max-w-2xl>.flex>a:hover,
+        .superjail-cartoon #home .max-w-2xl>.flex>a:focus-visible {
             box-shadow: 2px 2px 0 var(--toon-ink) !important;
             transform: translate(3px, 3px) rotate(-2deg) !important;
         }
 
-        .superjail-cartoon #home .max-w-2xl > .grid {
+        .superjail-cartoon #home .max-w-2xl>.grid {
             border: 3px solid var(--toon-ink) !important;
             border-radius: 1.7rem !important;
             background: #1a1224 !important;
@@ -3283,23 +3338,23 @@
             backdrop-filter: none !important;
         }
 
-        .superjail-cartoon #home .max-w-2xl > .grid > div + div {
+        .superjail-cartoon #home .max-w-2xl>.grid>div+div {
             border-left: 2px dashed rgba(255, 242, 207, 0.28) !important;
         }
 
-        .superjail-cartoon #home .max-w-2xl > .grid p:first-child {
+        .superjail-cartoon #home .max-w-2xl>.grid p:first-child {
             color: var(--toon-yellow) !important;
             font-family: "Bangers", cursive !important;
             text-shadow: 2px 2px 0 var(--toon-ink);
         }
 
-        .superjail-cartoon #home .max-w-2xl > .grid p:last-child {
+        .superjail-cartoon #home .max-w-2xl>.grid p:last-child {
             color: var(--toon-paper) !important;
             font-family: "Space Mono", monospace !important;
             font-size: 0.6rem !important;
         }
 
-        .superjail-cartoon #main-content > section:not(#home) {
+        .superjail-cartoon #main-content>section:not(#home) {
             position: relative;
             overflow: hidden;
             border-top: 3px solid var(--toon-ink) !important;
@@ -3349,7 +3404,7 @@
             transform: rotate(18deg);
         }
 
-        .superjail-cartoon #main-content > section h2,
+        .superjail-cartoon #main-content>section h2,
         .superjail-cartoon .hub-summary h2 {
             color: var(--toon-paper) !important;
             font-family: "Bangers", cursive !important;
@@ -3359,11 +3414,11 @@
             text-shadow: 3px 3px 0 var(--toon-ink), 6px 6px 0 var(--toon-purple) !important;
         }
 
-        .superjail-cartoon #main-content > section h2 .text-js-yellow {
+        .superjail-cartoon #main-content>section h2 .text-js-yellow {
             color: var(--toon-yellow) !important;
         }
 
-        .superjail-cartoon #main-content > section > .container > .text-center > p {
+        .superjail-cartoon #main-content>section>.container>.text-center>p {
             max-width: 44rem;
             color: var(--toon-white) !important;
             font-family: "Chewy", cursive !important;
@@ -3406,13 +3461,13 @@
             transform: translate(2px, 2px) rotate(2deg);
         }
 
-        .superjail-cartoon #scriptsGrid > .script-card,
-        .superjail-cartoon #videoGrid > div > div,
+        .superjail-cartoon #scriptsGrid>.script-card,
+        .superjail-cartoon #videoGrid>div>div,
         .superjail-cartoon #roblox-clon-card,
         .superjail-cartoon #ugphone .max-w-5xl.mx-auto,
         .superjail-cartoon #about .bg-dark-surface,
         .superjail-cartoon #credits .max-w-5xl,
-        .superjail-cartoon dialog > div {
+        .superjail-cartoon dialog>div {
             border: 3px solid var(--toon-ink) !important;
             border-radius: 1.55rem !important;
             background: #21142d !important;
@@ -3421,31 +3476,31 @@
             -webkit-backdrop-filter: none !important;
         }
 
-        .superjail-cartoon #scriptsGrid > .script-card::before {
+        .superjail-cartoon #scriptsGrid>.script-card::before {
             display: none !important;
         }
 
-        .superjail-cartoon #scriptsGrid > .script-card:nth-child(4n + 1) {
+        .superjail-cartoon #scriptsGrid>.script-card:nth-child(4n + 1) {
             background: linear-gradient(145deg, #4a2166, #21142d) !important;
             box-shadow: 7px 7px 0 var(--toon-pink) !important;
         }
 
-        .superjail-cartoon #scriptsGrid > .script-card:nth-child(4n + 2) {
+        .superjail-cartoon #scriptsGrid>.script-card:nth-child(4n + 2) {
             background: linear-gradient(145deg, #123f57, #172038) !important;
             box-shadow: 7px 7px 0 var(--toon-cyan) !important;
         }
 
-        .superjail-cartoon #scriptsGrid > .script-card:nth-child(4n + 3) {
+        .superjail-cartoon #scriptsGrid>.script-card:nth-child(4n + 3) {
             background: linear-gradient(145deg, #4a2b32, #25182a) !important;
             box-shadow: 7px 7px 0 var(--toon-orange) !important;
         }
 
-        .superjail-cartoon #scriptsGrid > .script-card:nth-child(4n) {
+        .superjail-cartoon #scriptsGrid>.script-card:nth-child(4n) {
             background: linear-gradient(145deg, #1e4b40, #16242c) !important;
             box-shadow: 7px 7px 0 var(--toon-green) !important;
         }
 
-        .superjail-cartoon #scriptsGrid > .script-card:hover {
+        .superjail-cartoon #scriptsGrid>.script-card:hover {
             border-color: var(--toon-ink) !important;
         }
 
@@ -3514,7 +3569,7 @@
             transform: translate(2px, 2px) rotate(-2deg) !important;
         }
 
-        .superjail-cartoon #videoGrid > div > div {
+        .superjail-cartoon #videoGrid>div>div {
             background: #291529 !important;
             box-shadow: 7px 7px 0 var(--toon-pink) !important;
         }
@@ -3579,7 +3634,7 @@
             text-shadow: 3px 3px 0 var(--toon-ink) !important;
         }
 
-        .superjail-cartoon #credits .flex.flex-wrap > span {
+        .superjail-cartoon #credits .flex.flex-wrap>span {
             border: 2px solid var(--toon-ink) !important;
             background: var(--toon-paper) !important;
             color: var(--toon-ink) !important;
@@ -3608,7 +3663,7 @@
             backdrop-filter: blur(4px);
         }
 
-        .superjail-cartoon dialog > div {
+        .superjail-cartoon dialog>div {
             background: linear-gradient(145deg, #39204d, #1b1226) !important;
             box-shadow: 9px 9px 0 var(--toon-pink) !important;
         }
@@ -3622,19 +3677,43 @@
         }
 
         @keyframes toon-title-pop {
-            0%, 100% { transform: rotate(-2deg) scale(1); }
-            48% { transform: rotate(1deg) scale(1.035); }
-            54% { transform: rotate(-3deg) scale(0.985); }
+
+            0%,
+            100% {
+                transform: rotate(-2deg) scale(1);
+            }
+
+            48% {
+                transform: rotate(1deg) scale(1.035);
+            }
+
+            54% {
+                transform: rotate(-3deg) scale(0.985);
+            }
         }
 
         @keyframes toon-bubble-bounce {
-            0%, 100% { transform: translate3d(0, 0, 0) rotate(0); }
-            50% { transform: translate3d(0.7rem, -1.1rem, 0) rotate(10deg); }
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) rotate(0);
+            }
+
+            50% {
+                transform: translate3d(0.7rem, -1.1rem, 0) rotate(10deg);
+            }
         }
 
         @keyframes toon-card-bop {
-            0%, 100% { transform: translate3d(0, 0, 0) rotate(0); }
-            50% { transform: translate3d(0, -0.32rem, 0) rotate(-0.55deg); }
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) rotate(0);
+            }
+
+            50% {
+                transform: translate3d(0, -0.32rem, 0) rotate(-0.55deg);
+            }
         }
 
         @media (max-width: 767px) {
@@ -3653,7 +3732,7 @@
                 width: 9rem;
             }
 
-            .superjail-cartoon #home .container > .flex:first-child .inline-flex {
+            .superjail-cartoon #home .container>.flex:first-child .inline-flex {
                 font-size: 0.6rem !important;
             }
 
@@ -3662,22 +3741,22 @@
                 text-shadow: 3px 3px 0 var(--toon-ink), 6px 6px 0 var(--toon-pink), 9px 9px 0 var(--toon-ink) !important;
             }
 
-            .superjail-cartoon #home .max-w-2xl > .grid > div:nth-child(3),
-            .superjail-cartoon #home .max-w-2xl > .grid > div:nth-child(4) {
+            .superjail-cartoon #home .max-w-2xl>.grid>div:nth-child(3),
+            .superjail-cartoon #home .max-w-2xl>.grid>div:nth-child(4) {
                 border-top: 2px dashed rgba(255, 242, 207, 0.28) !important;
             }
 
-            .superjail-cartoon #home .max-w-2xl > .grid > div:nth-child(3) {
+            .superjail-cartoon #home .max-w-2xl>.grid>div:nth-child(3) {
                 border-left: 0 !important;
             }
 
-            .superjail-cartoon #main-content > section h2 {
+            .superjail-cartoon #main-content>section h2 {
                 font-size: clamp(2.65rem, 13vw, 3.7rem) !important;
                 text-shadow: 2px 2px 0 var(--toon-ink), 4px 4px 0 var(--toon-purple) !important;
             }
 
-            .superjail-cartoon #scriptsGrid > .script-card,
-            .superjail-cartoon #videoGrid > div > div {
+            .superjail-cartoon #scriptsGrid>.script-card,
+            .superjail-cartoon #videoGrid>div>div {
                 border-radius: 1.2rem !important;
             }
         }
@@ -3699,28 +3778,30 @@
                 animation-delay: 1.4s !important;
             }
 
-            .superjail-cartoon #scriptsGrid > .script-card.card-reveal.active:nth-child(2n) {
+            .superjail-cartoon #scriptsGrid>.script-card.card-reveal.active:nth-child(2n) {
                 animation: toon-card-bop 5.5s ease-in-out 0.45s infinite !important;
             }
 
-            .superjail-cartoon #scriptsGrid > .script-card.card-reveal.active:nth-child(2n + 1) {
+            .superjail-cartoon #scriptsGrid>.script-card.card-reveal.active:nth-child(2n + 1) {
                 animation: toon-card-bop 6.1s ease-in-out infinite !important;
             }
         }
+
         @media (max-width: 767px) {
-            .superjail-cartoon #home .max-w-2xl > .grid {
+            .superjail-cartoon #home .max-w-2xl>.grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
             }
 
-            .superjail-cartoon #home .max-w-2xl > .grid > div:nth-child(3),
-            .superjail-cartoon #home .max-w-2xl > .grid > div:nth-child(4) {
+            .superjail-cartoon #home .max-w-2xl>.grid>div:nth-child(3),
+            .superjail-cartoon #home .max-w-2xl>.grid>div:nth-child(4) {
                 border-top: 0 !important;
             }
 
-            .superjail-cartoon #home .max-w-2xl > .grid > div:nth-child(3) {
+            .superjail-cartoon #home .max-w-2xl>.grid>div:nth-child(3) {
                 border-left: 2px dashed rgba(255, 242, 207, 0.28) !important;
             }
         }
+
         .superjail-cartoon .mobile-menu-item i {
             display: grid !important;
             flex: 0 0 2.25rem;
@@ -3784,16 +3865,19 @@
         .superjail-cartoon .mobile-menu-item:focus-visible i {
             transform: rotate(0) scale(1.12);
         }
-        .superjail-cartoon #scriptsGrid .w-12 > i {
+
+        .superjail-cartoon #scriptsGrid .w-12>i {
             color: var(--toon-ink) !important;
             text-shadow: none !important;
         }
+
         .superjail-cartoon #credits h3 {
             font-size: clamp(2.1rem, 3.7vw, 3.45rem) !important;
             letter-spacing: 0.065em !important;
             line-height: 0.96 !important;
         }
-        body.tobby-liquid.superjail-cartoon > footer {
+
+        body.tobby-liquid.superjail-cartoon>footer {
             border-top: 4px solid var(--toon-ink) !important;
             background:
                 repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.11) 0 0.75rem, transparent 0.75rem 1.5rem),
@@ -3801,8 +3885,8 @@
             box-shadow: inset 0 4px 0 rgba(255, 242, 207, 0.28), 0 -5px 0 var(--toon-ink) !important;
         }
 
-        body.tobby-liquid.superjail-cartoon > footer p,
-        body.tobby-liquid.superjail-cartoon > footer .text-gray-500 {
+        body.tobby-liquid.superjail-cartoon>footer p,
+        body.tobby-liquid.superjail-cartoon>footer .text-gray-500 {
             color: var(--toon-paper) !important;
             font-family: "Chewy", cursive !important;
             font-size: clamp(0.95rem, 2vw, 1.18rem) !important;
@@ -3810,10 +3894,11 @@
             text-shadow: 2px 2px 0 var(--toon-ink), -1px -1px 0 var(--toon-ink) !important;
         }
 
-        body.tobby-liquid.superjail-cartoon > footer .text-js-yellow {
+        body.tobby-liquid.superjail-cartoon>footer .text-js-yellow {
             color: var(--toon-yellow) !important;
             text-shadow: 2px 2px 0 var(--toon-ink) !important;
         }
+
         .superjail-cartoon #credits .credit-youtube {
             display: inline-flex;
             min-height: 3.15rem;
@@ -3845,6 +3930,7 @@
             color: var(--toon-white) !important;
             transform: translate(3px, 3px) rotate(-1deg);
         }
+
         .superjail-cameos {
             position: fixed;
             inset: 0;
@@ -3917,8 +4003,15 @@
         }
 
         @keyframes superjail-cameo-bob {
-            0%, 100% { transform: translate3d(0, 0, 0) rotate(0); }
-            50% { transform: translate3d(0, -0.45rem, 0) rotate(1.2deg); }
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) rotate(0);
+            }
+
+            50% {
+                transform: translate3d(0, -0.45rem, 0) rotate(1.2deg);
+            }
         }
 
         .superjail-cartoon #ugphone .ugphone-cta {
@@ -4081,9 +4174,17 @@
             line-height: 1.2;
         }
 
-        .superjail-cartoon #about .about-fact-peru i { background: var(--toon-cyan); }
-        .superjail-cartoon #about .about-fact-date i { background: var(--toon-yellow); }
-        .superjail-cartoon #about .about-fact-dev i { background: var(--toon-pink); }
+        .superjail-cartoon #about .about-fact-peru i {
+            background: var(--toon-cyan);
+        }
+
+        .superjail-cartoon #about .about-fact-date i {
+            background: var(--toon-yellow);
+        }
+
+        .superjail-cartoon #about .about-fact-dev i {
+            background: var(--toon-pink);
+        }
 
         @media (max-width: 767px) {
             .superjail-cameo {
@@ -4111,6 +4212,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+
             .superjail-cameo,
             .superjail-cameo.is-visible,
             .superjail-cameo.is-leaving,
@@ -4130,7 +4232,8 @@
 
     <header
         class="fixed top-0 w-full bg-dark-bg/90 backdrop-blur-md z-50 border-b border-white/10 transition-all duration-300">
-        <div id="scroll-progress" class="absolute bottom-0 left-0 h-[2px] bg-js-yellow w-0 transition-all duration-100"></div>
+        <div id="scroll-progress" class="absolute bottom-0 left-0 h-[2px] bg-js-yellow w-0 transition-all duration-100">
+        </div>
         <div class="container mx-auto px-5">
             <nav aria-label="Navegación principal" class="flex justify-between items-center h-16 md:h-20">
                 <a href="#home" class="flex items-center gap-3 group transition-all duration-300">
@@ -4159,7 +4262,8 @@
                     <a href="#videos"
                         class="text-sm font-medium text-gray-400 hover:text-js-yellow transition-colors">Videos</a>
                     <a href="#roblox-clon"
-                        class="text-sm font-medium text-gray-400 hover:text-js-yellow transition-colors flex items-center gap-1.5">Roblox Clon
+                        class="text-sm font-medium text-gray-400 hover:text-js-yellow transition-colors flex items-center gap-1.5">Roblox
+                        Clon
                         <span
                             class="size-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)]"></span></a>
                     <a href="#ugphone"
@@ -4204,32 +4308,32 @@
                 </div>
             </div>
             <p class="mobile-menu-kicker">Navegación rápida</p>
-        <nav aria-label="Navegación móvil" class="mobile-menu-nav">
-            <a href="#home"
-                class="mobile-menu-item mobile-link"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
-            <a href="#scripts"
-                class="mobile-menu-item mobile-link"><i class="fa-solid fa-code"></i><span>Scripts</span><b></b></a>
-            <a href="#videos"
-                class="mobile-menu-item mobile-link"><i class="fa-brands fa-youtube"></i><span>Videos</span></a>
-            <a href="#roblox-clon"
-                class="mobile-menu-item mobile-link"><i class="fa-solid fa-clone"></i><span>Roblox Clon</span><b class="blue"></b></a>
-            <a href="#ugphone"
-                class="mobile-menu-item mobile-link"><i class="fa-solid fa-cloud"></i><span>UgPhone</span><b class="rose"></b></a>
-            <a href="#credits"
-                class="mobile-menu-item mobile-link"><i class="fa-solid fa-user-gear"></i><span>Créditos</span></a>
-            <a href="#about"
-                class="mobile-menu-item mobile-link"><i class="fa-solid fa-circle-info"></i><span>Sobre mí</span></a>
-        </nav>
-        <div class="mobile-menu-actions">
-            <a href="https://discord.com/invite/VAcR3GpbVU" target="_blank"
-                class="mobile-menu-cta discord mobile-link">
-                <i class="fa-brands fa-discord"></i> Discord
-            </a>
-            <a href="https://youtube.com/@tobby-scripts" target="_blank"
-                class="mobile-menu-cta youtube mobile-link">
-                <i class="fa-brands fa-youtube"></i> YouTube
-            </a>
-        </div>
+            <nav aria-label="Navegación móvil" class="mobile-menu-nav">
+                <a href="#home" class="mobile-menu-item mobile-link"><i
+                        class="fa-solid fa-house"></i><span>Inicio</span></a>
+                <a href="#scripts" class="mobile-menu-item mobile-link"><i
+                        class="fa-solid fa-code"></i><span>Scripts</span><b></b></a>
+                <a href="#videos" class="mobile-menu-item mobile-link"><i
+                        class="fa-brands fa-youtube"></i><span>Videos</span></a>
+                <a href="#roblox-clon" class="mobile-menu-item mobile-link"><i
+                        class="fa-solid fa-clone"></i><span>Roblox Clon</span><b class="blue"></b></a>
+                <a href="#ugphone" class="mobile-menu-item mobile-link"><i
+                        class="fa-solid fa-cloud"></i><span>UgPhone</span><b class="rose"></b></a>
+                <a href="#credits" class="mobile-menu-item mobile-link"><i
+                        class="fa-solid fa-user-gear"></i><span>Créditos</span></a>
+                <a href="#about" class="mobile-menu-item mobile-link"><i class="fa-solid fa-circle-info"></i><span>Sobre
+                        mí</span></a>
+            </nav>
+            <div class="mobile-menu-actions">
+                <a href="https://discord.com/invite/VAcR3GpbVU" target="_blank"
+                    class="mobile-menu-cta discord mobile-link">
+                    <i class="fa-brands fa-discord"></i> Discord
+                </a>
+                <a href="https://youtube.com/@tobby-scripts" target="_blank"
+                    class="mobile-menu-cta youtube mobile-link">
+                    <i class="fa-brands fa-youtube"></i> YouTube
+                </a>
+            </div>
         </div>
     </div>
 
@@ -4317,8 +4421,10 @@
                 <div class="hub-panel">
                     <article class="hub-summary">
                         <span class="section-eyebrow">Panel rápido</span>
-                        <h2 class="text-3xl md:text-4xl font-bold font-display text-white tracking-tight mb-4">Encuentra y copia sin perder tiempo</h2>
-                        <p class="text-gray-400 leading-relaxed">Usa este resumen para ir directo a lo importante: buscar scripts, revisar categorías, abrir tutoriales o desbloquear recursos especiales.</p>
+                        <h2 class="text-3xl md:text-4xl font-bold font-display text-white tracking-tight mb-4">Encuentra
+                            y copia sin perder tiempo</h2>
+                        <p class="text-gray-400 leading-relaxed">Usa este resumen para ir directo a lo importante:
+                            buscar scripts, revisar categorías, abrir tutoriales o desbloquear recursos especiales.</p>
 
                         <div class="hub-metric-row">
                             <div class="hub-metric">
@@ -4350,7 +4456,8 @@
                                 <div class="relative z-10">
                                     <i class="fa-solid fa-magnifying-glass text-2xl mb-4 block"></i>
                                     <h3 class="text-xl font-bold font-display text-white mb-2">Buscar scripts</h3>
-                                    <p class="text-sm text-gray-400 leading-relaxed mb-4">Abre el directorio, escribe el juego o filtra por categoría.</p>
+                                    <p class="text-sm text-gray-400 leading-relaxed mb-4">Abre el directorio, escribe el
+                                        juego o filtra por categoría.</p>
                                     <span>Ir al buscador <i class="fa-solid fa-arrow-right text-xs"></i></span>
                                 </div>
                             </a>
@@ -4358,7 +4465,8 @@
                                 <div class="relative z-10">
                                     <i class="fa-brands fa-youtube text-2xl mb-4 block"></i>
                                     <h3 class="text-xl font-bold font-display text-white mb-2">Ver tutoriales</h3>
-                                    <p class="text-sm text-gray-400 leading-relaxed mb-4">Consulta videos recientes antes de usar un recurso.</p>
+                                    <p class="text-sm text-gray-400 leading-relaxed mb-4">Consulta videos recientes
+                                        antes de usar un recurso.</p>
                                     <span>Ir a videos <i class="fa-solid fa-arrow-right text-xs"></i></span>
                                 </div>
                             </a>
@@ -4366,7 +4474,8 @@
                                 <div class="relative z-10">
                                     <i class="fa-solid fa-clone text-2xl mb-4 block"></i>
                                     <h3 class="text-xl font-bold font-display text-white mb-2">Roblox Clon</h3>
-                                    <p class="text-sm text-gray-400 leading-relaxed mb-4">Accede a la sección de APKs clon y pasos de desbloqueo.</p>
+                                    <p class="text-sm text-gray-400 leading-relaxed mb-4">Accede a la sección de APKs
+                                        clon y pasos de desbloqueo.</p>
                                     <span>Ver recurso <i class="fa-solid fa-arrow-right text-xs"></i></span>
                                 </div>
                             </a>
@@ -4374,7 +4483,8 @@
                                 <div class="relative z-10">
                                     <i class="fa-solid fa-cloud text-2xl mb-4 block"></i>
                                     <h3 class="text-xl font-bold font-display text-white mb-2">UgPhone</h3>
-                                    <p class="text-sm text-gray-400 leading-relaxed mb-4">Copia el código y revisa el acceso al teléfono en la nube.</p>
+                                    <p class="text-sm text-gray-400 leading-relaxed mb-4">Copia el código y revisa el
+                                        acceso al teléfono en la nube.</p>
                                     <span>Ver código <i class="fa-solid fa-arrow-right text-xs"></i></span>
                                 </div>
                             </a>
@@ -4384,17 +4494,20 @@
                             <div class="hub-step">
                                 <i class="fa-solid fa-filter text-lg mb-3 block"></i>
                                 <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Filtra</h3>
-                                <p class="text-xs text-gray-400 leading-relaxed">Elige una categoría para reducir el listado.</p>
+                                <p class="text-xs text-gray-400 leading-relaxed">Elige una categoría para reducir el
+                                    listado.</p>
                             </div>
                             <div class="hub-step">
                                 <i class="fa-solid fa-eye text-lg mb-3 block"></i>
                                 <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Revisa</h3>
-                                <p class="text-xs text-gray-400 leading-relaxed">Abre el código completo antes de copiarlo.</p>
+                                <p class="text-xs text-gray-400 leading-relaxed">Abre el código completo antes de
+                                    copiarlo.</p>
                             </div>
                             <div class="hub-step">
                                 <i class="fa-solid fa-copy text-lg mb-3 block"></i>
                                 <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Copia</h3>
-                                <p class="text-xs text-gray-400 leading-relaxed">Pega el script en tu ejecutor compatible.</p>
+                                <p class="text-xs text-gray-400 leading-relaxed">Pega el script en tu ejecutor
+                                    compatible.</p>
                             </div>
                         </div>
                     </div>
@@ -4409,7 +4522,9 @@
                     <span class="section-eyebrow">Colección principal</span>
                     <h2 class="text-4xl md:text-5xl font-bold font-display mb-6 text-white tracking-tighter">Directorio
                         de <span class="text-js-yellow">Scripts</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Busca, filtra por categoría y copia scripts con un clic. Cada tarjeta está pensada para revisar rápido, abrir el código completo y volver al juego sin fricción.</p>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Busca, filtra por categoría y copia scripts con
+                        un clic. Cada tarjeta está pensada para revisar rápido, abrir el código completo y volver al
+                        juego sin fricción.</p>
                 </div>
 
                 <div class="flex flex-col md:flex-row gap-6 justify-between items-center mb-12">
@@ -4445,7 +4560,8 @@
                     <h2 class="text-4xl md:text-5xl font-bold font-display mb-6 text-white tracking-tighter">Últimos
                         <span class="text-js-yellow">Videos</span>
                     </h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Tutoriales, pruebas y actualizaciones para entender mejor cada recurso antes de usarlo.</p>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Tutoriales, pruebas y actualizaciones para
+                        entender mejor cada recurso antes de usarlo.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="videoGrid">
                 </div>
@@ -4454,81 +4570,115 @@
 
         <section id="roblox-clon" class="relative py-24 bg-dark-bg border-t border-white/5 overflow-hidden">
             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
-                <div class="absolute top-1/4 right-1/4 w-[450px] h-[450px] bg-blue-600/5 rounded-full blur-[120px] opacity-30"></div>
-                <div class="absolute bottom-1/4 left-1/4 w-[450px] h-[450px] bg-blue-600/5 rounded-full blur-[120px] opacity-30"></div>
+                <div
+                    class="absolute top-1/4 right-1/4 w-[450px] h-[450px] bg-blue-600/5 rounded-full blur-[120px] opacity-30">
+                </div>
+                <div
+                    class="absolute bottom-1/4 left-1/4 w-[450px] h-[450px] bg-blue-600/5 rounded-full blur-[120px] opacity-30">
+                </div>
             </div>
-            
+
             <div class="container relative z-10 mx-auto px-5">
                 <div class="text-center mb-16">
                     <span class="section-eyebrow">Múltiples cuentas simultáneas</span>
-                    <h2 class="text-4xl md:text-5xl font-bold font-display mb-6 text-white tracking-tighter">Roblox <span class="text-blue-500">Clon</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Ejecuta varias instancias de Roblox desde Android con una guía clara, recursos directos y pasos de acceso organizados.</p>
+                    <h2 class="text-4xl md:text-5xl font-bold font-display mb-6 text-white tracking-tighter">Roblox
+                        <span class="text-blue-500">Clon</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Ejecuta varias instancias de Roblox desde Android
+                        con una guía clara, recursos directos y pasos de acceso organizados.</p>
                 </div>
 
-                <div id="roblox-clon-card" class="max-w-5xl mx-auto bg-dark-surface rounded-2xl border border-white/5 p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-blue-600/30 hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-transparent pointer-events-none"></div>
-                    
-                    <div id="locker-overlay" class="absolute inset-0 bg-black/85 backdrop-blur-md z-[80] flex flex-col items-center justify-center p-6 text-center transition-all duration-500">
-                        <div class="w-16 h-16 rounded-full bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.35)] animate-pulse mb-6">
+                <div id="roblox-clon-card"
+                    class="max-w-5xl mx-auto bg-dark-surface rounded-2xl border border-white/5 p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-blue-600/30 hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-transparent pointer-events-none">
+                    </div>
+
+                    <div id="locker-overlay"
+                        class="absolute inset-0 bg-black/85 backdrop-blur-md z-[80] flex flex-col items-center justify-center p-6 text-center transition-all duration-500">
+                        <div
+                            class="w-16 h-16 rounded-full bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.35)] animate-pulse mb-6">
                             <i class="fa-solid fa-lock text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold font-display text-white mb-2">Contenido bloqueado</h3>
                         <p class="text-gray-400 text-sm max-w-md mb-8 leading-relaxed">
-                            Para acceder a la descarga de Roblox Clon APK y a las guías de uso, apoya el canal completando estos pasos:
+                            Para acceder a la descarga de Roblox Clon APK y a las guías de uso, apoya el canal
+                            completando estos pasos:
                         </p>
                         <div class="flex flex-col gap-3 w-full max-w-xs mb-8">
-                            <button id="step-sub-btn" onclick="handleStepSub()" class="locker-step locker-sub w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-white/10 rounded-xl hover:border-blue-600 hover:bg-blue-600/5 hover:scale-[1.01] transition-all group/btn outline-none focus:ring-2 focus:ring-blue-500 text-left cursor-pointer">
+                            <button id="step-sub-btn" onclick="handleStepSub()"
+                                class="locker-step locker-sub w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-white/10 rounded-xl hover:border-blue-600 hover:bg-blue-600/5 hover:scale-[1.01] transition-all group/btn outline-none focus:ring-2 focus:ring-blue-500 text-left cursor-pointer">
                                 <span class="flex items-center gap-3">
-                                    <i id="icon-sub" class="fa-solid fa-play text-red-500 text-lg transition-all duration-300"></i>
-                                    <span id="text-sub" class="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all">Paso 1: Suscribirse</span>
+                                    <i id="icon-sub"
+                                        class="fa-solid fa-play text-red-500 text-lg transition-all duration-300"></i>
+                                    <span id="text-sub"
+                                        class="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all">Paso
+                                        1: Suscribirse</span>
                                 </span>
-                                <i class="fa-solid fa-arrow-up-right-from-square text-gray-600 text-xs group-hover/btn:text-white transition-colors"></i>
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-gray-600 text-xs group-hover/btn:text-white transition-colors"></i>
                             </button>
-                            
-                            <button id="step-like-btn" onclick="handleStepLike()" class="locker-step locker-like w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-white/10 rounded-xl hover:border-blue-600 hover:bg-blue-600/5 hover:scale-[1.01] transition-all group/btn outline-none focus:ring-2 focus:ring-blue-500 text-left cursor-pointer">
+
+                            <button id="step-like-btn" onclick="handleStepLike()"
+                                class="locker-step locker-like w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-white/10 rounded-xl hover:border-blue-600 hover:bg-blue-600/5 hover:scale-[1.01] transition-all group/btn outline-none focus:ring-2 focus:ring-blue-500 text-left cursor-pointer">
                                 <span class="flex items-center gap-3">
-                                    <i id="icon-like" class="fa-solid fa-thumbs-up text-blue-500 text-lg transition-all duration-300"></i>
-                                    <span id="text-like" class="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all">Paso 2: Dar like al video</span>
+                                    <i id="icon-like"
+                                        class="fa-solid fa-thumbs-up text-blue-500 text-lg transition-all duration-300"></i>
+                                    <span id="text-like"
+                                        class="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all">Paso
+                                        2: Dar like al video</span>
                                 </span>
-                                <i class="fa-solid fa-arrow-up-right-from-square text-gray-600 text-xs group-hover/btn:text-white transition-colors"></i>
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-gray-600 text-xs group-hover/btn:text-white transition-colors"></i>
                             </button>
                         </div>
-                        
-                        <button id="btn-unlock" onclick="handleUnlock()" disabled class="w-full max-w-xs px-8 py-4 font-bold font-display uppercase tracking-widest bg-white/5 border border-white/10 text-gray-500 rounded-md cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 outline-none focus:ring-2 focus:ring-blue-500">
+
+                        <button id="btn-unlock" onclick="handleUnlock()" disabled
+                            class="w-full max-w-xs px-8 py-4 font-bold font-display uppercase tracking-widest bg-white/5 border border-white/10 text-gray-500 rounded-md cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 outline-none focus:ring-2 focus:ring-blue-500">
                             <i class="fa-solid fa-key"></i> Verificar y desbloquear
                         </button>
                     </div>
 
-                    <div id="roblox-clon-content" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10 transition-all duration-500 filter blur-md select-none pointer-events-none">
+                    <div id="roblox-clon-content"
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10 transition-all duration-500 filter blur-md select-none pointer-events-none">
                         <div class="lg:col-span-5 flex flex-col items-center justify-center">
                             <div class="relative flex items-center justify-center gap-6 md:gap-10 py-6">
-                                <div class="relative w-28 h-28 md:w-32 md:h-32 bg-black/60 border border-white/10 rounded-2xl flex items-center justify-center p-5 shadow-lg group-hover:border-white/20 transition-all duration-500 hover:scale-105">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Roblox_%282025%29_%28App_Icon%29.svg/500px-Roblox_%282025%29_%28App_Icon%29.svg.png" 
-                                         alt="Roblox Logo" 
-                                         class="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                                    <span class="absolute -bottom-2 bg-zinc-900 border border-white/10 text-[9px] px-2.5 py-0.5 rounded-full text-gray-400 font-bold uppercase tracking-wider">Roblox</span>
+                                <div
+                                    class="relative w-28 h-28 md:w-32 md:h-32 bg-black/60 border border-white/10 rounded-2xl flex items-center justify-center p-5 shadow-lg group-hover:border-white/20 transition-all duration-500 hover:scale-105">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Roblox_%282025%29_%28App_Icon%29.svg/500px-Roblox_%282025%29_%28App_Icon%29.svg.png"
+                                        alt="Roblox Logo"
+                                        class="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                                    <span
+                                        class="absolute -bottom-2 bg-zinc-900 border border-white/10 text-[9px] px-2.5 py-0.5 rounded-full text-gray-400 font-bold uppercase tracking-wider">Roblox</span>
                                 </div>
 
                                 <div class="flex flex-col items-center justify-center z-10">
-                                    <div class="w-10 h-10 rounded-full bg-blue-600/10 border border-blue-600/30 flex items-center justify-center animate-pulse text-blue-500 shadow-[0_0_15px_rgba(37,99,235,0.35)]">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-blue-600/10 border border-blue-600/30 flex items-center justify-center animate-pulse text-blue-500 shadow-[0_0_15px_rgba(37,99,235,0.35)]">
                                         <i class="fa-solid fa-copy text-sm"></i>
                                     </div>
-                                    <div class="h-8 w-[1px] bg-gradient-to-b from-blue-600/50 to-transparent my-1"></div>
+                                    <div class="h-8 w-[1px] bg-gradient-to-b from-blue-600/50 to-transparent my-1">
+                                    </div>
                                 </div>
 
-                                <div class="relative w-28 h-28 md:w-32 md:h-32 bg-black/60 border border-blue-600/20 rounded-2xl flex items-center justify-center p-5 shadow-lg group-hover:border-blue-600/40 transition-all duration-500 hover:scale-105 shadow-[0_0_20px_rgba(37,99,235,0.15)]">
-                                    <img src="https://raw.githubusercontent.com/SPDM-Team/Arceus-X-NEO-public/main/Images/Logo%20NEO%20512x.png" 
-                                         alt="ArceusX Logo" 
-                                         class="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(37,99,235,0.35)]">
-                                    <span class="absolute -bottom-2 bg-blue-600/90 border border-blue-600 text-[9px] px-2.5 py-0.5 rounded-full text-black font-bold uppercase tracking-wider">Arceus X</span>
+                                <div
+                                    class="relative w-28 h-28 md:w-32 md:h-32 bg-black/60 border border-blue-600/20 rounded-2xl flex items-center justify-center p-5 shadow-lg group-hover:border-blue-600/40 transition-all duration-500 hover:scale-105 shadow-[0_0_20px_rgba(37,99,235,0.15)]">
+                                    <img src="https://raw.githubusercontent.com/SPDM-Team/Arceus-X-NEO-public/main/Images/Logo%20NEO%20512x.png"
+                                        alt="ArceusX Logo"
+                                        class="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(37,99,235,0.35)]">
+                                    <span
+                                        class="absolute -bottom-2 bg-blue-600/90 border border-blue-600 text-[9px] px-2.5 py-0.5 rounded-full text-black font-bold uppercase tracking-wider">Arceus
+                                        X</span>
                                 </div>
                             </div>
-                            
+
                             <div class="mt-6 flex flex-wrap gap-2.5 justify-center">
-                                <span class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_10px_rgba(16,185,129,0.1)]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Activo / Funcional
+                                <span
+                                    class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Activo /
+                                    Funcional
                                 </span>
-                                <span class="bg-blue-600/10 border border-blue-600/30 text-blue-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full flex items-center gap-1.5">
+                                <span
+                                    class="bg-blue-600/10 border border-blue-600/30 text-blue-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full flex items-center gap-1.5">
                                     <i class="fa-solid fa-mobile-screen"></i> Android APK
                                 </span>
                             </div>
@@ -4536,48 +4686,64 @@
 
                         <div class="lg:col-span-7 text-left flex flex-col justify-between">
                             <div>
-                                <h3 class="text-2xl font-bold font-display text-white mb-4 tracking-tight leading-tight">
+                                <h3
+                                    class="text-2xl font-bold font-display text-white mb-4 tracking-tight leading-tight">
                                     ¿Qué es Roblox Clon con ArceusX?
                                 </h3>
                                 <p class="text-gray-300 text-base leading-relaxed mb-6 font-light">
-                                    Si quieres jugar en varias cuentas al mismo tiempo o farmear con más control, las <strong>APKs clon de ArceusX</strong> te permiten instalar y abrir varias instancias de Roblox en un mismo dispositivo móvil, cada una con su propia cuenta y su propio script.
+                                    Si quieres jugar en varias cuentas al mismo tiempo o farmear con más control, las
+                                    <strong>APKs clon de ArceusX</strong> te permiten instalar y abrir varias instancias
+                                    de Roblox en un mismo dispositivo móvil, cada una con su propia cuenta y su propio
+                                    script.
                                 </p>
-                                
+
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                                     <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shrink-0">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shrink-0">
                                             <i class="fa-solid fa-clone text-xs"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Multi-cuentas</h4>
-                                            <p class="text-xs text-gray-400 mt-0.5">Ejecuta múltiples apps de Roblox a la vez sin interferencias.</p>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">
+                                                Multi-cuentas</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Ejecuta múltiples apps de Roblox a
+                                                la vez sin interferencias.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shrink-0">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shrink-0">
                                             <i class="fa-solid fa-bolt text-xs"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">ArceusX Integrado</h4>
-                                            <p class="text-xs text-gray-400 mt-0.5">Ejecutor pre-instalado en cada clon para correr scripts al instante.</p>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">ArceusX
+                                                Integrado</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Ejecutor pre-instalado en cada clon
+                                                para correr scripts al instante.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shrink-0">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shrink-0">
                                             <i class="fa-solid fa-shield-halved text-xs"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Anti-cierre</h4>
-                                            <p class="text-xs text-gray-400 mt-0.5">Optimizado para evitar el cierre por falta de recursos de memoria.</p>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">
+                                                Anti-cierre</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Optimizado para evitar el cierre por
+                                                falta de recursos de memoria.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shrink-0">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-600/30 flex items-center justify-center text-blue-500 shrink-0">
                                             <i class="fa-solid fa-circle-nodes text-xs"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Fácil instalación</h4>
-                                            <p class="text-xs text-gray-400 mt-0.5">Descarga la APK, instálala como app independiente y listo.</p>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Fácil
+                                                instalación</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Descarga la APK, instálala como app
+                                                independiente y listo.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -4585,110 +4751,147 @@
 
                             <div class="flex flex-wrap gap-4 mt-2">
                                 <a href="https://gofile.io/d/LUkdrt" target="_blank"
-                                   class="px-8 py-4 font-bold font-display uppercase tracking-widest bg-blue-600 text-js-black border-2 border-blue-600 hover:bg-transparent hover:text-blue-500 transition-all flex items-center justify-center gap-3 text-sm md:text-base rounded-md shadow-[0_0_20px_rgba(37,99,235,0.35)] hover:shadow-[0_0_30px_rgba(37,99,235,0.55)] w-full sm:w-auto">
-                                    <i class="fa-solid fa-download text-lg animate-bounce"></i> Descargar Roblox Clon APK
+                                    class="px-8 py-4 font-bold font-display uppercase tracking-widest bg-blue-600 text-js-black border-2 border-blue-600 hover:bg-transparent hover:text-blue-500 transition-all flex items-center justify-center gap-3 text-sm md:text-base rounded-md shadow-[0_0_20px_rgba(37,99,235,0.35)] hover:shadow-[0_0_30px_rgba(37,99,235,0.55)] w-full sm:w-auto">
+                                    <i class="fa-solid fa-download text-lg animate-bounce"></i> Descargar Roblox Clon
+                                    APK
                                 </a>
-                                <button onclick="window.open('https://www.youtube.com/watch?v=uMM5eRPnicY', '_blank')" 
-                                        class="px-8 py-4 font-bold font-display uppercase tracking-widest bg-transparent text-white border-2 border-white/20 hover:border-white/50 hover:bg-white/5 transition-all flex items-center justify-center gap-3 text-sm md:text-base rounded-md w-full sm:w-auto outline-none focus:ring-2 focus:ring-blue-500">
+                                <button onclick="window.open('https://www.youtube.com/watch?v=uMM5eRPnicY', '_blank')"
+                                    class="px-8 py-4 font-bold font-display uppercase tracking-widest bg-transparent text-white border-2 border-white/20 hover:border-white/50 hover:bg-white/5 transition-all flex items-center justify-center gap-3 text-sm md:text-base rounded-md w-full sm:w-auto outline-none focus:ring-2 focus:ring-blue-500">
                                     ¿Cómo usarlo?
                                 </button>
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
+            </div>
             </div>
         </section>
 
         <section id="ugphone" class="relative py-24 bg-dark-bg border-t border-white/5 overflow-hidden">
             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
-                <div class="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-orange-500/5 rounded-full blur-[120px] opacity-30"></div>
-                <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-amber-600/5 rounded-full blur-[120px] opacity-30"></div>
+                <div
+                    class="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-orange-500/5 rounded-full blur-[120px] opacity-30">
+                </div>
+                <div
+                    class="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-amber-600/5 rounded-full blur-[120px] opacity-30">
+                </div>
             </div>
-            
+
             <div class="container relative z-10 mx-auto px-5">
                 <div class="text-center mb-16">
                     <span class="section-eyebrow">Teléfono Android en la nube</span>
-                    <h2 class="text-4xl md:text-5xl font-bold font-display mb-6 text-white tracking-tighter">UgPhone <span class="text-orange-500">Cloud Phone</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Mantén juegos y automatizaciones activos en un entorno Android remoto, sin depender de la batería o el rendimiento de tu dispositivo principal.</p>
+                    <h2 class="text-4xl md:text-5xl font-bold font-display mb-6 text-white tracking-tighter">UgPhone
+                        <span class="text-orange-500">Cloud Phone</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Mantén juegos y automatizaciones activos en un
+                        entorno Android remoto, sin depender de la batería o el rendimiento de tu dispositivo principal.
+                    </p>
                 </div>
 
-                <div class="max-w-5xl mx-auto bg-dark-surface rounded-2xl border border-white/5 p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-orange-500/30 hover:shadow-[0_20px_50px_rgba(249,115,22,0.1)] group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
-                    
+                <div
+                    class="max-w-5xl mx-auto bg-dark-surface rounded-2xl border border-white/5 p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-orange-500/30 hover:shadow-[0_20px_50px_rgba(249,115,22,0.1)] group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none">
+                    </div>
+
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
                         <div class="lg:col-span-5 flex flex-col items-center justify-center">
-                            <div class="relative w-40 h-40 md:w-48 md:h-48 bg-black/60 border border-orange-500/20 rounded-3xl flex items-center justify-center p-6 shadow-2xl transition-all duration-500 group-hover:border-orange-500/40 hover:scale-105 shadow-[0_0_30px_rgba(249,115,22,0.1)]">
-                                <img src="https://play-lh.googleusercontent.com/3EEJLviqFWAuHJWpmILUotvTfaFtV34KaEDoZrYAhGziOGVaHNbRZ1z7xwG-VdcdxQs" 
-                                     alt="UgPhone Logo" 
-                                     class="w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(249,115,22,0.3)] rounded-2xl">
-                                <span class="absolute -bottom-2.5 bg-orange-900/90 border border-orange-500 text-[10px] px-3.5 py-0.5 rounded-full text-orange-200 font-bold uppercase tracking-wider">Código: tobby1</span>
+                            <div
+                                class="relative w-40 h-40 md:w-48 md:h-48 bg-black/60 border border-orange-500/20 rounded-3xl flex items-center justify-center p-6 shadow-2xl transition-all duration-500 group-hover:border-orange-500/40 hover:scale-105 shadow-[0_0_30px_rgba(249,115,22,0.1)]">
+                                <img src="https://play-lh.googleusercontent.com/3EEJLviqFWAuHJWpmILUotvTfaFtV34KaEDoZrYAhGziOGVaHNbRZ1z7xwG-VdcdxQs"
+                                    alt="UgPhone Logo"
+                                    class="w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(249,115,22,0.3)] rounded-2xl">
+                                <span
+                                    class="absolute -bottom-2.5 bg-orange-900/90 border border-orange-500 text-[10px] px-3.5 py-0.5 rounded-full text-orange-200 font-bold uppercase tracking-wider">Código:
+                                    tobby1</span>
                             </div>
-                            
-                            <div class="mt-8 bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-center cursor-pointer group/code relative overflow-hidden w-full max-w-[280px]" onclick="copyPromoCode()">
-                                <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Código de invitación</p>
+
+                            <div class="mt-8 bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-center cursor-pointer group/code relative overflow-hidden w-full max-w-[280px]"
+                                onclick="copyPromoCode()">
+                                <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Código de
+                                    invitación</p>
                                 <div class="flex items-center justify-center gap-2">
-                                    <span class="text-2xl font-black font-display text-orange-500 tracking-wider">tobby1</span>
-                                    <i class="fa-solid fa-copy text-gray-500 group-hover/code:text-orange-500 transition-colors"></i>
+                                    <span
+                                        class="text-2xl font-black font-display text-orange-500 tracking-wider">tobby1</span>
+                                    <i
+                                        class="fa-solid fa-copy text-gray-500 group-hover/code:text-orange-500 transition-colors"></i>
                                 </div>
-                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/code:opacity-100 transition-opacity bg-black/80 backdrop-blur-[1px]">
-                                    <span class="text-orange-500 text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-copy mr-1.5"></i> Copiar código</span>
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/code:opacity-100 transition-opacity bg-black/80 backdrop-blur-[1px]">
+                                    <span class="text-orange-500 text-xs font-bold uppercase tracking-widest"><i
+                                            class="fa-solid fa-copy mr-1.5"></i> Copiar código</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="lg:col-span-7 text-left flex flex-col justify-between">
                             <div>
-                                <h3 class="text-2xl font-bold font-display text-white mb-4 tracking-tight leading-tight">
+                                <h3
+                                    class="text-2xl font-bold font-display text-white mb-4 tracking-tight leading-tight">
                                     ¿Por qué usar UgPhone para Roblox?
                                 </h3>
                                 <p class="text-gray-300 text-base leading-relaxed mb-6 font-light">
-                                    UgPhone es un servicio de <strong>teléfono Android en la nube</strong> para ejecutar aplicaciones y juegos durante horas sin interrupciones. Es útil para farmear, probar scripts pesados o manejar varias cuentas sin calentar tu celular ni consumir su batería.
+                                    UgPhone es un servicio de <strong>teléfono Android en la nube</strong> para ejecutar
+                                    aplicaciones y juegos durante horas sin interrupciones. Es útil para farmear, probar
+                                    scripts pesados o manejar varias cuentas sin calentar tu celular ni consumir su
+                                    batería.
                                 </p>
-                                
+
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                                     <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
                                             <i class="fa-solid fa-cloud text-xs"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Funcionamiento 24/7</h4>
-                                            <p class="text-xs text-gray-400 mt-0.5">Tus juegos y scripts siguen corriendo en la nube aunque apagues tu móvil o PC.</p>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">
+                                                Funcionamiento 24/7</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Tus juegos y scripts siguen
+                                                corriendo en la nube aunque apagues tu móvil o PC.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
                                             <i class="fa-solid fa-battery-three-quarters text-xs"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Cero Consumo</h4>
-                                            <p class="text-xs text-gray-400 mt-0.5">No gasta la batería de tu dispositivo ni consume tus datos móviles de internet.</p>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Cero
+                                                Consumo</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">No gasta la batería de tu
+                                                dispositivo ni consume tus datos móviles de internet.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
                                             <i class="fa-solid fa-server text-xs"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Multi-Instancia</h4>
-                                            <p class="text-xs text-gray-400 mt-0.5">Controla múltiples teléfonos virtuales para farmear con varias cuentas a la vez.</p>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">
+                                                Multi-Instancia</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Controla múltiples teléfonos
+                                                virtuales para farmear con varias cuentas a la vez.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
                                             <i class="fa-solid fa-shield-halved text-xs"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Seguro y Estable</h4>
-                                            <p class="text-xs text-gray-400 mt-0.5">Entorno virtual aislado y de alto rendimiento óptimo para ejecutores de scripts.</p>
+                                            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Seguro y
+                                                Estable</h4>
+                                            <p class="text-xs text-gray-400 mt-0.5">Entorno virtual aislado y de alto
+                                                rendimiento óptimo para ejecutores de scripts.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="flex flex-col sm:flex-row gap-4 mt-2">
-                                <a href="https://www.ugphone.com/toc-page/promotion/#/r?partner_id=7a777eaf-3f47-033d-af23-cce4f3492d47&invitation_code=tobby1" target="_blank"
-                                   class="ugphone-cta px-8 py-4 font-bold font-display uppercase tracking-widest flex items-center justify-center gap-3 text-sm md:text-base w-full text-center">
+                                <a href="https://www.ugphone.com/toc-page/promotion/#/r?partner_id=7a777eaf-3f47-033d-af23-cce4f3492d47&invitation_code=tobby1"
+                                    target="_blank"
+                                    class="ugphone-cta px-8 py-4 font-bold font-display uppercase tracking-widest flex items-center justify-center gap-3 text-sm md:text-base w-full text-center">
                                     <i class="fa-solid fa-gift text-lg"></i> Canjear código UgPhone
                                 </a>
                             </div>
@@ -4738,27 +4941,35 @@
                         </p>
 
                         <p class="text-gray-400 text-lg leading-relaxed mb-6 font-light">
-                            Desarrollador apasionado por la tecnología y la creación de interfaces dinámicas. Como administrador principal, se enfoca en mantener el sitio optimizado, seguro y con un rendimiento excelente.
+                            Desarrollador apasionado por la tecnología y la creación de interfaces dinámicas. Como
+                            administrador principal, se enfoca en mantener el sitio optimizado, seguro y con un
+                            rendimiento excelente.
                         </p>
 
                         <div class="mb-8">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-white/50 mb-3.5 flex items-center gap-2">
+                            <h4
+                                class="text-xs font-bold uppercase tracking-wider text-white/50 mb-3.5 flex items-center gap-2">
                                 <i class="fa-solid fa-code text-js-yellow"></i> Tecnologías y habilidades
                             </h4>
                             <div class="flex flex-wrap gap-2.5">
-                                <span class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
+                                <span
+                                    class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
                                     <i class="fa-brands fa-html5 text-[#E34F26]"></i> HTML
                                 </span>
-                                <span class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
+                                <span
+                                    class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
                                     <i class="fa-brands fa-css3-alt text-[#1572B6]"></i> CSS
                                 </span>
-                                <span class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
+                                <span
+                                    class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
                                     <i class="fa-brands fa-js text-[#F7DF1E]"></i> JS
                                 </span>
-                                <span class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
+                                <span
+                                    class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
                                     <i class="fa-solid fa-moon text-[#000080]"></i> Lua
                                 </span>
-                                <span class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
+                                <span
+                                    class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-js-yellow/50 hover:bg-js-yellow/5 text-gray-300 hover:text-white text-xs font-semibold tracking-wide flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 cursor-default">
                                     <i class="fa-brands fa-python text-[#3776AB]"></i> Python
                                 </span>
                             </div>
@@ -4789,7 +5000,12 @@
                         class="absolute inset-0 bg-gradient-to-br from-js-yellow/5 via-transparent to-transparent pointer-events-none">
                     </div>
                     <p class="text-lg md:text-xl text-gray-300 leading-relaxed relative z-10 font-light">
-                        ¡Hola! Soy <b class="text-white font-bold">Tobby</b>, creador de Tobby Scripts. Soy de Perú y abrí este canal el <b class="text-white font-bold">23 de noviembre de 2023</b> para compartir scripts, herramientas y guías de Roblox que realmente me resultan útiles. Quiero que aquí encuentres recursos claros, prácticos y listos para usar. Esta página fue diseñada, desarrollada y hosteada por mi amigo <b class="text-white font-bold">TheRealBanHammer</b>, quien me ayuda a mantener todo rápido, ordenado y fácil de encontrar.
+                        ¡Hola! Soy <b class="text-white font-bold">Tobby</b>, creador de Tobby Scripts. Soy de Perú y
+                        abrí este canal el <b class="text-white font-bold">23 de noviembre de 2023</b> para compartir
+                        scripts, herramientas y guías de Roblox que realmente me resultan útiles. Quiero que aquí
+                        encuentres recursos claros, prácticos y listos para usar. Esta página fue diseñada, desarrollada
+                        y hosteada por mi amigo <b class="text-white font-bold">TheRealBanHammer</b>, quien me ayuda a
+                        mantener todo rápido, ordenado y fácil de encontrar.
                     </p>
                     <div class="about-facts relative z-10" aria-label="Información del canal">
                         <article class="about-fact about-fact-peru">
@@ -4875,13 +5091,15 @@
                 <i class="fa-solid fa-xmark text-lg leading-none block w-5 h-5 text-center"></i>
             </button>
             <div class="flex flex-col items-center gap-4 mb-6">
-                <div class="w-16 h-16 rounded-full bg-js-yellow/10 border border-js-yellow/30 flex items-center justify-center text-js-yellow shadow-[0_0_20px_rgba(37,99,235,0.35)] animate-pulse">
+                <div
+                    class="w-16 h-16 rounded-full bg-js-yellow/10 border border-js-yellow/30 flex items-center justify-center text-js-yellow shadow-[0_0_20px_rgba(37,99,235,0.35)] animate-pulse">
                     <i class="fa-solid fa-clock text-3xl"></i>
                 </div>
                 <h3 class="text-2xl font-bold font-display text-white tracking-tight">Video en progreso...</h3>
             </div>
             <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                Estamos preparando el video tutorial para usar los clones de Roblox con ArceusX. Estará disponible muy pronto.
+                Estamos preparando el video tutorial para usar los clones de Roblox con ArceusX. Estará disponible muy
+                pronto.
             </p>
             <button onclick="closeInfoModal()"
                 class="w-full inline-flex items-center justify-center px-8 py-3.5 font-bold uppercase tracking-wider text-sm bg-js-yellow text-js-black border-2 border-js-yellow rounded hover:bg-transparent hover:text-js-yellow transition-all outline-none focus:ring-2 focus:ring-white">
@@ -5224,24 +5442,31 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
                 icon: "fa-mask",
                 description: "Script FE de Homelander para Roblox.",
                 code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/giobolqv1/homelander-by-Giobolqv1-/refs/heads/main/homelander.lua"))()`
+            },
+            {
+                name: "Steal an Egg",
+                category: "Simulator",
+                icon: "fa-egg",
+                description: "Script para Steal an Egg con funciones automáticas. Usa el hub Clover.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Ryuun0x/Clover/main/main.lua"))()`
             }
         ];
 
         const youtubeVideos = [
             {
+                title: "🔥 SCRIPT OP PARA STEAL A EGG (NO KEY) 😱 ¡AUTO STEAL + SUPER VELOCIDAD + 999999M DINERO!",
+                desc: "Script OP para Steal an Egg con auto steal, súper velocidad y dinero infinito. Sin key.",
+                id: "5x-4lEhcj2k"
+            },
+            {
+                title: "💀 ¡CON ESTE SCRIPT ES IMPOSIBLE PERDER EN RUNAWAYS! 😱 99999 WIN + KILL AURA",
+                desc: "Script para Runaways con victorias ilimitadas y kill aura.",
+                id: "nYTiBiNOgj4"
+            },
+            {
                 title: "🚀 EL MEJOR SCRIPT TROLL HOMELANDER FE 😎",
-                desc: "Nuevo video del script Homelander FE para Roblox.",
+                desc: "Script troll de Homelander FE para Roblox.",
                 id: "8at4XEcDLeA"
-            },
-            {
-                title: "¡EL SCRIPT MÁS ILEGAL DE HOSPITAL ANIMAL! 😱",
-                desc: "Script de Hospital Animal con cordura infinita y turno 999.",
-                id: "9-ZJZ99Wu84"
-            },
-            {
-                title: "¡EL MEJOR SCRIPT DE FARM KILLS PARA BATTLEGROUNDS! 😱⚡",
-                desc: "Script de farm kills para Battlegrounds con kills infinitas.",
-                id: "L1TGtWXZ1BQ"
             }
         ];
 
@@ -5463,21 +5688,21 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
             likeClicked = false;
             subVerifying = false;
             likeVerifying = false;
-            
+
             localStorage.removeItem('roblox_clon_unlocked');
             localStorage.removeItem('roblox-clon-unlocked');
             localStorage.removeItem('locker-unlocked');
-            
+
             const overlay = document.getElementById('locker-overlay');
             const content = document.getElementById('roblox-clon-content');
-            
+
             if (overlay && content) {
                 overlay.classList.remove('locker-hidden');
                 overlay.classList.remove('opacity-0', 'pointer-events-none');
                 content.classList.remove('content-unlocked');
                 content.classList.add('blur-md', 'select-none', 'pointer-events-none');
             }
-            
+
             const btnSub = document.getElementById('step-sub-btn');
             const iconSub = document.getElementById('icon-sub');
             const textSub = document.getElementById('text-sub');
@@ -5488,7 +5713,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
                 textSub.innerText = "Paso 1: Suscribirse";
                 textSub.className = "text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all";
             }
-            
+
             const btnLike = document.getElementById('step-like-btn');
             const iconLike = document.getElementById('icon-like');
             const textLike = document.getElementById('text-like');
@@ -5499,7 +5724,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
                 textLike.innerText = "Paso 2: Dar like al video";
                 textLike.className = "text-xs font-bold uppercase tracking-wider text-gray-400 group-hover/btn:text-white transition-all";
             }
-            
+
             const btnUnlock = document.getElementById('btn-unlock');
             if (btnUnlock) {
                 btnUnlock.setAttribute('disabled', 'true');
@@ -5510,61 +5735,61 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
 
         function handleStepSub() {
             if (subClicked || subVerifying) return;
-            
+
             window.open('https://youtube.com/@tobby-scripts', '_blank');
             subVerifying = true;
-            
+
             const btn = document.getElementById('step-sub-btn');
             const icon = document.getElementById('icon-sub');
             const text = document.getElementById('text-sub');
-            
+
             btn.style.pointerEvents = 'none';
             btn.className = "locker-step locker-sub w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-blue-600/30 rounded-xl transition-all text-left";
             icon.className = 'fa-solid fa-spinner animate-spin text-blue-500 text-lg transition-all duration-300';
             text.innerText = 'Verificando suscripción...';
             text.className = "text-xs font-bold uppercase tracking-wider text-blue-400 transition-all";
-            
+
             setTimeout(() => {
                 subClicked = true;
                 subVerifying = false;
-                
+
                 btn.className = "locker-step locker-sub step-completed w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-green-500/50 rounded-xl transition-all text-left";
                 icon.className = 'fa-solid fa-circle-check text-green-500 text-lg transition-all duration-300';
                 text.innerText = 'Paso 1: Suscribirse (Listo)';
                 text.className = "text-xs font-bold uppercase tracking-wider text-green-400 transition-all";
                 btn.style.pointerEvents = 'auto';
-                
+
                 checkSteps();
             }, 5000);
         }
 
         function handleStepLike() {
             if (likeClicked || likeVerifying) return;
-            
+
             const latestVideoId = youtubeVideos[0] ? youtubeVideos[0].id : 'uMM5eRPnicY';
             window.open(`https://youtu.be/${latestVideoId}`, '_blank');
             likeVerifying = true;
-            
+
             const btn = document.getElementById('step-like-btn');
             const icon = document.getElementById('icon-like');
             const text = document.getElementById('text-like');
-            
+
             btn.style.pointerEvents = 'none';
             btn.className = "locker-step locker-like w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-blue-600/30 rounded-xl transition-all text-left";
             icon.className = 'fa-solid fa-spinner animate-spin text-blue-500 text-lg transition-all duration-300';
             text.innerText = 'Verificando interacción...';
             text.className = "text-xs font-bold uppercase tracking-wider text-blue-400 transition-all";
-            
+
             setTimeout(() => {
                 likeClicked = true;
                 likeVerifying = false;
-                
+
                 btn.className = "locker-step locker-like step-completed w-full flex items-center justify-between px-5 py-4 bg-zinc-900 border border-green-500/50 rounded-xl transition-all text-left";
                 icon.className = 'fa-solid fa-circle-check text-green-500 text-lg transition-all duration-300';
                 text.innerText = 'Paso 2: Dar like al video (listo)';
                 text.className = "text-xs font-bold uppercase tracking-wider text-green-400 transition-all";
                 btn.style.pointerEvents = 'auto';
-                
+
                 checkSteps();
             }, 5000);
         }
@@ -5582,13 +5807,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
             btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Verificando apoyo...`;
             btn.setAttribute('disabled', 'true');
             btn.classList.add('cursor-not-allowed', 'opacity-70');
-            
+
             setTimeout(() => {
                 showToast("Apoyo verificado. Contenido desbloqueado.");
-                
+
                 const overlay = document.getElementById('locker-overlay');
                 const content = document.getElementById('roblox-clon-content');
-                
+
                 if (overlay) overlay.classList.add('locker-hidden', 'opacity-0', 'pointer-events-none');
                 if (content) {
                     content.classList.add('content-unlocked');
@@ -5682,7 +5907,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
         }
 
         const originalRenderScripts = renderScripts;
-        renderScripts = function() {
+        renderScripts = function () {
             originalRenderScripts();
             applyReveal();
         };
@@ -5691,11 +5916,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
             const scrolled = window.pageYOffset;
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
             const progress = (scrolled / scrollHeight) * 100;
-            
+
             const header = document.querySelector('header');
             const h1 = document.querySelector('h1');
             const progressBar = document.getElementById('scroll-progress');
-            
+
             if (progressBar) progressBar.style.width = `${progress}%`;
 
             if (scrolled > 50) {
