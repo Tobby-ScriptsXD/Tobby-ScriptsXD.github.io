@@ -4,65 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Error 502 | Bad gateway</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>500: Catastrophic infrastructure failure</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
       background: #fff;
       color: #404040;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       font-size: 16px;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
+    a {
+      color: #2f7bbf;
+      text-decoration: none;
+    }
+
+    a:hover { color: #f68b1f; }
+
     .cf-header {
-      max-width: 1080px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 32px 48px 28px;
+      padding: 40px 32px 28px;
+    }
+
+    .cf-title-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 14px;
     }
 
     .cf-header h1 {
-      display: inline;
-      font-size: 58px;
+      font-size: 42px;
       font-weight: 300;
-      color: #555;
-      line-height: 1.05;
-      letter-spacing: -0.4px;
+      color: #404040;
+      line-height: 1.15;
     }
 
-    .heading-ray-id {
+    .code-label {
       display: inline-block;
-      margin-left: 16px;
-      font-size: 13px;
-      font-weight: 400;
-      color: #9a9a9a;
-      letter-spacing: 0.2px;
-      position: relative;
-      top: -16px;
-      vertical-align: baseline;
+      background: #d9d9d9;
+      color: #313131;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 999px;
+      padding: 4px 10px;
+      line-height: 1.3;
+      white-space: nowrap;
+      vertical-align: middle;
     }
 
-    .cf-subheadline {
-      margin-top: 4px;
-      font-size: 30px;
-      font-weight: 300;
-      color: #c4c4c4;
-      line-height: 1.2;
+    .cf-more-info {
+      margin-top: 10px;
+      font-size: 15px;
+    }
+
+    .cf-time {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #404040;
     }
 
     .cf-status-display {
       position: relative;
-      background: #e6e6e6;
-      padding: 48px 20px 56px;
+      background: #ebebeb;
+      padding: 56px 20px 64px;
     }
 
     .cf-status-row {
-      max-width: 860px;
+      max-width: 960px;
       margin: 0 auto;
       display: flex;
       align-items: flex-start;
@@ -90,10 +103,11 @@
 
     .cf-icon-status {
       position: absolute;
-      right: -6px;
-      bottom: -4px;
-      width: 30px;
-      height: 30px;
+      left: 50%;
+      bottom: -10px;
+      width: 32px;
+      height: 32px;
+      margin-left: -16px;
     }
 
     .cf-icon-status svg {
@@ -104,10 +118,10 @@
 
     .cf-status-desc {
       display: block;
-      margin-top: 20px;
-      font-size: 13px;
+      margin-top: 22px;
+      font-size: 14px;
       font-weight: 400;
-      color: #888;
+      color: #404040;
       line-height: 1.3;
       max-width: 100%;
       overflow: hidden;
@@ -117,42 +131,29 @@
     }
 
     .cf-status-name {
-      margin-top: 4px;
+      margin-top: 2px;
       font-size: 22px;
       font-weight: 300;
-      color: #b3b3b3;
+      color: #999;
       line-height: 1.2;
     }
+
+    .cf-status-name.cf-brand { color: #2f7bbf; }
 
     .cf-status-label {
       display: block;
       margin-top: 2px;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 400;
       line-height: 1.2;
-    }
-
-    .cf-status-ok { color: #9bca3e; }
-    .cf-status-error { color: #bd2426; }
-
-    .cf-arrow {
-      flex: 0 0 100px;
-      align-self: flex-start;
-      margin-top: 24px;
-      color: #9a9a9a;
-    }
-
-    .cf-arrow svg {
-      display: block;
-      width: 100%;
-      height: 26px;
+      color: #bd2426;
     }
 
     .cf-error-source::after {
       content: "";
       position: absolute;
       left: 50%;
-      bottom: -56px;
+      bottom: -64px;
       width: 0;
       height: 0;
       margin-left: -18px;
@@ -162,18 +163,18 @@
     }
 
     .cf-content {
-      max-width: 1080px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 40px 48px 56px;
+      padding: 40px 32px 28px;
       display: flex;
-      gap: 56px;
+      gap: 48px;
     }
 
     .cf-column { flex: 1; min-width: 0; }
 
     .cf-column h2 {
       font-size: 28px;
-      font-weight: 300;
+      font-weight: 400;
       color: #404040;
       margin-bottom: 12px;
     }
@@ -184,85 +185,105 @@
       line-height: 1.55;
     }
 
+    .cf-error-footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 22px 32px 32px;
+      border-top: 1px solid #ebebeb;
+      text-align: center;
+      font-size: 13px;
+      color: #404040;
+    }
+
+    .cf-error-footer strong { font-weight: 600; }
+
+    .cf-footer-separator {
+      margin: 0 8px;
+      color: #999;
+    }
+
+    .cf-footer-ip-reveal-btn {
+      appearance: none;
+      -webkit-appearance: none;
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: #0051c3;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .cf-footer-ip-reveal-btn:hover { color: #ee730a; }
+
+    .cf-error-footer .hidden { display: none; }
+
     @media (max-width: 720px) {
-      .cf-header { padding: 22px 20px 18px; }
-      .cf-header h1 { display: block; font-size: 40px; }
-      .heading-ray-id { display: block; margin: 6px 0 0; top: 0; }
-      .cf-subheadline { font-size: 22px; }
-      .cf-status-row { flex-direction: column; align-items: center; gap: 28px; }
-      .cf-arrow { display: none; }
+      .cf-header { padding: 24px 20px 18px; }
+      .cf-header h1 { font-size: 28px; }
+      .cf-status-row { flex-direction: column; align-items: center; gap: 32px; }
       .cf-error-source::after { display: none; }
-      .cf-content { flex-direction: column; padding: 28px 20px 40px; gap: 28px; }
+      .cf-content { flex-direction: column; padding: 28px 20px 20px; gap: 28px; }
+      .cf-error-footer { text-align: left; padding: 16px 20px 28px; }
+      .cf-footer-separator { display: none; }
+      .cf-footer-item { display: block; margin-bottom: 6px; }
     }
   </style>
 </head>
 <body>
   <header class="cf-header">
-    <h1>Error 502</h1>
-    <span class="heading-ray-id">Ray ID: 2936e43f567e440e</span>
-    <div class="cf-subheadline">Bad gateway</div>
+    <div class="cf-title-row">
+      <h1>Catastrophic infrastructure failure</h1>
+      <span class="code-label">Error code 500</span>
+    </div>
+    <div class="cf-more-info">Visit <a href="https://www.cloudflare.com/" rel="noopener noreferrer" target="_blank">cloudflare.com</a> for more information.</div>
+    <div class="cf-time" id="cf-time">2026-09-13 15:04:37 UTC</div>
   </header>
 
   <section class="cf-status-display">
     <div class="cf-status-row">
       <div class="cf-status-item">
         <div class="cf-icon-wrap">
-          <svg class="cf-icon" viewBox="0 0 88 68" aria-hidden="true">
-            <rect x="6" y="6" width="76" height="56" rx="8" fill="none" stroke="#9a9a9a" stroke-width="5"/>
-            <path d="M6 20h76" fill="none" stroke="#9a9a9a" stroke-width="5"/>
-            <circle cx="20" cy="13" r="3.2" fill="#9a9a9a"/>
+          <svg class="cf-icon" viewBox="0 0 100 80.7362" aria-hidden="true">
+            <path fill="#999" d="M89.8358.1636H10.1642C4.6398.1636.1614,4.6421.1614,10.1664v60.4033c0,5.5244,4.4784,10.0028,10.0028,10.0028h79.6716c5.5244,0,10.0027-4.4784,10.0027-10.0028V10.1664c0-5.5244-4.4784-10.0028-10.0027-10.0028ZM22.8323,9.6103c1.9618,0,3.5522,1.5903,3.5522,3.5521s-1.5904,3.5522-3.5522,3.5522-3.5521-1.5904-3.5521-3.5522,1.5903-3.5521,3.5521-3.5521ZM12.8936,9.6103c1.9618,0,3.5522,1.5903,3.5522,3.5521s-1.5904,3.5522-3.5522,3.5522-3.5521-1.5904-3.5521-3.5522,1.5903-3.5521,3.5521-3.5521ZM89.8293,70.137H9.7312V24.1983h80.0981v45.9387ZM89.8293,16.1619H29.8524v-5.999h59.977v5.999Z"/>
           </svg>
           <span class="cf-icon-status">
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <circle cx="24" cy="24" r="23.4815" fill="#9bca3e"/>
-              <polyline points="17.453 24.9841 21.7183 30.4504 30.2076 16.8537" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+            <svg viewBox="0 0 47.9145 47.9641" aria-hidden="true">
+              <circle cx="23.9572" cy="23.982" r="23.4815" fill="#bd2426"/>
+              <line x1="19.0487" y1="19.0768" x2="27.8154" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <line x1="27.8154" y1="19.0768" x2="19.0487" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
             </svg>
           </span>
         </div>
         <span class="cf-status-desc">You</span>
         <div class="cf-status-name">Browser</div>
-        <span class="cf-status-label cf-status-ok">Working</span>
-      </div>
-
-      <div class="cf-arrow" aria-hidden="true">
-        <svg viewBox="0 0 100 26">
-          <path d="M18 13h64" fill="none" stroke="#9a9a9a" stroke-width="4" stroke-linecap="round"/>
-          <polygon points="4,13 18,5 18,21" fill="#9a9a9a"/>
-          <polygon points="96,13 82,5 82,21" fill="#9a9a9a"/>
-        </svg>
-      </div>
-
-      <div class="cf-status-item">
-        <div class="cf-icon-wrap">
-          <svg class="cf-icon" viewBox="0 0 152 78.9141" aria-hidden="true">
-            <path fill="#9a9a9a" d="M132.2996,77.9927v-.0261c10.5477-.2357,19.0305-8.8754,19.0305-19.52,0-10.7928-8.7161-19.5422-19.4678-19.5422-2.9027,0-5.6471.6553-8.1216,1.7987C123.3261,18.6624,105.3419.9198,83.202.9198c-17.8255,0-32.9539,11.5047-38.3939,27.4899-3.0292-2.2755-6.7818-3.6403-10.8622-3.6403-10.0098,0-18.1243,8.1145-18.1243,18.1243,0,1.7331.258,3.4033.7122,4.9905-.2899-.0168-.5769-.0442-.871-.0442-8.2805,0-14.993,6.7503-14.993,15.0772,0,8.2795,6.6381,14.994,14.8536,15.0701v.0054h.1069c.0109,0,.0215.0016.0325.0016s.0215-.0016.0325-.0016"/>
-          </svg>
-          <span class="cf-icon-status">
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <circle cx="24" cy="24" r="23.4815" fill="#9bca3e"/>
-              <polyline points="17.453 24.9841 21.7183 30.4504 30.2076 16.8537" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-            </svg>
-          </span>
-        </div>
-        <span class="cf-status-desc">BanHammer.lol</span>
-        <div class="cf-status-name">CloudFlare</div>
-        <span class="cf-status-label cf-status-ok">Working</span>
-      </div>
-
-      <div class="cf-arrow" aria-hidden="true">
-        <svg viewBox="0 0 100 26">
-          <path d="M18 13h64" fill="none" stroke="#9a9a9a" stroke-width="4" stroke-linecap="round"/>
-          <polygon points="4,13 18,5 18,21" fill="#9a9a9a"/>
-          <polygon points="96,13 82,5 82,21" fill="#9a9a9a"/>
-        </svg>
+        <span class="cf-status-label">Out of Memory</span>
       </div>
 
       <div class="cf-status-item cf-error-source">
         <div class="cf-icon-wrap">
+          <svg class="cf-icon" viewBox="0 0 152 78.9141" aria-hidden="true">
+            <path fill="#999" d="M132.2996,77.9927v-.0261c10.5477-.2357,19.0305-8.8754,19.0305-19.52,0-10.7928-8.7161-19.5422-19.4678-19.5422-2.9027,0-5.6471.6553-8.1216,1.7987C123.3261,18.6624,105.3419.9198,83.202.9198c-17.8255,0-32.9539,11.5047-38.3939,27.4899-3.0292-2.2755-6.7818-3.6403-10.8622-3.6403-10.0098,0-18.1243,8.1145-18.1243,18.1243,0,1.7331.258,3.4033.7122,4.9905-.2899-.0168-.5769-.0442-.871-.0442-8.2805,0-14.993,6.7503-14.993,15.0772,0,8.2795,6.6381,14.994,14.8536,15.0701v.0054h.1069c.0109,0,.0215.0016.0325.0016s.0215-.0016.0325-.0016"/>
+          </svg>
+          <span class="cf-icon-status">
+            <svg viewBox="0 0 47.9145 47.9641" aria-hidden="true">
+              <circle cx="23.9572" cy="23.982" r="23.4815" fill="#bd2426"/>
+              <line x1="19.0487" y1="19.0768" x2="27.8154" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <line x1="27.8154" y1="19.0768" x2="19.0487" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            </svg>
+          </span>
+        </div>
+        <span class="cf-status-desc">BanHammer.lol</span>
+        <div class="cf-status-name cf-brand">Cloudflare</div>
+        <span class="cf-status-label">Not Working</span>
+      </div>
+
+      <div class="cf-status-item">
+        <div class="cf-icon-wrap">
           <svg class="cf-icon" viewBox="0 0 95 75" aria-hidden="true">
-            <path fill="#9a9a9a" d="M94.0103,45.0775l-12.9885-38.4986c-1.2828-3.8024-4.8488-6.3624-8.8618-6.3619l-49.91.0065c-3.9995.0005-7.556,2.5446-8.8483,6.3295L1.0128,42.8363c-.3315.971-.501,1.9899-.5016,3.0159l-.0121,19.5737c-.0032,5.1667,4.1844,9.3569,9.3513,9.3569h75.2994c5.1646,0,9.3512-4.1866,9.3512-9.3512v-17.3649c0-1.0165-.1657-2.0262-.4907-2.9893ZM86.7988,65.3097c0,1.2909-1.0465,2.3374-2.3374,2.3374H9.9767c-1.2909,0-2.3374-1.0465-2.3374-2.3374v-18.1288c0-1.2909,1.0465-2.3374,2.3374-2.3374h74.4847c1.2909,0,2.3374,1.0465,2.3374,2.3374v18.1288Z"/>
-            <circle cx="74.6349" cy="56.1889" r="4.7318" fill="#9a9a9a"/>
-            <circle cx="59.1472" cy="56.1889" r="4.7318" fill="#9a9a9a"/>
+            <path fill="#999" d="M94.0103,45.0775l-12.9885-38.4986c-1.2828-3.8024-4.8488-6.3624-8.8618-6.3619l-49.91.0065c-3.9995.0005-7.556,2.5446-8.8483,6.3295L1.0128,42.8363c-.3315.971-.501,1.9899-.5016,3.0159l-.0121,19.5737c-.0032,5.1667,4.1844,9.3569,9.3513,9.3569h75.2994c5.1646,0,9.3512-4.1866,9.3512-9.3512v-17.3649c0-1.0165-.1657-2.0262-.4907-2.9893ZM86.7988,65.3097c0,1.2909-1.0465,2.3374-2.3374,2.3374H9.9767c-1.2909,0-2.3374-1.0465-2.3374-2.3374v-18.1288c0-1.2909,1.0465-2.3374,2.3374-2.3374h74.4847c1.2909,0,2.3374,1.0465,2.3374,2.3374v18.1288Z"/>
+            <circle cx="74.6349" cy="56.1889" r="4.7318" fill="#999"/>
+            <circle cx="59.1472" cy="56.1889" r="4.7318" fill="#999"/>
           </svg>
           <span class="cf-icon-status">
             <svg viewBox="0 0 47.9145 47.9641" aria-hidden="true">
@@ -274,7 +295,7 @@
         </div>
         <span class="cf-status-desc">tobby-scriptsxd.github.io</span>
         <div class="cf-status-name">Host</div>
-        <span class="cf-status-label cf-status-error">Error</span>
+        <span class="cf-status-label">On Fire</span>
       </div>
     </div>
   </section>
@@ -282,12 +303,61 @@
   <section class="cf-content">
     <div class="cf-column">
       <h2>What happened?</h2>
-      <p>The web server reported a bad gateway error.</p>
+      <p>There is a catastrophic failure.</p>
     </div>
     <div class="cf-column">
       <h2>What can I do?</h2>
-      <p>Please try again in a few minutes.</p>
+      <p>Please try again in a few years.</p>
     </div>
   </section>
+
+  <footer class="cf-error-footer">
+    <p>
+      <span class="cf-footer-item">Cloudflare Ray ID: <strong>2936e43f567e440e</strong></span>
+      <span class="cf-footer-separator">&bull;</span>
+      <span class="cf-footer-item" id="cf-footer-item-ip">
+        Your IP:
+        <button type="button" id="cf-footer-ip-reveal" class="cf-footer-ip-reveal-btn">Click to reveal</button>
+        <span class="hidden" id="cf-footer-ip"></span>
+      </span>
+      <span class="cf-footer-separator">&bull;</span>
+      <span class="cf-footer-item">Performance &amp; security by <a rel="noopener noreferrer" href="https://www.cloudflare.com/5xx-error-landing" id="brand_link" target="_blank">Cloudflare</a></span>
+    </p>
+  </footer>
+  <script>
+    (function () {
+      function pad(n) { return String(n).padStart(2, "0"); }
+      function formatUtc(d) {
+        return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate()) +
+          " " + pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds()) + " UTC";
+      }
+
+      var timeEl = document.getElementById("cf-time");
+      if (timeEl) timeEl.textContent = formatUtc(new Date());
+
+      var reveal = document.getElementById("cf-footer-ip-reveal");
+      var ipEl = document.getElementById("cf-footer-ip");
+      if (!reveal || !ipEl) return;
+
+      function showIp(ip) {
+        ipEl.textContent = ip;
+        reveal.classList.add("hidden");
+        ipEl.classList.remove("hidden");
+      }
+
+      reveal.addEventListener("click", function () {
+        if (ipEl.textContent) {
+          showIp(ipEl.textContent);
+          return;
+        }
+        reveal.disabled = true;
+        fetch("https://api.ipify.org?format=json")
+          .then(function (res) { return res.json(); })
+          .then(function (data) { showIp(data.ip || "Not available"); })
+          .catch(function () { showIp("Not available"); })
+          .then(function () { reveal.disabled = false; });
+      });
+    })();
+  </script>
 </body>
 </html>
