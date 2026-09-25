@@ -1,363 +1,2020 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <title>500: Catastrophic infrastructure failure</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      background: #fff;
-      color: #404040;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tobby Scripts</title>
+<meta name="description" content="Hub de scripts de Roblox por Tobby Scripts." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        rb: {
+          bg: '#12090d',
+          surface: '#1c1016',
+          elev: '#2a1620',
+          elev2: '#3a1e2c',
+          border: '#4a2838',
+          muted: '#d2c0c6',
+          blue: '#e05688',
+          yellow: '#e3c01a',
+          discord: '#5865F2'
+        }
+      },
+      fontFamily: { sans: ['Figtree', 'system-ui', 'Segoe UI', 'sans-serif'] }
     }
-
-    a {
-      color: #2f7bbf;
-      text-decoration: none;
-    }
-
-    a:hover { color: #f68b1f; }
-
-    .cf-header {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 40px 32px 28px;
-    }
-
-    .cf-title-row {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px 14px;
-    }
-
-    .cf-header h1 {
-      font-size: 42px;
-      font-weight: 300;
-      color: #404040;
-      line-height: 1.15;
-    }
-
-    .code-label {
-      display: inline-block;
-      background: #d9d9d9;
-      color: #313131;
-      font-size: 12px;
-      font-weight: 500;
-      border-radius: 999px;
-      padding: 4px 10px;
-      line-height: 1.3;
-      white-space: nowrap;
-      vertical-align: middle;
-    }
-
-    .cf-more-info {
-      margin-top: 10px;
-      font-size: 15px;
-    }
-
-    .cf-time {
-      margin-top: 8px;
-      font-size: 15px;
-      color: #404040;
-    }
-
-    .cf-status-display {
-      position: relative;
-      background: #ebebeb;
-      padding: 56px 20px 64px;
-    }
-
-    .cf-status-row {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-
-    .cf-status-item {
-      position: relative;
-      flex: 1;
-      text-align: center;
-    }
-
-    .cf-icon-wrap {
-      position: relative;
-      display: inline-block;
-      width: 88px;
-      height: 78px;
-    }
-
-    .cf-icon-wrap svg.cf-icon {
-      display: block;
-      width: 88px;
-      height: 68px;
-    }
-
-    .cf-icon-status {
-      position: absolute;
-      left: 50%;
-      bottom: -10px;
-      width: 32px;
-      height: 32px;
-      margin-left: -16px;
-    }
-
-    .cf-icon-status svg {
-      display: block;
-      width: 32px;
-      height: 32px;
-    }
-
-    .cf-status-desc {
-      display: block;
-      margin-top: 22px;
-      font-size: 14px;
-      font-weight: 400;
-      color: #404040;
-      line-height: 1.3;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      padding: 0 10px;
-    }
-
-    .cf-status-name {
-      margin-top: 2px;
-      font-size: 22px;
-      font-weight: 300;
-      color: #999;
-      line-height: 1.2;
-    }
-
-    .cf-status-name.cf-brand { color: #2f7bbf; }
-
-    .cf-status-label {
-      display: block;
-      margin-top: 2px;
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 1.2;
-      color: #bd2426;
-    }
-
-    .cf-error-source::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -64px;
-      width: 0;
-      height: 0;
-      margin-left: -18px;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-bottom: 18px solid #fff;
-    }
-
-    .cf-content {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 40px 32px 28px;
-      display: flex;
-      gap: 48px;
-    }
-
-    .cf-column { flex: 1; min-width: 0; }
-
-    .cf-column h2 {
-      font-size: 28px;
-      font-weight: 400;
-      color: #404040;
-      margin-bottom: 12px;
-    }
-
-    .cf-column p {
-      font-size: 15px;
-      color: #404040;
-      line-height: 1.55;
-    }
-
-    .cf-error-footer {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 22px 32px 32px;
-      border-top: 1px solid #ebebeb;
-      text-align: center;
-      font-size: 13px;
-      color: #404040;
-    }
-
-    .cf-error-footer strong { font-weight: 600; }
-
-    .cf-footer-separator {
-      margin: 0 8px;
-      color: #999;
-    }
-
-    .cf-footer-ip-reveal-btn {
-      appearance: none;
-      -webkit-appearance: none;
-      background: none;
-      border: none;
-      padding: 0;
-      font: inherit;
-      color: #0051c3;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .cf-footer-ip-reveal-btn:hover { color: #ee730a; }
-
-    .cf-error-footer .hidden { display: none; }
-
-    @media (max-width: 720px) {
-      .cf-header { padding: 24px 20px 18px; }
-      .cf-header h1 { font-size: 28px; }
-      .cf-status-row { flex-direction: column; align-items: center; gap: 32px; }
-      .cf-error-source::after { display: none; }
-      .cf-content { flex-direction: column; padding: 28px 20px 20px; gap: 28px; }
-      .cf-error-footer { text-align: left; padding: 16px 20px 28px; }
-      .cf-footer-separator { display: none; }
-      .cf-footer-item { display: block; margin-bottom: 6px; }
-    }
-  </style>
+  }
+}
+</script>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html { height: 100%; }
+  body {
+    margin: 0;
+    min-height: 100%;
+    padding-top: 56px;
+    font-family: Figtree, system-ui, sans-serif;
+    background: #12090d;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #5a3044; border-radius: 8px; }
+  .row-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .row-scroll > * { scroll-snap-align: start; flex: 0 0 auto; }
+  .game-card { width: 160px; }
+  @media (min-width: 640px) { .game-card { width: 200px; } }
+  @media (min-width: 1024px) { .game-card { width: 220px; } }
+  .row-wrap {
+    position: relative;
+    --thumb-h: 90px;
+  }
+  @media (min-width: 640px) { .row-wrap { --thumb-h: 112px; } }
+  @media (min-width: 1024px) { .row-wrap { --thumb-h: 124px; } }
+  .row-wrap .row-scroll {
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .row-wrap .row-scroll::-webkit-scrollbar { display: none; }
+  .row-arrow {
+    position: absolute;
+    top: calc(var(--thumb-h) / 2);
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 36px; height: 36px;
+    border-radius: 999px; border: 1px solid #5a3044;
+    background: rgba(28,16,22,.94);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  }
+  .row-arrow:hover { background: #3a1e2c; }
+  .row-arrow.prev { left: 4px; }
+  .row-arrow.next { right: 4px; }
+  .row-arrow:disabled { opacity: .28; pointer-events: none; }
+  .row-wrap.no-overflow .row-arrow { display: none; }
+  .nuevos-marquee { cursor: pointer; }
+  .nuevos-marquee:focus-visible { outline: 2px solid #e3c01a; outline-offset: 4px; border-radius: 12px; }
+  .nuevos-viewport { overflow: hidden; }
+  .nuevos-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+  .nuevos-set {
+    display: flex;
+    gap: 12px;
+  }
+  .nuevos-set .game-card { pointer-events: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .nuevos-viewport { overflow-x: auto; }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .row-wrap .row-arrow { opacity: 0; pointer-events: none; transition: opacity .15s ease; }
+    .row-wrap:hover .row-arrow { opacity: 1; pointer-events: auto; }
+    .row-wrap:hover .row-arrow:disabled { opacity: .28; pointer-events: none; }
+  }
+  .thumb-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2a1620, #12090d 60%);
+  }
+  .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb-fallback {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.92);
+    background: linear-gradient(145deg, #8a3058 0%, #3a1e2c 55%, #12090d 100%);
+  }
+  .thumb-fallback i { font-size: 1.7rem; opacity: .95; }
+  .thumb-fallback.tone-universal { background: linear-gradient(145deg, #2e5a8a 0%, #1a2740 50%, #12151a 100%); }
+  .thumb-fallback.tone-combat { background: linear-gradient(145deg, #8a3a32 0%, #3a1c1a 50%, #141112 100%); }
+  .thumb-fallback.tone-shooter { background: linear-gradient(145deg, #3d6b4a 0%, #1c2e22 50%, #111412 100%); }
+  .thumb-fallback.tone-move { background: linear-gradient(145deg, #3a6d8a 0%, #1a2d3a 50%, #11151a 100%); }
+  .thumb-fallback.tone-anime { background: linear-gradient(145deg, #6a3a8a 0%, #2a1a3a 50%, #141218 100%); }
+  .game-card:hover .thumb-wrap { outline: 2px solid rgba(255,255,255,0.18); outline-offset: 0; }
+  .welcome-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #1c1016;
+    border: 1px solid #3d2230;
+    margin-bottom: 28px;
+  }
+  .welcome-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(900px 280px at 12% -10%, rgba(227,192,26,.24), transparent 55%),
+      radial-gradient(640px 240px at 92% 110%, rgba(196,59,110,.32), transparent 50%),
+      linear-gradient(180deg, #2a1520 0%, #140c12 100%);
+    pointer-events: none;
+  }
+  .welcome-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 22px 18px 18px;
+  }
+  @media (min-width: 768px) {
+    .welcome-inner { flex-direction: row; align-items: center; padding: 28px 28px 22px; gap: 28px; }
+  }
+  .welcome-logo {
+    width: 72px; height: 72px; border-radius: 18px; object-fit: cover;
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 8px 28px rgba(0,0,0,.35);
+    flex-shrink: 0;
+  }
+  @media (min-width: 768px) { .welcome-logo { width: 96px; height: 96px; border-radius: 22px; } }
+  .welcome-kicker {
+    font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: #e3c01a; margin: 0 0 6px;
+  }
+  .welcome-hero h1 {
+    font-size: clamp(26px, 4vw, 38px); font-weight: 800; letter-spacing: -0.03em;
+    margin: 0 0 8px; line-height: 1.1;
+  }
+  .welcome-hero p.lead {
+    margin: 0; color: #d2c0c6; font-size: 15px; line-height: 1.55; max-width: 56ch;
+  }
+  .welcome-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .welcome-shortcuts {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 0 14px 14px;
+  }
+  @media (min-width: 640px) { .welcome-shortcuts { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0 22px 20px; } }
+  .welcome-tile {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid #4a2838;
+    border-radius: 10px;
+    padding: 12px 12px;
+    color: #fff; text-decoration: none; cursor: pointer;
+    font-weight: 700; font-size: 13px; text-align: left;
+  }
+  .welcome-tile:hover { background: rgba(255,255,255,.08); border-color: #6a3a52; }
+  .welcome-tile i, .welcome-tile .nav-ico {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #3a1e2c; flex-shrink: 0;
+  }
+  .welcome-tile .nav-ico svg { width: 16px; height: 16px; display: block; }
+  .welcome-tile small { display: block; font-weight: 500; color: #d2c0c6; font-size: 11px; margin-top: 1px; }
+  .welcome-steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 0 14px 16px;
+  }
+  @media (min-width: 768px) {
+    .welcome-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0 22px 22px; }
+  }
+  .welcome-step {
+    background: #1c1016;
+    border: 1px solid #3d2230;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .welcome-step .n {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 6px;
+    background: #e3c01a; color: #1a0c12; font-size: 12px; font-weight: 800; margin-bottom: 8px;
+  }
+  .welcome-step h3 { margin: 0 0 4px; font-size: 14px; font-weight: 700; }
+  .welcome-step p { margin: 0; color: #d2c0c6; font-size: 12px; line-height: 1.45; }
+  .sidebar {
+    position: fixed; inset: 0 auto 0 0; width: 280px; max-width: 86vw;
+    background: #1c1016; border-right: 1px solid #3d2230;
+    transform: translateX(-105%); transition: transform .22s ease;
+    z-index: 60; display: flex; flex-direction: column;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.55);
+    opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 50;
+  }
+  .sidebar-backdrop.open { opacity: 1; pointer-events: auto; }
+  .nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px; border-radius: 8px;
+    color: #e8e8e8; font-weight: 600; font-size: 14px;
+    text-decoration: none; cursor: pointer; border: 0; background: transparent; width: 100%; text-align: left;
+  }
+  .nav-item:hover { background: rgba(255,255,255,.06); }
+  .nav-item.active { background: #3a1e2c; }
+  .nav-item i, .nav-item .nav-ico {
+    width: 22px; height: 22px;
+    text-align: center; color: #fff; opacity: .92;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .nav-item .nav-ico svg { width: 16px; height: 16px; display: block; }
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+    height: 56px; background: #1c1016;
+    border-bottom: 1px solid #3d2230;
+    display: flex; align-items: center; gap: 12px;
+    padding: 0 12px 0 8px;
+  }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 8px; border: 0;
+    background: transparent; color: #fff; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .icon-btn:hover { background: rgba(255,255,255,.08); }
+  .search-wrap {
+    flex: 1; max-width: 520px; margin: 0 auto;
+    position: relative;
+  }
+  .search-wrap input {
+    width: 100%; height: 36px; border-radius: 8px;
+    background: #2a1620; border: 1px solid #4a2838;
+    color: #fff; padding: 0 12px 0 36px; outline: none;
+    font-size: 14px;
+  }
+  .search-wrap input:focus { border-color: #e3c01a; }
+  .search-wrap i {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    color: #d2c0c6; font-size: 13px;
+  }
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: #2a1620; border: 1px solid #5a3044; color: #fff;
+    padding: 12px 18px; border-radius: 8px; font-weight: 600; font-size: 14px;
+    opacity: 0; pointer-events: none; transition: .2s ease; z-index: 100;
+    box-shadow: 0 8px 24px rgba(0,0,0,.45);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .section-title {
+    font-size: 18px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: #e3c01a; color: #1a0c12; font-weight: 700; border: 0;
+    border-radius: 8px; padding: 12px 18px; cursor: pointer; font-size: 14px;
+  }
+  .btn-primary:hover { filter: brightness(1.06); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: #2a1620; color: #e3c01a; font-weight: 700; border: 1px solid #e3c01a;
+    border-radius: 8px; padding: 12px 18px; cursor: pointer; font-size: 14px;
+  }
+  .btn-secondary:hover { background: #3a1828; }
+  .social-box {
+    border: 1px solid #5a3044; border-radius: 8px; overflow: hidden; background: #1c1016;
+  }
+  .social-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; text-decoration: none; color: #fff;
+  }
+  .social-row:hover { background: rgba(255,255,255,.04); }
+  .social-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    background: #5865F2; color: #fff; font-size: 18px;
+  }
+  .code-box {
+    background: #0c070a; border: 1px solid #3d2230; border-radius: 8px;
+    padding: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px; color: #d2c0c6; max-height: 220px; overflow: auto; white-space: pre-wrap; word-break: break-word;
+  }
+  .view { display: none; }
+  .view.active { display: block; }
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  @media (min-width: 640px) { .grid-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; } }
+  @media (min-width: 1024px) { .grid-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } }
+  .grid-cards .game-card,
+  .grid-cards .yt-card { width: auto; }
+  .yt-card { width: 260px; display: block; }
+  @media (min-width: 640px) { .yt-card { width: 300px; } }
+  .tool-mark {
+    width: 72px; height: 72px; border-radius: 18px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: #12090d;
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 8px 28px rgba(0,0,0,.35);
+  }
+  @media (min-width: 768px) { .tool-mark { width: 96px; height: 96px; border-radius: 22px; } }
+  .tool-mark svg { width: 42px; height: 42px; display: block; }
+  @media (min-width: 768px) { .tool-mark svg { width: 52px; height: 52px; } }
+  .tool-hero-rbx::before {
+    background:
+      radial-gradient(900px 280px at 12% -10%, rgba(227,192,26,.22), transparent 55%),
+      radial-gradient(640px 240px at 92% 110%, rgba(196,59,110,.28), transparent 50%),
+      linear-gradient(180deg, #2a1520 0%, #140c12 100%);
+  }
+  .tool-hero-ugp::before {
+    background:
+      radial-gradient(900px 280px at 12% -10%, rgba(249,70,71,.22), transparent 55%),
+      radial-gradient(640px 240px at 92% 110%, rgba(255,153,121,.16), transparent 50%),
+      linear-gradient(180deg, #2a1520 0%, #140c12 100%);
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 0 0 22px;
+  }
+  @media (min-width: 768px) { .info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .info-card {
+    background: #1c1016;
+    border: 1px solid #3d2230;
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .info-card .ic {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    background: #3a1e2c; color: #e3c01a; margin-bottom: 10px; font-size: 15px;
+  }
+  .info-card h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
+  .info-card p { margin: 0; color: #d2c0c6; font-size: 13px; line-height: 1.5; }
+  .info-steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  @media (min-width: 768px) { .info-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .info-note {
+    border: 1px solid #3d2230;
+    background: #1c1016;
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #d2c0c6;
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 760px;
+  }
+  .exec-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.62);
+    z-index: 80;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 10px;
+  }
+  @media (min-width: 640px) {
+    .exec-backdrop { align-items: center; padding: 24px; }
+  }
+  .exec-backdrop.open { display: flex; }
+  .exec-sheet {
+    width: min(560px, 100%);
+    max-height: min(90vh, 740px);
+    overflow: auto;
+    background: #1c1016;
+    border: 1px solid #3d2230;
+    border-radius: 16px 16px 10px 10px;
+    box-shadow: 0 16px 48px rgba(0,0,0,.5);
+  }
+  @media (min-width: 640px) { .exec-sheet { border-radius: 16px; } }
+  .exec-head {
+    position: sticky; top: 0; z-index: 1;
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 16px 16px 12px;
+    background: #1c1016;
+    border-bottom: 1px solid #3d2230;
+  }
+  .exec-head h2 { margin: 0; font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+  .exec-head p { margin: 4px 0 0; color: #d2c0c6; font-size: 13px; line-height: 1.4; }
+  .exec-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 12px 16px 0;
+  }
+  .exec-tab {
+    border: 1px solid #5a3044;
+    background: #2a1620;
+    color: #e8e8e8;
+    border-radius: 8px;
+    padding: 8px 6px;
+    font-weight: 700; font-size: 12px;
+    cursor: pointer;
+  }
+  .exec-tab.active { background: #e3c01a; color: #1a0c12; border-color: #e3c01a; }
+  .exec-pane { display: none; padding: 14px 16px 8px; }
+  .exec-pane.active { display: block; }
+  .exec-step {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #3d2230;
+  }
+  .exec-step:last-child { border-bottom: 0; }
+  .exec-step .n {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: #e3c01a; color: #1a0c12;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 13px;
+  }
+  .exec-step h3 { margin: 0 0 3px; font-size: 14px; font-weight: 700; }
+  .exec-step p { margin: 0; color: #d2c0c6; font-size: 13px; line-height: 1.45; }
+  .exec-tips {
+    margin: 4px 16px 12px;
+    background: #2a1620;
+    border: 1px solid #5a3044;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 12px; color: #d2c0c6; line-height: 1.5;
+  }
+  .exec-tips strong { color: #fff; }
+  .exec-tips ul { margin: 6px 0 0; padding-left: 18px; }
+  .exec-actions {
+    position: sticky; bottom: 0;
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 12px 16px 16px;
+    background: #1c1016;
+    border-top: 1px solid #3d2230;
+  }
+  .unlock-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 0 0 16px;
+  }
+  @media (min-width: 768px) { .unlock-grid { grid-template-columns: 1fr 1fr; } }
+  .unlock-card {
+    background: #1c1016;
+    border: 1px solid #3d2230;
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color .2s ease, opacity .2s ease;
+  }
+  .unlock-card.is-locked { opacity: .5; pointer-events: none; }
+  .unlock-card.is-wait { border-color: #e3c01a; }
+  .unlock-card.is-done { border-color: #3d6b4a; }
+  .unlock-card .n {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 6px;
+    background: #e3c01a; color: #1a0c12; font-size: 12px; font-weight: 800; margin-bottom: 10px;
+  }
+  .unlock-card h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
+  .unlock-card p { margin: 0 0 12px; color: #d2c0c6; font-size: 13px; line-height: 1.5; }
+  .unlock-status {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #e3c01a;
+  }
+  .unlock-status.show { display: flex; }
+  .unlock-status.is-ok { color: #86efac; }
+  .unlock-result {
+    border: 1px solid #3d2230;
+    background: #1c1016;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .unlock-result.is-open { border-color: #e3c01a; }
+  .unlock-result h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
+  .unlock-result p { margin: 0 0 12px; color: #d2c0c6; font-size: 13px; line-height: 1.5; }
+  .btn-locked {
+    opacity: .42;
+    pointer-events: none;
+    filter: grayscale(.35);
+  }
+</style>
 </head>
 <body>
-  <header class="cf-header">
-    <div class="cf-title-row">
-      <h1>Catastrophic infrastructure failure</h1>
-      <span class="code-label">Error code 500</span>
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <symbol id="logo-roblox" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M18.926 23.998 0 18.892 5.075.002 24 5.108ZM15.348 10.09l-5.282-1.453-1.414 5.273 5.282 1.453z"/>
+    </symbol>
+    <symbol id="logo-ugphone" viewBox="0 0 38 42">
+      <path d="M25.948 30.039c-1.057 0-1.92-.858-1.92-1.908 0-1.05.86-1.907 1.92-1.907s1.92.854 1.92 1.907c0 1.053-.86 1.908-1.92 1.908z" fill="#fff"/>
+      <path d="M13.32 29.002H10.05c-.475 0-.863-.385-.863-.857 0-.499.388-.884.863-.884h3.268c.475 0 .863.385.863.857 0 .499-.388.884-.863.884z" fill="#fff"/>
+      <path d="M11.698 30.61c-.502 0-.89-.385-.89-.857V26.507c0-.472.388-.857.863-.857.502 0 .89.385.89.857v3.246c0 .472-.385.857-.863.857z" fill="#fff"/>
+      <path d="M26.931 38.956c-1.488 0-2.693-1.196-2.693-2.674 0-1.479 1.205-2.675 2.693-2.675 3.04 0 5.516-2.459 5.516-5.479s-2.475-5.479-5.516-5.479C20.92 22.65 16.03 17.792 16.03 11.825S20.92 1 26.931 1h8.209C36.629 1 37.833 2.196 37.833 3.675c0 1.478-1.204 2.674-2.693 2.674h-8.209c-3.04 0-5.516 2.459-5.516 5.479s2.475 5.479 5.516 5.479c6.011 0 10.898 4.857 10.898 10.825 0 5.967-4.887 10.824-10.898 10.824z" fill="#FF9979"/>
+      <path d="M10.898 38.956C4.89 38.956 0 34.099 0 28.132 0 22.161 4.89 17.307 10.898 17.307c1.489 0 2.693 1.196 2.693 2.674 0 1.479-1.204 2.675-2.693 2.675-3.04 0-5.516 2.459-5.516 5.479s2.475 5.479 5.516 5.479c1.489 0 2.693 1.196 2.693 2.674 0 1.479-1.204 2.668-2.693 2.668z" fill="#F94647"/>
+      <path d="M26.931 38.956c-1.489 0-2.693-1.196-2.693-2.674 0-1.479 1.204-2.675 2.693-2.675 3.041 0 5.516-2.459 5.516-5.479s-2.475-5.479-5.516-5.479c-1.489 0-2.693-1.196-2.693-2.675 0-1.478 1.204-2.674 2.693-2.674 6.011 0 10.898 4.857 10.898 10.825 0 5.967-4.887 10.831-10.898 10.831z" fill="#F94647"/>
+      <path d="m22.422 38.943-2.676-2.665 2.676-2.661h4.509v5.326z" fill="#F94647"/>
+      <path d="m15.778 38.943 2.676-2.665-2.676-2.661H10.9v5.326z" fill="#F94647"/>
+      <path d="m16.391 32.986 2.679 2.661 2.68-2.661v-1.791h-5.359z" fill="#FF9978"/>
+      <path d="m16.391 39.375 2.679-2.658 2.68 2.658v1.794h-5.359z" fill="#FF9978"/>
+    </symbol>
+  </svg>
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="icon-btn" id="btnMenu" aria-label="Menú"><i class="fa-solid fa-bars text-lg"></i></button>
+    <a href="#/" class="flex items-center gap-2 shrink-0 no-underline text-white" data-nav="home">
+      <img src="https://tobby-scriptsxd.github.io/TobbyLogo2.jpg" alt="Tobby" class="w-8 h-8 rounded-full object-cover" />
+      <span class="font-bold text-[15px] tracking-tight hidden sm:inline">Tobby Scripts</span>
+    </a>
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="searchInput" type="search" placeholder="Buscar scripts..." autocomplete="off" />
     </div>
-    <div class="cf-more-info">Visit <a href="https://www.cloudflare.com/" rel="noopener noreferrer" target="_blank">cloudflare.com</a> for more information.</div>
-    <div class="cf-time" id="cf-time">2026-09-13 15:04:37 UTC</div>
+    <a href="https://discord.com/invite/VAcR3GpbVU" target="_blank" rel="noopener" class="icon-btn hidden sm:inline-flex" title="Discord" style="color:#5865F2"><i class="fa-brands fa-discord text-lg"></i></a>
+    <a href="https://youtube.com/@tobby-scripts" target="_blank" rel="noopener" class="icon-btn hidden sm:inline-flex" title="YouTube" style="color:#ff0000"><i class="fa-brands fa-youtube text-lg"></i></a>
   </header>
 
-  <section class="cf-status-display">
-    <div class="cf-status-row">
-      <div class="cf-status-item">
-        <div class="cf-icon-wrap">
-          <svg class="cf-icon" viewBox="0 0 100 80.7362" aria-hidden="true">
-            <path fill="#999" d="M89.8358.1636H10.1642C4.6398.1636.1614,4.6421.1614,10.1664v60.4033c0,5.5244,4.4784,10.0028,10.0028,10.0028h79.6716c5.5244,0,10.0027-4.4784,10.0027-10.0028V10.1664c0-5.5244-4.4784-10.0028-10.0027-10.0028ZM22.8323,9.6103c1.9618,0,3.5522,1.5903,3.5522,3.5521s-1.5904,3.5522-3.5522,3.5522-3.5521-1.5904-3.5521-3.5522,1.5903-3.5521,3.5521-3.5521ZM12.8936,9.6103c1.9618,0,3.5522,1.5903,3.5522,3.5521s-1.5904,3.5522-3.5522,3.5522-3.5521-1.5904-3.5521-3.5522,1.5903-3.5521,3.5521-3.5521ZM89.8293,70.137H9.7312V24.1983h80.0981v45.9387ZM89.8293,16.1619H29.8524v-5.999h59.977v5.999Z"/>
-          </svg>
-          <span class="cf-icon-status">
-            <svg viewBox="0 0 47.9145 47.9641" aria-hidden="true">
-              <circle cx="23.9572" cy="23.982" r="23.4815" fill="#bd2426"/>
-              <line x1="19.0487" y1="19.0768" x2="27.8154" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-              <line x1="27.8154" y1="19.0768" x2="19.0487" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-            </svg>
-          </span>
-        </div>
-        <span class="cf-status-desc">You</span>
-        <div class="cf-status-name">Browser</div>
-        <span class="cf-status-label">Out of Memory</span>
+  <!-- Sidebar -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Navegación">
+    <div class="p-4 border-b border-[#3d2230] flex items-center gap-3">
+      <img src="https://tobby-scriptsxd.github.io/TobbyLogo2.jpg" alt="" class="w-11 h-11 rounded-full object-cover" />
+      <div>
+        <div class="font-bold text-sm leading-tight">Tobby Scripts</div>
+        <div class="text-xs text-rb-muted">Hub de scripts</div>
       </div>
+      <button class="icon-btn ml-auto" id="btnCloseSidebar" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <nav class="p-3 flex flex-col gap-1 overflow-y-auto flex-1">
+      <button class="nav-item active" data-nav="home"><i class="fa-solid fa-house"></i> Inicio</button>
+      <button class="nav-item" data-nav="scripts"><i class="fa-solid fa-code"></i> Scripts</button>
+      <button class="nav-item" data-nav="nuevos"><i class="fa-solid fa-sparkles"></i> Scripts nuevos</button>
+      <button class="nav-item" data-nav="videos"><i class="fa-solid fa-play"></i> Videos</button>
+      <button class="nav-item" data-nav="roblox-clon"><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#logo-roblox"/></svg></span> Roblox Clon</button>
+      <button class="nav-item" data-nav="ugphone"><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 38 42"><use href="#logo-ugphone"/></svg></span> UgPhone</button>
+      <button class="nav-item" data-nav="creditos"><i class="fa-solid fa-user-gear"></i> Créditos</button>
+      <button class="nav-item" data-nav="about"><i class="fa-solid fa-circle-info"></i> Sobre mí</button>
+      <div class="h-px bg-[#3d2230] my-2"></div>
+      <a class="nav-item" href="https://discord.com/invite/VAcR3GpbVU" target="_blank" rel="noopener"><i class="fa-brands fa-discord" style="color:#5865F2"></i> Discord</a>
+      <a class="nav-item" href="https://youtube.com/@tobby-scripts" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" style="color:#ff0000"></i> YouTube</a>
+    </nav>
+  </aside>
 
-      <div class="cf-status-item cf-error-source">
-        <div class="cf-icon-wrap">
-          <svg class="cf-icon" viewBox="0 0 152 78.9141" aria-hidden="true">
-            <path fill="#999" d="M132.2996,77.9927v-.0261c10.5477-.2357,19.0305-8.8754,19.0305-19.52,0-10.7928-8.7161-19.5422-19.4678-19.5422-2.9027,0-5.6471.6553-8.1216,1.7987C123.3261,18.6624,105.3419.9198,83.202.9198c-17.8255,0-32.9539,11.5047-38.3939,27.4899-3.0292-2.2755-6.7818-3.6403-10.8622-3.6403-10.0098,0-18.1243,8.1145-18.1243,18.1243,0,1.7331.258,3.4033.7122,4.9905-.2899-.0168-.5769-.0442-.871-.0442-8.2805,0-14.993,6.7503-14.993,15.0772,0,8.2795,6.6381,14.994,14.8536,15.0701v.0054h.1069c.0109,0,.0215.0016.0325.0016s.0215-.0016.0325-.0016"/>
-          </svg>
-          <span class="cf-icon-status">
-            <svg viewBox="0 0 47.9145 47.9641" aria-hidden="true">
-              <circle cx="23.9572" cy="23.982" r="23.4815" fill="#bd2426"/>
-              <line x1="19.0487" y1="19.0768" x2="27.8154" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-              <line x1="27.8154" y1="19.0768" x2="19.0487" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-            </svg>
-          </span>
+  <main class="max-w-[1200px] mx-auto px-4 sm:px-5 py-5 pb-16">
+    <!-- HOME -->
+    <section id="view-home" class="view active"></section>
+
+    <!-- NUEVOS -->
+    <section id="view-nuevos" class="view">
+      <button type="button" class="btn-secondary mb-4" data-nav="home"><i class="fa-solid fa-arrow-left"></i> Inicio</button>
+      <h1 class="section-title mb-2">Scripts nuevos</h1>
+      <p class="text-rb-muted mb-5">Los últimos scripts agregados al catálogo.</p>
+      <div id="nuevosGrid" class="grid-cards"></div>
+    </section>
+
+    <!-- ALL SCRIPTS -->
+    <section id="view-scripts" class="view">
+      <h1 class="section-title mb-4">Todos los scripts</h1>
+      <div id="scriptsGrid" class="grid-cards"></div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="view-videos" class="view">
+      <h1 class="section-title mb-4">Videos</h1>
+      <div id="videosGrid" class="grid-cards"></div>
+      <h2 id="shortsHeading" class="section-title mt-10 mb-4" hidden>Shorts</h2>
+      <div id="shortsGrid" class="grid-cards" hidden></div>
+    </section>
+
+    <!-- DETAIL -->
+    <section id="view-detail" class="view">
+      <button type="button" class="btn-secondary mb-4" id="btnBack"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7">
+          <div class="thumb-wrap rounded-xl mb-4" id="detailThumb" style="aspect-ratio:16/9;max-height:none"></div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2" id="detailTitle"></h1>
+          <div class="flex flex-wrap items-center gap-3 text-sm text-rb-muted mb-4" id="detailMeta"></div>
+          <p class="text-rb-muted leading-relaxed mb-5" id="detailDesc"></p>
+          <div class="flex flex-wrap gap-3 mb-6">
+            <button class="btn-primary" id="btnCopy"><i class="fa-solid fa-copy"></i> Copiar script</button>
+            <button class="btn-secondary" id="btnExec"><i class="fa-solid fa-terminal"></i> Cómo ejecutar</button>
+          </div>
+          <div class="mb-2 text-sm font-semibold text-rb-muted">Código</div>
+          <pre class="code-box mb-6" id="detailCode"></pre>
         </div>
-        <span class="cf-status-desc">BanHammer.lol</span>
-        <div class="cf-status-name cf-brand">Cloudflare</div>
-        <span class="cf-status-label">Not Working</span>
+        <div class="lg:col-span-5">
+          <h2 class="text-base font-bold mb-3">Enlaces sociales</h2>
+          <div class="social-box mb-6">
+            <a class="social-row" href="https://discord.com/invite/VAcR3GpbVU" target="_blank" rel="noopener">
+              <span class="social-icon"><i class="fa-brands fa-discord"></i></span>
+              <span class="font-semibold">Discord</span>
+              <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-rb-muted text-xs"></i>
+            </a>
+            <div class="h-px bg-[#3d2230]"></div>
+            <a class="social-row" href="https://youtube.com/@tobby-scripts" target="_blank" rel="noopener">
+              <span class="social-icon" style="background:#ff0000"><i class="fa-brands fa-youtube"></i></span>
+              <span class="font-semibold">YouTube</span>
+              <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-rb-muted text-xs"></i>
+            </a>
+          </div>
+          <div class="rounded-lg border border-[#5a3044] bg-rb-surface p-4">
+            <div class="text-sm font-bold mb-2">Cómo ejecutarlo</div>
+            <ol class="text-sm text-rb-muted leading-relaxed m-0 pl-4 space-y-1">
+              <li>Entra al juego de esta tarjeta</li>
+              <li>Copia el script</li>
+              <li>Pégalo en el executor y dale a Execute</li>
+            </ol>
+            <button type="button" class="btn-secondary mt-3 w-full" id="btnExecSide"><i class="fa-solid fa-terminal"></i> Ver tutorial</button>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="cf-status-item">
-        <div class="cf-icon-wrap">
-          <svg class="cf-icon" viewBox="0 0 95 75" aria-hidden="true">
-            <path fill="#999" d="M94.0103,45.0775l-12.9885-38.4986c-1.2828-3.8024-4.8488-6.3624-8.8618-6.3619l-49.91.0065c-3.9995.0005-7.556,2.5446-8.8483,6.3295L1.0128,42.8363c-.3315.971-.501,1.9899-.5016,3.0159l-.0121,19.5737c-.0032,5.1667,4.1844,9.3569,9.3513,9.3569h75.2994c5.1646,0,9.3512-4.1866,9.3512-9.3512v-17.3649c0-1.0165-.1657-2.0262-.4907-2.9893ZM86.7988,65.3097c0,1.2909-1.0465,2.3374-2.3374,2.3374H9.9767c-1.2909,0-2.3374-1.0465-2.3374-2.3374v-18.1288c0-1.2909,1.0465-2.3374,2.3374-2.3374h74.4847c1.2909,0,2.3374,1.0465,2.3374,2.3374v18.1288Z"/>
-            <circle cx="74.6349" cy="56.1889" r="4.7318" fill="#999"/>
-            <circle cx="59.1472" cy="56.1889" r="4.7318" fill="#999"/>
-          </svg>
-          <span class="cf-icon-status">
-            <svg viewBox="0 0 47.9145 47.9641" aria-hidden="true">
-              <circle cx="23.9572" cy="23.982" r="23.4815" fill="#bd2426"/>
-              <line x1="19.0487" y1="19.0768" x2="27.8154" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-              <line x1="27.8154" y1="19.0768" x2="19.0487" y2="28.8853" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-            </svg>
-          </span>
+    <!-- ROBLOX CLON -->
+    <section id="view-roblox-clon" class="view">
+      <div class="welcome-hero tool-hero-rbx">
+        <div class="welcome-inner">
+          <div class="tool-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><use href="#logo-roblox"/></svg>
+          </div>
+          <div>
+            <div class="welcome-kicker">Cliente modificado</div>
+            <h1>Roblox Clon</h1>
+            <p class="lead">Versión modificada de Roblox lista para usar con ArceusX y executors. Suscríbete, dale like al último video y desbloquea la descarga.</p>
+            <div class="welcome-actions">
+              <button type="button" class="btn-primary" data-nav="roblox-clon"><i class="fa-solid fa-unlock"></i> Desbloquear descarga</button>
+              <button type="button" class="btn-secondary" data-nav="scripts"><i class="fa-solid fa-code"></i> Ir a scripts</button>
+            </div>
+          </div>
         </div>
-        <span class="cf-status-desc">tobby-scriptsxd.github.io</span>
-        <div class="cf-status-name">Host</div>
-        <span class="cf-status-label">On Fire</span>
+      </div>
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="ic"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Hecho para ArceusX</h3>
+          <p>El clon está pensado para inyectar scripts con ArceusX sin pelearte con el cliente oficial.</p>
+        </article>
+        <article class="info-card">
+          <div class="ic"><i class="fa-solid fa-list-check"></i></div>
+          <h3>Dos pasos</h3>
+          <p>Suscríbete al canal y dale like al último video. En 5 segundos se verifica y se libera el link.</p>
+        </article>
+        <article class="info-card">
+          <div class="ic"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h3>Listo para scripts</h3>
+          <p>Cuando el clon abre, copia cualquier script del hub y pégalo en el executor. Misma librería, otro cliente.</p>
+        </article>
+      </div>
+      <h2 class="section-title" id="clon-unlock">Desbloquear el link</h2>
+      <p class="text-rb-muted text-sm mb-4 max-w-2xl">Completa los dos pasos. Cada uno te lleva a YouTube (canal y último video). Vuelve aquí: en 5 segundos se verifica y se desbloquea la descarga.</p>
+      <div class="unlock-grid">
+        <article class="unlock-card" id="unlockCardSub">
+          <div class="n">1</div>
+          <h3>Suscríbete al canal</h3>
+          <p>Te abro YouTube para que te suscribas a Tobby Scripts. Luego vuelve a esta pestaña.</p>
+          <button type="button" class="btn-primary" id="btnUnlockSub"><i class="fa-brands fa-youtube"></i> Ir a suscribirme</button>
+          <div class="unlock-status" id="unlockStatusSub"><i class="fa-solid fa-spinner fa-spin"></i> <span>Verificando suscripción… 5s</span></div>
+        </article>
+        <article class="unlock-card is-locked" id="unlockCardLike">
+          <div class="n">2</div>
+          <h3>Like al último video</h3>
+          <p>Te abro el video más reciente. Dale like y vuelve para que se verifique.</p>
+          <button type="button" class="btn-primary" id="btnUnlockLike"><i class="fa-solid fa-thumbs-up"></i> Ir a dar like</button>
+          <div class="unlock-status" id="unlockStatusLike"><i class="fa-solid fa-spinner fa-spin"></i> <span>Verificando like… 5s</span></div>
+        </article>
+      </div>
+      <div class="unlock-result" id="unlockResult">
+        <h3 id="unlockResultTitle">Descarga bloqueada</h3>
+        <p id="unlockResultText">Termina los dos pasos para revelar el botón del archivo.</p>
+        <a class="btn-primary btn-locked" id="btnClonFile" href="https://gofile.io/d/LUkdrt" target="_blank" rel="noopener" aria-disabled="true"><i class="fa-solid fa-lock"></i> Descargar Roblox Clon</a>
+      </div>
+      <div class="info-note"><i class="fa-solid fa-circle-info mr-1"></i> El link se libera aquí después de los dos pasos. Instala el clon, entra al juego y pega el script desde Tobby Scripts.</div>
+    </section>
+
+    <!-- UGPHONE -->
+    <section id="view-ugphone" class="view">
+      <div class="welcome-hero tool-hero-ugp">
+        <div class="welcome-inner">
+          <div class="tool-mark" aria-hidden="true">
+            <svg viewBox="0 0 38 42"><use href="#logo-ugphone"/></svg>
+          </div>
+          <div>
+            <div class="welcome-kicker">Android en la nube</div>
+            <h1>UgPhone</h1>
+            <p class="lead">Teléfono Android en la nube para jugar Roblox y correr executors desde el navegador o el PC, sin calentar tu móvil. Ideal para AFK y para scripts 24/7.</p>
+            <div class="welcome-actions">
+              <a href="https://www.ugphone.com/toc-page/promotion/#/r?partner_id=7a777eaf-3f47-033d-af23-cce4f3492d47&invitation_code=tobby1" target="_blank" rel="noopener" class="btn-primary"><i class="fa-solid fa-ticket"></i> Canjear tobby1</a>
+              <a href="https://youtube.com/@tobby-scripts" target="_blank" rel="noopener" class="btn-secondary"><i class="fa-brands fa-youtube"></i> Tutoriales</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="ic"><i class="fa-solid fa-cloud"></i></div>
+          <h3>Siempre encendido</h3>
+          <p>El Android vive en un servidor. Puedes dejar farm o AFK aunque apagues tu teléfono.</p>
+        </article>
+        <article class="info-card">
+          <div class="ic"><i class="fa-solid fa-gamepad"></i></div>
+          <h3>Roblox + executor</h3>
+          <p>Instalas Roblox y tu executor dentro de UgPhone, igual que en un celular real.</p>
+        </article>
+        <article class="info-card">
+          <div class="ic"><i class="fa-solid fa-ticket"></i></div>
+          <h3>Código tobby1</h3>
+          <p>Usa el código de invitación <b class="text-white">tobby1</b> al registrarte para canjear la promo.</p>
+        </article>
+      </div>
+      <div class="unlock-result is-open mb-6" id="ugphoneCodeBox">
+        <div class="welcome-kicker mb-1">Código de invitación</div>
+        <h3 class="!text-2xl tracking-wide font-extrabold" id="ugphoneCode">tobby1</h3>
+        <p>Cópialo o canjéalo directo en UgPhone. Así aplicas la promo de Tobby al crear la cuenta.</p>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="btn-secondary" id="btnCopyUgCode"><i class="fa-solid fa-copy"></i> Copiar código</button>
+          <a class="btn-primary" href="https://www.ugphone.com/toc-page/promotion/#/r?partner_id=7a777eaf-3f47-033d-af23-cce4f3492d47&invitation_code=tobby1" target="_blank" rel="noopener"><i class="fa-solid fa-ticket"></i> Canjear</a>
+        </div>
+      </div>
+      <h2 class="section-title">Cómo empezar</h2>
+      <div class="info-steps">
+        <div class="welcome-step"><div class="n">1</div><h3>Crea la cuenta</h3><p>Entra con el botón Canjear y usa el código <b class="text-white">tobby1</b>. El video te muestra el registro.</p></div>
+        <div class="welcome-step"><div class="n">2</div><h3>Instala Roblox</h3><p>Dentro del Android en la nube instala Roblox y el executor que uses.</p></div>
+        <div class="welcome-step"><div class="n">3</div><h3>Pega el script</h3><p>Copia desde este hub, pega en el executor y ejecuta. El farm sigue aunque salgas.</p></div>
+      </div>
+      <div class="info-note"><i class="fa-solid fa-circle-info mr-1"></i> UgPhone es un servicio de terceros. Los tutoriales y códigos que comparte Tobby están en YouTube; el cliente se descarga desde su web oficial.</div>
+    </section>
+
+    <!-- CREDITOS -->
+    <section id="view-creditos" class="view">
+      <h1 class="section-title">Créditos</h1>
+      <div class="rounded-xl border border-[#3d2230] bg-rb-surface p-6 max-w-3xl flex flex-col sm:flex-row gap-6 items-start">
+        <img src="https://antihambreadoscriptteam.github.io/Foto/Miembros/TheRealBanHammer.png" alt="TheRealBanHammer" class="w-36 h-36 rounded-xl object-cover border border-[#5a3044]" />
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-rb-blue mb-1">Desarrollado por</div>
+          <h2 class="text-2xl font-extrabold mb-2">TheRealBanHammer</h2>
+          <p class="text-rb-muted leading-relaxed mb-4">Desarrollador apasionado por la tecnología y la creación de interfaces dinámicas. Como administrador principal, se enfoca en mantener el sitio optimizado, seguro y con un rendimiento excelente.</p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2.5 py-1 rounded bg-rb-elev border border-[#5a3044]">HTML</span>
+            <span class="px-2.5 py-1 rounded bg-rb-elev border border-[#5a3044]">CSS</span>
+            <span class="px-2.5 py-1 rounded bg-rb-elev border border-[#5a3044]">JS</span>
+            <span class="px-2.5 py-1 rounded bg-rb-elev border border-[#5a3044]">Luau</span>
+            <span class="px-2.5 py-1 rounded bg-rb-elev border border-[#5a3044]">Python</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="view-about" class="view">
+      <h1 class="section-title">Sobre mí</h1>
+      <div class="rounded-xl border border-[#3d2230] bg-rb-surface p-6 md:p-8 max-w-3xl">
+        <p class="text-rb-muted text-lg leading-relaxed mb-6">
+          ¡Hola! Soy <b class="text-white">Tobby</b>, creador de Tobby Scripts. Soy de Perú y abrí este canal el <b class="text-white">23 de noviembre de 2023</b> para compartir scripts, herramientas y guías de Roblox que realmente me resultan útiles. Quiero que aquí encuentres recursos claros, prácticos y listos para usar. Esta página fue diseñada, desarrollada y hosteada por mi amigo <b class="text-white">TheRealBanHammer</b>, quien me ayuda a mantener todo rápido, ordenado y fácil de encontrar.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+          <div class="rounded-lg bg-rb-elev p-3 border border-[#3d2230]"><div class="text-xs text-rb-muted">Desde</div><div class="font-bold">Perú</div></div>
+          <div class="rounded-lg bg-rb-elev p-3 border border-[#3d2230]"><div class="text-xs text-rb-muted">Canal creado</div><div class="font-bold">23 nov 2023</div></div>
+          <div class="rounded-lg bg-rb-elev p-3 border border-[#3d2230]"><div class="text-xs text-rb-muted">Desarrollo</div><div class="font-bold">TheRealBanHammer</div></div>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://youtube.com/@tobby-scripts" target="_blank" rel="noopener" class="btn-secondary"><i class="fa-brands fa-youtube"></i> YouTube</a>
+          <a href="https://discord.com/invite/VAcR3GpbVU" target="_blank" rel="noopener" class="btn-secondary"><i class="fa-brands fa-discord"></i> Discord</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">Copiado <i class="fa-solid fa-check text-rb-yellow ml-1"></i></div>
+
+  <div class="exec-backdrop" id="execModal" role="presentation">
+    <div class="exec-sheet" role="dialog" aria-modal="true" aria-labelledby="execTitle">
+      <div class="exec-head">
+        <div class="flex-1">
+          <h2 id="execTitle">Cómo ejecutar un script</h2>
+          <p id="execSub">Pasos para pegar el código en tu executor y que corra en el juego.</p>
+        </div>
+        <button type="button" class="icon-btn shrink-0" id="btnCloseExec" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="exec-tabs" role="tablist">
+        <button type="button" class="exec-tab active" data-exec-tab="mobile">Móvil</button>
+        <button type="button" class="exec-tab" data-exec-tab="pc">PC</button>
+        <button type="button" class="exec-tab" data-exec-tab="cloud">UgPhone</button>
+      </div>
+      <div class="exec-pane active" id="exec-pane-mobile">
+        <div class="exec-step"><div class="n">1</div><div><h3>Ten un executor</h3><p>En celular se usa ArceusX u otro executor. Si el cliente oficial no inyecta, usa <button type="button" class="text-rb-yellow font-bold bg-transparent border-0 p-0 cursor-pointer" data-nav="roblox-clon">Roblox Clon</button>.</p></div></div>
+        <div class="exec-step"><div class="n">2</div><div><h3>Entra al juego correcto</h3><p>Abre Roblox (o el clon) y métete a la experiencia de esta tarjeta. El script no sirve en otro juego.</p></div></div>
+        <div class="exec-step"><div class="n">3</div><div><h3>Copia el código</h3><p>Vuelve aquí y pulsa <b class="text-white">Copiar script</b>. Tiene que ir entero, sin cortar el <code>loadstring</code>.</p></div></div>
+        <div class="exec-step"><div class="n">4</div><div><h3>Pega en el executor</h3><p>Abre el executor (flotante o menú), borra lo que haya, pega el código y revisa que se vea completo.</p></div></div>
+        <div class="exec-step"><div class="n">5</div><div><h3>Execute</h3><p>Pulsa Execute / Run / Inyectar. Si no pasa nada, cierra Roblox, ábrelo de nuevo e inyecta cuando ya estés dentro del juego.</p></div></div>
+      </div>
+      <div class="exec-pane" id="exec-pane-pc">
+        <div class="exec-step"><div class="n">1</div><div><h3>Abre el executor de PC</h3><p>Lanza tu executor antes o junto a Roblox. Tiene que detectar el proceso del juego.</p></div></div>
+        <div class="exec-step"><div class="n">2</div><div><h3>Entra al juego</h3><p>Únete a la experiencia de esta tarjeta. Inyecta cuando el personaje ya cargó, no en el menú de Roblox.</p></div></div>
+        <div class="exec-step"><div class="n">3</div><div><h3>Copia el script</h3><p>Pulsa <b class="text-white">Copiar script</b> en esta página. No edites el código a menos que sepas qué cambia.</p></div></div>
+        <div class="exec-step"><div class="n">4</div><div><h3>Pega y ejecuta</h3><p>En el editor del executor: pegar → Execute. Si pide attach, haz attach al cliente de Roblox primero.</p></div></div>
+        <div class="exec-step"><div class="n">5</div><div><h3>Si falla</h3><p>Cierra Roblox del todo (también del área de notificación), ábrelo, entra al juego e inyecta otra vez.</p></div></div>
+      </div>
+      <div class="exec-pane" id="exec-pane-cloud">
+        <div class="exec-step"><div class="n">1</div><div><h3>Enciende tu nube</h3><p>Abre <button type="button" class="text-rb-yellow font-bold bg-transparent border-0 p-0 cursor-pointer" data-nav="ugphone">UgPhone</button>, entra a tu Android en la nube y deja la sesión activa.</p></div></div>
+        <div class="exec-step"><div class="n">2</div><div><h3>Roblox + executor dentro</h3><p>Instala Roblox y el executor <b class="text-white">dentro</b> de UgPhone, no en tu celular real.</p></div></div>
+        <div class="exec-step"><div class="n">3</div><div><h3>Entra al juego</h3><p>Desde esa nube ábrete a la experiencia de esta tarjeta y espera a que cargue el mapa.</p></div></div>
+        <div class="exec-step"><div class="n">4</div><div><h3>Copia y pega</h3><p>Copia el script aquí (en este navegador), pégalo en el executor de la nube y dale a Execute.</p></div></div>
+        <div class="exec-step"><div class="n">5</div><div><h3>Déjalo AFK</h3><p>Puedes cerrar tu móvil: el farm sigue en el servidor. No apagues la instancia de UgPhone.</p></div></div>
+      </div>
+      <div class="exec-tips">
+        <strong>Si no corre</strong>
+        <ul>
+          <li>Estás en otro juego o todavía en el lobby.</li>
+          <li>El executor no está inyectado / attached.</li>
+          <li>El código se pegó a medias. Copia otra vez y pega sobre todo.</li>
+          <li>Reinicia Roblox e inyecta cuando ya estés jugando.</li>
+        </ul>
+      </div>
+      <div class="exec-actions">
+        <button type="button" class="btn-primary" id="btnExecCopy"><i class="fa-solid fa-copy"></i> Copiar script</button>
+        <a href="https://youtube.com/@tobby-scripts" target="_blank" rel="noopener" class="btn-secondary"><i class="fa-brands fa-youtube"></i> Videos</a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="cf-content">
-    <div class="cf-column">
-      <h2>What happened?</h2>
-      <p>There is a catastrophic failure.</p>
-    </div>
-    <div class="cf-column">
-      <h2>What can I do?</h2>
-      <p>Please try again in a few years.</p>
-    </div>
-  </section>
+<script>
+        const scripts = [
+            {
+                name: "Hyper Speed Runner",
+                category: "Movement",
+                icon: "fa-person-running",
+                description: "Script para ganar velocidad extrema y ventaja en Hyper Speed Runner.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/HyperSpeedRunner"))()`
+            },
+            {
+                name: "Jujutsu Shenanigans",
+                category: "Anime",
+                icon: "fa-bolt",
+                description: "Script for Jujutsu Shenanigans (TBO).",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/cool5013/TBO/main/TBOscript"))()`
+            },
+            {
+                name: "Infinite Yield",
+                category: "Universal",
+                icon: "fa-globe",
+                description: "Yield infinito. Admin comandos y utilidades universales.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()`
+            },
+            {
+                name: "Marvellous TNT",
+                category: "Combat",
+                icon: "fa-bomb",
+                description: "Básicamente te hace un dios para este juego. Poder destructivo masivo.",
+                code: `loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Wimply-Scripts-Basically-Makes-you-a-god-for-this-game-79987"))()`
+            },
+            {
+                name: "Marvellous Kill & Invisible",
+                category: "PvP",
+                icon: "fa-ghost",
+                description: "El mejor script para PvP y sigilo. Playground utility.",
+                code: `loadstring(game:HttpGet("https://rawscripts.net/raw/WEDNESDAYMarvellous-Playground-mp-best-SCRIPT-48262"))()`
+            },
+            {
+                name: "Marvellous No CD",
+                category: "Combat",
+                icon: "fa-stopwatch",
+                description: "Cooldown Bypass UI. Elimina tiempos de espera en habilidades.",
+                code: `local lp = game.Players.LocalPlayer
+local CoreGui = game:GetService("CoreGui")
+ 
+if not hookfunction then
+    lp:Kick("Seu exploit não suporta hookfunction. Tente outro executor. ("..identifyexecutor()..")")
+    return
+end
+ 
+local enabled = false
+ 
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "CooldownBypassUI"
+screenGui.Parent = CoreGui
+ 
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0, 120, 0, 40)
+button.Position = UDim2.new(0, 20, 0, 200)
+button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.Font = Enum.Font.SourceSansBold
+button.TextSize = 20
+button.Text = "Bypass OFF"
+button.Parent = screenGui
+ 
+local function updateButton()
+    if enabled then
+        button.Text = "Bypass ON"
+        button.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+    else
+        button.Text = "Bypass OFF"
+        button.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+    end
+end
+ 
+local oldWait
+oldWait = hookfunction(wait, function(seconds)
+    if enabled then
+        return oldWait(0)
+    else
+        return oldWait(seconds)
+    end
+end)
+ 
+local oldTaskWait
+oldTaskWait = hookfunction(task.wait, function(seconds)
+    if enabled then
+        return oldTaskWait(0)
+    else
+        return oldTaskWait(seconds)
+    end
+end)
+ 
+local oldTick
+oldTick = hookfunction(tick, function()
+    if enabled then
+        return 0
+    else
+        return oldTick()
+    end
+end)
+ 
+local oldClock
+oldClock = hookfunction(os.clock, function()
+    if enabled then
+        return 0
+    else
+        return oldClock()
+    end
+end)
+ 
+button.MouseButton1Click:Connect(function()
+    enabled = not enabled
+    updateButton()
+end)
+ 
+print("Bypass de cooldown carregado com botão ON/OFF.")
+updateButton()`
+            },
+            {
+                name: "Superman (Universal)",
+                category: "Movement",
+                icon: "fa-plane",
+                description: "Vuelo universal para cualquier juego. Auto-detecta móvil o PC.",
+                code: `local UserInputService = game:GetService("UserInputService")
+local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
+if isMobile then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/396abc/Script/refs/heads/main/MobileFly.lua"))()
+else
+loadstring(game:HttpGet("https://raw.githubusercontent.com/396abc/Script/refs/heads/main/FlyR15.lua"))()
+end`
+            },
+            {
+                name: "99 Noches en el Bosque",
+                category: "Survival",
+                icon: "fa-tree",
+                description: "Script completo para el juego 99 Noches en el Bosque con funciones premium.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()`
+            },
+            {
+                name: "Dead Rails",
+                category: "Survival",
+                icon: "fa-skull",
+                description: "Script exclusivo para Dead Rails con funciones de supervivencia avanzadas.",
+                code: `loadstring(game:HttpGet('https://raw.githubusercontent.com/hungquan99/SkullHub/main/loader.lua'))()`
+            },
+            {
+                name: "Dead Rails (Script Crackeado)",
+                category: "Survival",
+                icon: "fa-skull",
+                description: "Script para Dead Rails con autobonos, instakill zombies, bringitems, sin key.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/FloppHub-Team/Scripts-idk/refs/heads/main/DeadRails.lua"))()`
+            },
+            {
+                name: "Campos de Batalla",
+                category: "Combat",
+                icon: "fa-hand-fist",
+                description: "Script de combate con múltiples funciones ofensivas.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/yes1nt/yes/refs/heads/main/Trashcan%20Man", true))()`
+            },
+            {
+                name: "Hitbox Universal",
+                category: "Universal",
+                icon: "fa-expand",
+                description: "Mejora el tamaño de las hitboxes en cualquier juego.",
+                code: `loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Update-script-hitbox-9326"))()`
+            },
+            {
+                name: "Aimbot Weaponry",
+                category: "Shooter",
+                icon: "fa-crosshairs",
+                description: "Aimbot especializado para Weaponry con FOV ajustable.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Sasaki-999/AIMBOT-FOV/refs/heads/main/Weaponry", true))()`
+            },
+            {
+                name: "Aimlok Universal",
+                category: "Shooter",
+                icon: "fa-lock",
+                description: "Sistema de aimlock universal compatible con múltiples juegos de disparos.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Totocoems/Ace/main/Ace"))()`
+            },
+            {
+                name: "Better Black Flash",
+                category: "Combat",
+                icon: "fa-lock",
+                description: "script OP para el juego compatible",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/ggab2351-stack/Jjs/refs/heads/main/Betterblackflashchain"))()`
+            },
+            {
+                name: "Murder Vs Sheriff",
+                category: "PvP",
+                icon: "fa-gun",
+                description: "Script OP para DUELS Murderers VS Sheriffs.",
+                code: `loadstring(game:HttpGet("https://rawscripts.net/raw/DUELS-Murderers-VS-Sheriffs-MurderVsSheriff-OP-2025-52689"))()`
+            },
+            {
+                name: "Uma Racing",
+                category: "Racing",
+                icon: "fa-car",
+                description: "Script OP para Uma Racing con Easy Control, Stamina infinita y Multiplicador de velocidad.",
+                code: `game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "More Open Source Script",
+    Text = "For Join: https://discord.com/invite/J9dSv7hq55",
+    Duration = 5
+})
 
-  <footer class="cf-error-footer">
-    <p>
-      <span class="cf-footer-item">Cloudflare Ray ID: <strong>2936e43f567e440e</strong></span>
-      <span class="cf-footer-separator">&bull;</span>
-      <span class="cf-footer-item" id="cf-footer-item-ip">
-        Your IP:
-        <button type="button" id="cf-footer-ip-reveal" class="cf-footer-ip-reveal-btn">Click to reveal</button>
-        <span class="hidden" id="cf-footer-ip"></span>
-      </span>
-      <span class="cf-footer-separator">&bull;</span>
-      <span class="cf-footer-item">Performance &amp; security by <a rel="noopener noreferrer" href="https://www.cloudflare.com/5xx-error-landing" id="brand_link" target="_blank">Cloudflare</a></span>
-    </p>
-  </footer>
-  <script>
-    (function () {
-      function pad(n) { return String(n).padStart(2, "0"); }
-      function formatUtc(d) {
-        return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate()) +
-          " " + pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds()) + " UTC";
-      }
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/turtle"))()
+local Win = Lib:Window("DraWatX Open Source")
 
-      var timeEl = document.getElementById("cf-time");
-      if (timeEl) timeEl.textContent = formatUtc(new Date());
+local FVelocity = Vector3.new(0, 0, 0)
+local ECSetting = false
+local ISSetting = false
+local VMSetting = 1
 
-      var reveal = document.getElementById("cf-footer-ip-reveal");
-      var ipEl = document.getElementById("cf-footer-ip");
-      if (!reveal || !ipEl) return;
+Win:Toggle("Easy Control", false, function(Bool)
+    ECSetting = Bool
+end)
 
-      function showIp(ip) {
-        ipEl.textContent = ip;
-        reveal.classList.add("hidden");
-        ipEl.classList.remove("hidden");
-      }
+Win:Toggle("Infinity Stamina", false, function(Bool)
+    ISSetting = Bool
+end)
 
-      reveal.addEventListener("click", function () {
-        if (ipEl.textContent) {
-          showIp(ipEl.textContent);
-          return;
+Win:Slider("Velocity Multiplier", 1, 4, 1, function(Value)
+    VMSetting = Value
+end)
+
+Win:Button("Discord Link", function()
+    setclipboard("https://discord.com/invite/J9dSv7hq55")
+end)
+
+local oldindex;oldindex = hookmetamethod(game, "__index", function(v1, v2)
+    if ECSetting and v2 == "Velocity" and getnamecallmethod() == "ToOrientation" then
+        return FVelocity
+    end
+    return oldindex(v1, v2)
+end)
+
+local oldnewindex;oldnewindex = hookmetamethod(game, "__newindex", function(v1, v2, v3)
+    if v2 == "AssemblyLinearVelocity" then
+        if math.abs((v3 * VMSetting).Magnitude) < 700 then
+            return oldnewindex(v1, v2, v3 * VMSetting)
+        end
+        return oldnewindex(v1, v2, FVelocity)
+    end
+    return oldnewindex(v1, v2, v3)
+end)
+
+local oldnamecall;oldnamecall = hookmetamethod(game, "__namecall", function(v1, v2, ...)
+    if ISSetting and getnamecallmethod() == "FireServer" and v2 == "SpeedTarget" then
+        return oldnamecall(v1, v2, 0)
+    end
+    return oldnamecall(v1, v2, ...)
+end)`
+            },
+            {
+                name: "Oil Empire",
+                category: "Simulator",
+                icon: "fa-droplet",
+                description: "Script completo para Oil Empire con funciones automáticas.",
+                code: `loadstring(game:HttpGet("https://gist.githubusercontent.com/FloppHub-Team/cad56a139710d4fb28a98252711b9f1e/raw/28231f91f0f60ecc31008ab22bab1dd19f9f03b5/OilEmpire.lua"))()`
+            },
+            {
+                name: "Marvellous Playground",
+                category: "Combat",
+                icon: "fa-mask",
+                description: "Script para Marvellous Playground con acceso a todos los personajes.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/All%20characters"))()`
+            },
+            {
+                name: "Xuan",
+                category: "Survival",
+                icon: "fa-bolt",
+                description: "Script Xuan para farmeo automático y funciones especiales.",
+                code: `_G.TzuanWebhook = "linkwebhook"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/refs/heads/main/autobondnew.lua"))()`
+            },
+            {
+                name: "Monkey Bomb Tag",
+                category: "Simulator",
+                icon: "fa-bomb",
+                description: "Script que sirve para farmear plátanos de forma automática.",
+                code: `loadstring(game:HttpGet("https://pastefy.app/DwLlPPrh/raw"))()`
+            },
+            {
+                name: "The Dudes Battlegrounds",
+                category: "Combat",
+                icon: "fa-hand-fist",
+                description: "Script de No Dash Cooldown para tener ventaja en The Dudes Battlegrounds.",
+                code: `loadstring(game:HttpGet("https://rawscripts.net/raw/Dudes-Battlegrounds-No-Dash-CoolDown-54637"))()`
+            },
+            {
+                name: "Skins All (Rivals)",
+                category: "Shooter",
+                icon: "fa-palette",
+                description: "Desbloquea todas las skins en Rivals para personalizar tus armas y personaje.",
+                code: `loadstring(game:HttpGet("https://pastebin.com/raw/YQVqVpUU"))()`
+            },
+            {
+                name: "Aimbot Silent & ESP (Rivals)",
+                category: "Shooter",
+                icon: "fa-crosshairs",
+                description: "Silent Aimbot y ESP para Rivals. Apuntado automático y visualización de enemigos a través de paredes.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/axleoislost/Accent/main/Rivals"))()`
+            },
+            {
+                name: "TSB Hitbox Expander",
+                category: "Combat",
+                icon: "fa-expand",
+                description: "Expansor de hitbox para The Strongest Battlegrounds (TSB).",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/HltboxExpander/refs/heads/main/ReIease"))()`
+            },
+            {
+                name: "Animal Hospital",
+                category: "Simulator",
+                icon: "fa-hospital",
+                description: "Script de automatización para Animal Hospital.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/patch-ez/animaIs-touched-me/main/animaI_hospitaI_automation_obfuscated.Iua"))()`
+            },
+            {
+                name: "Auto Farm Kill TSB",
+                category: "Combat",
+                icon: "fa-skull",
+                description: "Script de auto farm y kill para The Strongest Battlegrounds (TSB).",
+                code: `loadstring(game:HttpGet("https://gitlab.com/zkay404-group/ZHPE/-/raw/main/ZKPubIicFarm"))()`
+            },
+            {
+                name: "Homellander FE",
+                category: "Universal",
+                icon: "fa-mask",
+                description: "Script FE de Homelander para Roblox.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/giobolqv1/homelander-by-Giobolqv1-/refs/heads/main/homelander.lua"))()`
+            },
+            {
+                name: "Steal an Egg",
+                category: "Simulator",
+                icon: "fa-egg",
+                description: "Script para Steal an Egg con funciones automáticas. Usa el hub Clover.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Ryuun0x/Clover/main/main.lua"))()`
+            },
+            {
+                name: "Steal an Egg V2",
+                category: "Simulator",
+                icon: "fa-egg",
+                description: "Script V2 para Steal an Egg con Lennon Hub.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/lennonxscripts/lennonhubv2/main/stealaneggv2"))()`
+            },
+            {
+                name: "Steal an Egg V3",
+                category: "Simulator",
+                icon: "fa-egg",
+                description: "Script para Steal an Egg con Miranda Hub. Insta catch, sin key.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/miirandahub/loader/main/stealaeggs"))()`
+            },
+            {
+                name: "Muscle Legends",
+                category: "Simulator",
+                icon: "fa-dumbbell",
+                description: "Auto farm keyless para Muscle Legends.",
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/ikzzz1444/Script/main/moonveil2.lua"))()`
+            },
+            {
+                name: "Ride a Pet",
+                category: "Simulator",
+                icon: "fa-paw",
+                description: "Script OP para Ride a Pet.",
+                code: `loadstring(game:HttpGet("https://akazhub.netlify.app/script.lua"))()`
+            }
+        ];
+
+
+        const youtubeVideos = [
+            { id: "ppi1U7jf5HA", kind: "video", title: "🔥 SCRIPT OP PARA RIDE A PET 😱 | ¡EL SCRIPT QUE TODOS ESTÁN USANDO!" },
+            { id: "zAs1PfaZaRw", kind: "video", title: "🔥 SCRIPT DE MUSCLE LEGENDS OP 2026 💪 | AUTO FARM + KEYLESS" },
+            { id: "_QlmFyHRx38", kind: "video", title: "🔥 STEAL A EGG SCRIPT OP 🤯 ¡NO KEY + INSTA CATCH!" },
+            { id: "ww2ryXKW4QY", kind: "video", title: "🔥 SCRIPT PARA STEAL A EGG OP 🥚 | KEYLESS 🤯" },
+            { id: "5x-4lEhcj2k", kind: "video", title: "🔥 SCRIPT OP PARA STEAL A EGG (NO KEY) 😱 ¡AUTO STEAL + SUPER VELOCIDAD + 999999M DINERO!" },
+            { id: "nYTiBiNOgj4", kind: "video", title: "💀 ¡CON ESTE SCRIPT ES IMPOSIBLE PERDER EN RUNAWAYS! 😱 99999 WIN + KILL AURA" },
+            { id: "8at4XEcDLeA", kind: "video", title: "🚀 EL MEJOR SCRIPT TROLL HOMELANDER FE 😎" },
+            { id: "9-ZJZ99Wu84", kind: "video", title: " ¡EL SCRIPT MÁS ILEGAL DE HOSPITAL ANIMAL! 😱 CORDURA INFINITA Y TURNO 999 EN SEGUNDOS 💥 (NO KEY)" },
+            { id: "L1TGtWXZ1BQ", kind: "video", title: "¡EL MEJOR SCRIPT DE FARM KILLS PARA BATTLEGROUNDS! (KILLS INFINITAS Y 0% BAN) 😱⚡" },
+            { id: "4BzDYm1TioY", kind: "video", title: "🔥 CAMPOS DE BATALLA/SCRIPT + HITBOX EXPANDE/⚡ EASY KILLS" },
+            { id: "cVzWXCOZIWg", kind: "video", title: "🔥 CÓMO CREAR CLONES EN UGPHONE | Tutorial en Español (Sin Complicaciones)" },
+            { id: "zqHHkpq9wME", kind: "video", title: "💀 ESTE SCRIPT DE RIVALS ESTÁ ROTO... ¡TODAS LAS SKINS GRATIS!" },
+            { id: "izRDng2pU0U", kind: "video", title: "🔥 SCRIPT OP SIN KEY para DEAD RAILS ⚡ Auto Farm + OP (2026)" },
+            { id: "kQrZJxqXXWQ", kind: "video", title: "The Dudes Battlegrounds ⚡ Script OP | Dash Infinito Sin Cooldown" },
+            { id: "uMM5eRPnicY", kind: "video", title: "💀 Cómo FARMEAR 24/7 SIN TOCAR EL CELULAR | UGPhone + Arceus" },
+            { id: "8AB5gljSCzE", kind: "video", title: "😱 EL MEJOR SCRIPT OP de MONKEY BOMB TAG 🍌 AUTO FARM INFINITO + SIN KEY + FUNCIONA EN CELULAR 🤯" },
+            { id: "_cetydp_X7s", kind: "video", title: "!El script MÁS ROTO de Dead Rails! 🔥 ¡100.000 BONOS POR MINUTO! (Sin Key)" },
+            { id: "oX-VKZPCKmk", kind: "video", title: "USÉ ESTE SCRIPT EN OIL EMPIRE Y ME HICE MILLONARIO EN UNA HORA! (Auto Farm + Auto Colec)" },
+            { id: "Mav0ZHkXvZc", kind: "video", title: "🚀 UMA RACING SCRIPT OP 😱 INF STAMINA + NO KEY (LINK DIRECTO)" },
+            { id: "b6zaTqkfdvA", kind: "video", title: "🚀 EL SCRIPT MÁS ROTO DE  DUELOS SHERIFF VS MURDER (SIN KEY)" },
+            { id: "Knk5T5BKNPw", kind: "video", title: "SCRIPT PARA CORREDOR DE HYPER VELOCIDAD ⚡🔥 | LINK DIRECTO SIN ANUNCIOS" },
+            { id: "m16cXtaIWEw", kind: "video", title: "😱 EL MEJOR SCRIPT de BLOX FRUITS! KAITUN OP + AUTO FARM + LEVEL MAX (LINK SIN ANUNCIOS)" },
+            { id: "HA2ZaLA54Dw", kind: "video", title: "El MEJOR Script para Marvellous Playground 😱 No Cooldown / No Key / Sin Anuncios" },
+            { id: "ldXfFY_Aus0", kind: "video", title: "MARVELLOUS PLAYGROUND SCRIPT TNT TROLL 🔥 | No Key ✅ Sin Anuncios 🚫" },
+            { id: "UZCnHxNipag", kind: "video", title: "Punk X Executor: Guía Definitiva para Principiantes 🔥 (Actualizado 2026)" },
+            { id: "DMlSoi5Iyak", kind: "video", title: "🔥 Consigue la Key de Punk X Executor Paso a Paso (Bien Explicado)" },
+            { id: "XfURWADs-CM", kind: "video", title: "🔥 AUTO BLACK FLASH con Yuji Itadori en Jujutsu Shenanigans! ⚡ (Script OP)" },
+            { id: "p60w6NSqHI8", kind: "video", title: "CÓMO DESCARGAR SCRIPTS FÁCIL Y RÁPIDO 🔥" },
+            { id: "9RVOP-r6o6E", kind: "video", title: "AIMLOCK MOBILE 🔥 NO KEY | Jujutsu Shenanigans Script + AUTO BLACK FLASH (NO STUN)" },
+            { id: "4s0ejpeZ07Y", kind: "video", title: "Cómo usar DELTA en Roblox | Guía básica para principiantes" },
+            { id: "OWESfCvaDQg", kind: "video", title: "😱 CONSIGUE LA KEY DE DELTA EN MINUTOS | MÉTODO FÁCIL (LINKVERSE)" },
+            { id: "73yitj-9PsI", kind: "video", title: "El Bote de Basura MÁS MOLESTO 😱 | Script Troll en Campos de Batalla| Link directo Sin anuncios " },
+            { id: "Ti5i7DNrl3s", kind: "video", title: "EL SCRIPT MÁS ROTÍSIMO 💀 FARM CANDYS INFINITOS en 99 Noches en el Bosque 🚨 ANTES QUE LO PARCHEN\"" },
+            { id: "IVjFGZz1zJ4", kind: "video", title: "Nuevo SCRIPT para FARM AFK de DÍAS y DIAMANTES en 99 Noches en el Bosque! 🌙💎🔥." },
+            { id: "c1_R8Rj0Nws", kind: "video", title: "¡CORRE! ESTE SCRIPT OP ROMPE BRAINROT ROYALE 😱💥 (Antes de que lo parchen)" },
+            { id: "FAye21Pr9e8", kind: "video", title: "🦸‍♂️ ¡Conviértete en SUPERMAN en Roblox! Script + Vuelo Ilimitado 🚀" },
+            { id: "H20RnjvdsJo", kind: "video", title: "¡SUPER VELOCIDAD EN ROBLOX! 🚀 Script FLASH + RONIX Última Versión 🔥" },
+            { id: "7b3Xzzqh0N0", kind: "video", title: "🔄 Nuevo Método AUTO REJOIN en Roblox SIN CRASHEOS | ¡Súper fácil y explicado! 🔥" },
+            { id: "U6NW6zW3NfU", kind: "video", title: "✅ ¡SOLUCIÓN DEFINITIVA al ERROR de CLONACIÓN en UGPHONE! + DELTA 2025 ACTUALIZADO 🔥 | LINK DIRECTO" },
+            { id: "FaKsJIxEAQ4", kind: "video", title: "😱 ¡INCREÍBLE SCRIPT HITBOX UNIVERSAL! 🔥 + RONIX ACTUALIZADO 2025 ✅ LINK DIRECTO | MURDER vs SHERIFF" },
+            { id: "payDZFaCylQ", kind: "video", title: "🔑 Cómo CONSEGUIR la KEY de DELTA EXECUTOR [Actualizado] ✅ SIN ANUNCIOS + LINK DIRECTO (LOOTLIKN)" },
+            { id: "xf9rQTkID9E", kind: "video", title: "¡Clona RONIX en UGPhone 2025! FUNCIONA en PC y Celular ✅🔥 LINK DIRECTO Y SIN ANUNCIOS " },
+            { id: "qbQvIKvMQoU", kind: "video", title: "ACTUALIZACIÓN DE DELTA +SCRIPT AIMFOV ESP LINE 🦖🔥🔥🔥 LINK DIRECTO" },
+            { id: "sjIMz2LuMTk", kind: "video", title: "🦖COMO USAR DELTA DESDE UGPHONE -DELTA ACTUALIZADO Y SCRIPT PARA PRINCIPIANTES 🔥LINK DIRECTO 🙀🙀" },
+            { id: "tzE97FX_4P8", kind: "video", title: "SCRIPT AIMBOT PARA PLANKS | 100% real no Fake 🦖🦖 LINK DIRECTO +DELTA ACTUALIZADO" },
+            { id: "kh0KVwyE-zs", kind: "video", title: "SCRIPT SUPER PRO PARA ENCONTRAR MIRAGE | 100% REAL NO FAKE 🗿 +DELTA ACTUALIZADO  LINK DIRECTO 🗣️🗣️" },
+            { id: "0YAbmfuQwTQ", kind: "video", title: "SCRIPT PARA MUDER MISTERY SENCILLO (MM2) 🗿 100% real no Fake" },
+            { id: "5Awyq3OcxDw", kind: "video", title: "COMO SACAR LA KEY DE DELTA 🗿 , FACIL 100% REAL NO FAKE🗿" },
+            { id: "f-643VQOL0k", kind: "video", title: "COMO USAR DELTA EJECUTOR , SEA 1 TUTORIAL SIMPLE 👻" },
+        ];
+
+
+        const scriptMeta = {
+            "Hyper Speed Runner": {"id": "hyper-speed-runner", "placeId": 88933961678687, "thumbUrl": "https://tr.rbxcdn.com/180DAY-535062033d956d654afe6221568459da/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-e2e22f003f643153524d1855ea7d939d/512/512/Image/Png/noFilter"},
+            "Jujutsu Shenanigans": {"id": "jujutsu-shenanigans", "placeId": 9391468976, "thumbUrl": "https://tr.rbxcdn.com/180DAY-decec85a41b80e4ac0beca8bc2952a7f/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-e27277bbda2ba2efdb47a1863df2da3d/512/512/Image/Png/noFilter"},
+            "Infinite Yield": {"id": "infinite-yield", "placeId": null, "thumbUrl": null, "iconUrl": null, "tone": "universal"},
+            "Marvellous TNT": {"id": "marvellous-tnt", "placeId": 8657766101, "thumbUrl": "https://tr.rbxcdn.com/180DAY-37ea9ffe965c2bfd1c671ce7ab027374/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-035cbedf5a03f3f4782c7c1929ab2041/512/512/Image/Png/noFilter"},
+            "Marvellous Kill & Invisible": {"id": "marvellous-kill-invisible", "placeId": 8657766101, "thumbUrl": "https://tr.rbxcdn.com/180DAY-d367c9ef8258bdf1030aba0e45fd47f8/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-035cbedf5a03f3f4782c7c1929ab2041/512/512/Image/Png/noFilter"},
+            "Marvellous No CD": {"id": "marvellous-no-cd", "placeId": 8657766101, "thumbUrl": "https://tr.rbxcdn.com/180DAY-d05c37f6012212aa985d92d0548d2dea/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-035cbedf5a03f3f4782c7c1929ab2041/512/512/Image/Png/noFilter"},
+            "Superman (Universal)": {"id": "superman-universal", "placeId": null, "thumbUrl": null, "iconUrl": null, "tone": "move"},
+            "99 Noches en el Bosque": {"id": "99-noches-en-el-bosque", "placeId": 79546208627805, "thumbUrl": "https://tr.rbxcdn.com/180DAY-c5215eabc21f46723f0084f99bb7622c/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-a368c7e179ae4b0a6757cf945a028420/512/512/Image/Png/noFilter"},
+            "Dead Rails": {"id": "dead-rails", "placeId": 116495829188952, "thumbUrl": "https://tr.rbxcdn.com/180DAY-ffa0a3617465f28976b9b18485e0ac50/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-73310f33b2ecd73ed0e37b9b24407bf4/512/512/Image/Png/noFilter"},
+            "Dead Rails (Script Crackeado)": {"id": "dead-rails-script-crackeado", "placeId": 116495829188952, "thumbUrl": "https://tr.rbxcdn.com/180DAY-eec3678a2a53d4bdc3d778451a8dd374/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-73310f33b2ecd73ed0e37b9b24407bf4/512/512/Image/Png/noFilter"},
+            "Campos de Batalla": {"id": "campos-de-batalla", "placeId": 10449761463, "thumbUrl": "https://tr.rbxcdn.com/180DAY-c947df5b221c30672c3591247a8c6495/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-68c92fc62a8753793f7963e146b5197f/512/512/Image/Png/noFilter"},
+            "Hitbox Universal": {"id": "hitbox-universal", "placeId": null, "thumbUrl": null, "iconUrl": null, "tone": "universal"},
+            "Aimbot Weaponry": {"id": "aimbot-weaponry", "placeId": 3297964905, "thumbUrl": "https://tr.rbxcdn.com/180DAY-0a900af4843904f7665a456f0d497c8a/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-af1d30820e3d5308838efa45fbe18fb3/512/512/Image/Png/noFilter"},
+            "Aimlok Universal": {"id": "aimlok-universal", "placeId": null, "thumbUrl": null, "iconUrl": null, "tone": "shooter"},
+            "Better Black Flash": {"id": "better-black-flash", "placeId": 9391468976, "thumbUrl": "https://tr.rbxcdn.com/180DAY-a178607f37f81c9ffc263e1632f88952/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-e27277bbda2ba2efdb47a1863df2da3d/512/512/Image/Png/noFilter"},
+            "Murder Vs Sheriff": {"id": "murder-vs-sheriff", "placeId": 12355337193, "thumbUrl": "https://tr.rbxcdn.com/180DAY-822ea4c7515ee12dcb0acaca8a7922ad/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-2cac25a28b32e71c8c3c94368e6d6b9c/512/512/Image/Png/noFilter"},
+            "Uma Racing": {"id": "uma-racing", "placeId": 94101948530988, "thumbUrl": "https://tr.rbxcdn.com/180DAY-287e35d92d9a729a1c2066b6973d8404/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-453debbd4b93f8cb4fdab0324ed15051/512/512/Image/Png/noFilter"},
+            "Oil Empire": {"id": "oil-empire", "placeId": 107095834793267, "thumbUrl": "https://tr.rbxcdn.com/180DAY-ffd1974a668a03470193d059b8b2720d/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-1b1b3a512f82a97b6327696215fdaf32/512/512/Image/Png/noFilter"},
+            "Marvellous Playground": {"id": "marvellous-playground", "placeId": 8657766101, "thumbUrl": "https://tr.rbxcdn.com/180DAY-da913161908e247ab9ff3cc9d7d043a4/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-035cbedf5a03f3f4782c7c1929ab2041/512/512/Image/Png/noFilter"},
+            "Xuan": {"id": "xuan", "placeId": 116495829188952, "thumbUrl": "https://tr.rbxcdn.com/180DAY-e22fded2d21e14ad472cc5a57344eda8/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-73310f33b2ecd73ed0e37b9b24407bf4/512/512/Image/Png/noFilter"},
+            "Monkey Bomb Tag": {"id": "monkey-bomb-tag", "placeId": 108843562394237, "thumbUrl": "https://tr.rbxcdn.com/180DAY-87421ad44d0b84b8a59ce68fe06713b9/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-df62a99828903fbc007143e59d11a2a2/512/512/Image/Png/noFilter"},
+            "The Dudes Battlegrounds": {"id": "the-dudes-battlegrounds", "placeId": 14835828495, "thumbUrl": "https://tr.rbxcdn.com/180DAY-82c98039036b156ff16600cf8791c039/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-b14cd14fee7c9b9631233ed9b1dde8a2/512/512/Image/Png/noFilter"},
+            "Skins All (Rivals)": {"id": "skins-all-rivals", "placeId": 17625359962, "thumbUrl": "https://tr.rbxcdn.com/180DAY-fb02f48458ff689309df8d52bf516d04/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-2f7bb0535e48ac3766835b44ded27a74/512/512/Image/Png/noFilter"},
+            "Aimbot Silent & ESP (Rivals)": {"id": "aimbot-silent-esp-rivals", "placeId": 17625359962, "thumbUrl": "https://tr.rbxcdn.com/180DAY-99ae7910dac324d824e934988d8200d4/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-2f7bb0535e48ac3766835b44ded27a74/512/512/Image/Png/noFilter"},
+            "TSB Hitbox Expander": {"id": "tsb-hitbox-expander", "placeId": 10449761463, "thumbUrl": "https://tr.rbxcdn.com/180DAY-a65199acc4245274be48753c7872dd2b/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-68c92fc62a8753793f7963e146b5197f/512/512/Image/Png/noFilter"},
+            "Animal Hospital": {"id": "animal-hospital", "placeId": 78515283254292, "thumbUrl": "https://tr.rbxcdn.com/180DAY-db27bdc698b088f2d8352327f7dc64f6/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-3e496d8fe414b9b4d9fef8a28a42aeb9/512/512/Image/Png/noFilter"},
+            "Auto Farm Kill TSB": {"id": "auto-farm-kill-tsb", "placeId": 10449761463, "thumbUrl": "https://tr.rbxcdn.com/180DAY-72225b27efc4fbef9da751ea32184472/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-68c92fc62a8753793f7963e146b5197f/512/512/Image/Png/noFilter"},
+            "Homellander FE": {"id": "homellander-fe", "placeId": null, "thumbUrl": null, "iconUrl": null, "tone": "combat"},
+            "Steal an Egg": {"id": "steal-an-egg", "placeId": 107778070777162, "thumbUrl": "https://tr.rbxcdn.com/180DAY-875b2a6dc156ce6dd64eb637e73238ce/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-7eb177590c11c54bd5746eccbd7e1a74/512/512/Image/Png/noFilter"},
+            "Steal an Egg V2": {"id": "steal-an-egg-v2", "placeId": 107778070777162, "thumbUrl": "https://tr.rbxcdn.com/180DAY-79e666901b2c722b06310d267bc6c152/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-7eb177590c11c54bd5746eccbd7e1a74/512/512/Image/Png/noFilter"},
+            "Steal an Egg V3": {"id": "steal-an-egg-v3", "placeId": 107778070777162, "thumbUrl": "https://tr.rbxcdn.com/180DAY-875b2a6dc156ce6dd64eb637e73238ce/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-7eb177590c11c54bd5746eccbd7e1a74/512/512/Image/Png/noFilter"},
+            "Muscle Legends": {"id": "muscle-legends", "placeId": 3623096087, "thumbUrl": "https://tr.rbxcdn.com/180DAY-445ec13cdfdb598442a03dc8ec35cbe2/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-ba399ebaba8cf9f42dc57e8c106ce818/512/512/Image/Png/noFilter"},
+            "Ride a Pet": {"id": "ride-a-pet", "placeId": 124216119978534, "thumbUrl": "https://tr.rbxcdn.com/180DAY-3ffbd41c5b51c95ae19350431588608e/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-c755a60786d092560f219b1bb7b18d3f/512/512/Image/Png/noFilter"}
+        };
+
+        const SECTION_DEFS = [
+          { key: 'nuevos', title: 'Scripts nuevos', newest: 8 },
+          { key: 'recomendada', title: 'Recomendadas para ti', filter: null },
+          { key: 'pvp', title: 'Para PvP', cats: ['PvP', 'Combat', 'Shooter'] },
+          { key: 'farm', title: 'Para Farm', cats: ['Simulator', 'Survival'] },
+          { key: 'movimiento', title: 'Movimiento', cats: ['Movement'] },
+          { key: 'universales', title: 'Universales', cats: ['Universal'] },
+          { key: 'anime', title: 'Anime', cats: ['Anime'] },
+          { key: 'carreras', title: 'Carreras', cats: ['Racing'] },
+          { key: 'todos', title: 'Más scripts / Todos', filter: 'all' }
+        ];
+
+        function enrich(s) {
+          const m = scriptMeta[s.name] || {};
+          return Object.assign({}, s, m);
         }
-        reveal.disabled = true;
-        fetch("https://api.ipify.org?format=json")
-          .then(function (res) { return res.json(); })
-          .then(function (data) { showIp(data.ip || "Not available"); })
-          .catch(function () { showIp("Not available"); })
-          .then(function () { reveal.disabled = false; });
-      });
-    })();
-  </script>
+
+        const allScripts = scripts.map(enrich);
+
+        function hashStr(str) {
+          let h = 0;
+          for (let i = 0; i < str.length; i++) h = ((h << 5) - h) + str.charCodeAt(i) | 0;
+          return Math.abs(h);
+        }
+        function ratingOf(name) {
+          return 86 + (hashStr(name) % 13); // 86-98
+        }
+        function playersOf(name) {
+          const n = 1200 + (hashStr(name + 'p') % 48000);
+          if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+          return String(n);
+        }
+        function initials(name) {
+          return name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+        }
+        function escapeHtml(t) {
+          return String(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        function toneOf(s) {
+          if (s.tone) return s.tone;
+          const map = { Universal: 'universal', Combat: 'combat', PvP: 'combat', Shooter: 'shooter', Movement: 'move', Anime: 'anime' };
+          return map[s.category] || '';
+        }
+        function fallbackHTML(s, hidden) {
+          const icon = s.icon ? `fa-solid ${s.icon}` : 'fa-solid fa-code';
+          const tone = toneOf(s);
+          const hide = hidden ? ' style="display:none"' : '';
+          return `<div class="thumb-fallback${tone ? ' tone-' + tone : ''}"${hide}><i class="${escapeHtml(icon)}"></i></div>`;
+        }
+        const CUSTOM_THUMBS = {
+          'infinite-yield': { a: '#06261c', b: '#0f7a52', accent: '#3dff9a', title: 'Infinite Yield', sub: ':cmds   fly   noclip' },
+          'superman-universal': { a: '#08244f', b: '#c41e3a', accent: '#ffd54a', title: 'Superman Fly', sub: 'Movimiento universal' },
+          'hitbox-universal': { a: '#1a1028', b: '#4c2d8a', accent: '#c4b5fd', title: 'Hitbox', sub: 'Expander universal' },
+          'aimlok-universal': { a: '#102418', b: '#1f6b3a', accent: '#86efac', title: 'Aimlok', sub: 'Lock universal' },
+          'homellander-fe': { a: '#1a1020', b: '#8a1c2c', accent: '#e3c01a', title: 'Homelander FE', sub: 'Script FE' }
+        };
+        function customThumbUri(s) {
+          const t = CUSTOM_THUMBS[s.id];
+          if (!t) return null;
+          const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 432"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${t.a}"/><stop offset="1" stop-color="${t.b}"/></linearGradient></defs><rect width="768" height="432" fill="url(#g)"/><circle cx="640" cy="80" r="140" fill="${t.accent}" fill-opacity=".2"/><rect x="40" y="40" width="688" height="352" rx="22" fill="#000" fill-opacity=".22" stroke="${t.accent}" stroke-width="3"/><text x="80" y="205" fill="#fff" font-family="Figtree,Arial,sans-serif" font-size="44" font-weight="800">${t.title}</text><text x="80" y="255" fill="${t.accent}" font-family="Figtree,Arial,sans-serif" font-size="24">${t.sub}</text></svg>`;
+          return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+        function thumbHTML(s) {
+          const url = s.thumbUrl || s.iconUrl || customThumbUri(s);
+          if (url) {
+            return `<img src="${escapeHtml(url)}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />${fallbackHTML(s, true)}`;
+          }
+          return fallbackHTML(s, false);
+        }
+
+        function cardHTML(s) {
+          const rating = ratingOf(s.name);
+          const players = playersOf(s.name);
+          return `<button type="button" class="game-card text-left group" data-open="${escapeHtml(s.id)}">
+            <div class="thumb-wrap mb-2">${thumbHTML(s)}</div>
+            <div class="text-[13px] font-semibold leading-snug line-clamp-2 mb-1">${escapeHtml(s.name)}</div>
+            <div class="flex items-center gap-2 text-[11px] text-rb-muted">
+              <span class="truncate">${escapeHtml(s.category)}</span>
+              <span class="inline-flex items-center gap-0.5 shrink-0"><i class="fa-solid fa-thumbs-up text-[10px]"></i> ${rating}%</span>
+              <span class="inline-flex items-center gap-0.5 shrink-0"><i class="fa-solid fa-user text-[10px]"></i> ${players}</span>
+            </div>
+          </button>`;
+        }
+
+        function ytCard(v) {
+          const href = v.kind === 'short'
+            ? `https://www.youtube.com/shorts/${escapeHtml(v.id)}`
+            : `https://www.youtube.com/watch?v=${escapeHtml(v.id)}`;
+          const desc = v.desc
+            ? `<div class="text-[11px] text-rb-muted line-clamp-2">${escapeHtml(v.desc)}</div>`
+            : '';
+          return `<a class="yt-card no-underline text-white" href="${href}" target="_blank" rel="noopener">
+            <div class="thumb-wrap mb-2">
+              <img src="https://i.ytimg.com/vi/${escapeHtml(v.id)}/hqdefault.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="text-[13px] font-semibold leading-snug line-clamp-2 mb-1">${escapeHtml(v.title)}</div>
+            ${desc}
+          </a>`;
+        }
+
+        let currentFilter = '';
+        let currentScript = null;
+
+        function filteredScripts() {
+          const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+          return allScripts.filter(s => {
+            if (!q) return true;
+            return s.name.toLowerCase().includes(q) ||
+              s.category.toLowerCase().includes(q) ||
+              (s.description || '').toLowerCase().includes(q);
+          });
+        }
+
+        function scriptsForSection(def, list) {
+          if (def.filter === 'all') return list;
+          if (def.newest) {
+            const fresh = allScripts.slice(-def.newest).reverse();
+            const allowed = new Set(list);
+            return fresh.filter(s => allowed.has(s));
+          }
+          if (def.key === 'recomendada') {
+            // deterministic featured mix
+            const order = ['Steal an Egg','Dead Rails','99 Noches en el Bosque','Aimbot Silent & ESP (Rivals)','TSB Hitbox Expander','Hyper Speed Runner','Uma Racing','Infinite Yield'];
+            const map = Object.fromEntries(list.map(s => [s.name, s]));
+            const picked = order.map(n => map[n]).filter(Boolean);
+            const rest = list.filter(s => !order.includes(s.name));
+            return [...picked, ...rest].slice(0, 12);
+          }
+          if (def.cats) return list.filter(s => def.cats.includes(s.category));
+          return list;
+        }
+
+        function welcomeHTML(searching) {
+          if (searching) return '';
+          const nScripts = allScripts.length;
+          return `<section class="welcome-hero">
+            <div class="welcome-inner">
+              <img class="welcome-logo" src="https://tobby-scriptsxd.github.io/TobbyLogo2.jpg" alt="Tobby Scripts" />
+              <div>
+                <div class="welcome-kicker">Bienvenido</div>
+                <h1>Tobby Scripts</h1>
+                <p class="lead">Scripts para copiar y pegar, el clon, UgPhone y lo que voy subiendo al canal. Busca tu juego y listo.</p>
+                <div class="welcome-actions">
+                  <button type="button" class="btn-primary" data-nav="scripts"><i class="fa-solid fa-code"></i> Ver scripts</button>
+                  <a class="btn-secondary" href="https://discord.com/invite/VAcR3GpbVU" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord</a>
+                  <a class="btn-secondary" href="https://youtube.com/@tobby-scripts" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                </div>
+              </div>
+            </div>
+            <div class="welcome-shortcuts">
+              <button type="button" class="welcome-tile" data-nav="scripts"><i class="fa-solid fa-code" style="color:#e3c01a"></i><span>Scripts<small>${nScripts} disponibles</small></span></button>
+              <button type="button" class="welcome-tile" data-nav="roblox-clon"><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#logo-roblox"/></svg></span><span>Roblox Clon<small>Guías y descarga</small></span></button>
+              <button type="button" class="welcome-tile" data-nav="ugphone"><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 38 42"><use href="#logo-ugphone"/></svg></span><span>UgPhone<small>Android en la nube</small></span></button>
+            </div>
+            <div class="welcome-steps">
+              <div class="welcome-step"><div class="n">1</div><h3>Elige un script</h3><p>Busca por juego o entra a Scripts para ver el catálogo completo.</p></div>
+              <div class="welcome-step"><div class="n">2</div><h3>Cópialo</h3><p>Abre la tarjeta y pulsa Copiar script. El código queda en el portapapeles.</p></div>
+              <div class="welcome-step"><div class="n">3</div><h3>Pégalo en tu executor</h3><p>Entra al juego correspondiente, abre el executor y ejecuta.</p></div>
+            </div>
+          </section>`;
+        }
+
+        function renderHome() {
+          const q = (document.getElementById('searchInput').value || '').trim();
+          const list = filteredScripts();
+          const root = document.getElementById('view-home');
+          let html = welcomeHTML(!!q);
+          if (list.length === 0) {
+            html += `<p class="text-rb-muted py-10 text-center">No se encontraron scripts.</p>`;
+          } else {
+            SECTION_DEFS.forEach(def => {
+              const items = scriptsForSection(def, list);
+              if (!items.length) return;
+              if (def.key === 'nuevos') {
+                const cards = items.map(cardHTML).join('');
+                html += `<section class="mb-8 nuevos-marquee" data-nav="nuevos" role="link" tabindex="0" aria-label="Ver scripts nuevos">
+                  <div class="flex items-center justify-between mb-3">
+                    <h2 class="section-title mb-0">${escapeHtml(def.title)}</h2>
+                    <span class="text-xs font-bold text-rb-yellow">Ver todos <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                  </div>
+                  <div class="nuevos-viewport">
+                    <div class="nuevos-track">
+                      <div class="nuevos-set">${cards}</div>
+                    </div>
+                  </div>
+                </section>`;
+                return;
+              }
+              const isCarousel = def.key === 'recomendada';
+              html += `<section class="mb-8">
+                <div class="flex items-center justify-between mb-3">
+                  <h2 class="section-title mb-0">${escapeHtml(def.title)}</h2>
+                </div>
+                ${isCarousel ? `<div class="row-wrap">
+                  <button type="button" class="row-arrow prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                  <div class="row-scroll">${items.map(cardHTML).join('')}</div>
+                  <button type="button" class="row-arrow next" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>` : `<div class="grid-cards">${items.map(cardHTML).join('')}</div>`}
+              </section>`;
+            });
+            // videos row on home
+            html += `<section class="mb-8">
+              <h2 class="section-title">Videos</h2>
+              <div class="row-scroll">${youtubeVideos.filter(v => v.kind !== 'short').slice(0, 8).map(ytCard).join('')}</div>
+            </section>`;
+          }
+          root.innerHTML = html;
+          bindCards(root);
+          bindRowScroll(root);
+          bindNuevosMarquee(root);
+          root.querySelectorAll('[data-nav]').forEach(el => {
+            el.addEventListener('click', (e) => {
+              const n = el.getAttribute('data-nav');
+              if (!n) return;
+              e.preventDefault();
+              navigate(n);
+            });
+            if (el.getAttribute('role') === 'link') {
+              el.addEventListener('keydown', (e) => {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                e.preventDefault();
+                navigate(el.getAttribute('data-nav'));
+              });
+            }
+          });
+        }
+
+        function renderNuevos() {
+          const def = SECTION_DEFS.find(d => d.key === 'nuevos');
+          const items = scriptsForSection(def, allScripts);
+          const grid = document.getElementById('nuevosGrid');
+          grid.innerHTML = items.map(cardHTML).join('') || `<p class="text-rb-muted col-span-full py-8 text-center">Sin scripts nuevos.</p>`;
+          bindCards(grid);
+        }
+
+        function renderScriptsGrid() {
+          const list = filteredScripts();
+          const grid = document.getElementById('scriptsGrid');
+          grid.innerHTML = list.map(cardHTML).join('') || `<p class="text-rb-muted col-span-full py-8 text-center">Sin resultados.</p>`;
+          bindCards(grid);
+        }
+
+        function renderVideos() {
+          const videos = youtubeVideos.filter(v => v.kind !== 'short');
+          const shorts = youtubeVideos.filter(v => v.kind === 'short');
+          document.getElementById('videosGrid').innerHTML = videos.map(ytCard).join('')
+            || `<p class="text-rb-muted col-span-full py-8 text-center">Sin videos.</p>`;
+          const shortsHeading = document.getElementById('shortsHeading');
+          const shortsGrid = document.getElementById('shortsGrid');
+          const showShorts = shorts.length > 0;
+          shortsHeading.hidden = !showShorts;
+          shortsGrid.hidden = !showShorts;
+          shortsGrid.innerHTML = shorts.map(ytCard).join('');
+        }
+
+        let nuevosRaf = 0;
+        function bindNuevosMarquee(root) {
+          cancelAnimationFrame(nuevosRaf);
+          const viewport = root.querySelector('.nuevos-viewport');
+          const track = viewport && viewport.querySelector('.nuevos-track');
+          if (!viewport || !track) return;
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          let x = 0;
+          let dir = -1;
+          let mode = 'cruise';
+          let v = 0;
+          let target = 0;
+          let last = performance.now();
+          const speed = 140;
+          const stiffness = 60;
+          const damping = 8;
+          let ramp = 1;
+          const tick = (now) => {
+            if (!track.isConnected) return;
+            const max = Math.max(0, track.scrollWidth - viewport.clientWidth);
+            const dt = Math.min(0.032, (now - last) / 1000);
+            last = now;
+            if (max > 1) {
+              if (mode === 'cruise') {
+                ramp = Math.min(1, ramp + dt / 0.35);
+                x += dir * speed * ramp * dt;
+                if (dir < 0 && x <= -max) {
+                  x = -max;
+                  v = -280;
+                  target = -max;
+                  mode = 'spring';
+                } else if (dir > 0 && x >= 0) {
+                  x = 0;
+                  v = 280;
+                  target = 0;
+                  mode = 'spring';
+                }
+              } else {
+                let remain = dt;
+                let headingBack = false;
+                while (remain > 0) {
+                  const h = Math.min(0.008, remain);
+                  const pull = -stiffness * (x - target) - damping * v;
+                  v += pull * h;
+                  x += v * h;
+                  remain -= h;
+                  headingBack = target === 0 ? v < -40 : v > 40;
+                  if (headingBack && Math.abs(x - target) < 1.5) break;
+                }
+                if (headingBack && Math.abs(x - target) < 1.5) {
+                  x = target;
+                  dir = target === 0 ? -1 : 1;
+                  mode = 'cruise';
+                  v = 0;
+                  ramp = 0.4;
+                }
+              }
+            } else {
+              x = 0;
+            }
+            track.style.transform = 'translateX(' + x.toFixed(2) + 'px)';
+            nuevosRaf = requestAnimationFrame(tick);
+          };
+          nuevosRaf = requestAnimationFrame(tick);
+        }
+
+        function bindRowScroll(root) {
+          root.querySelectorAll('.row-wrap').forEach(wrap => {
+            const row = wrap.querySelector('.row-scroll');
+            const prev = wrap.querySelector('.row-arrow.prev');
+            const next = wrap.querySelector('.row-arrow.next');
+            if (!row || !prev || !next) return;
+            const step = () => Math.max(Math.round(row.clientWidth * 0.85), 200);
+            const update = () => {
+              const max = row.scrollWidth - row.clientWidth;
+              wrap.classList.toggle('no-overflow', max <= 4);
+              prev.disabled = row.scrollLeft <= 4;
+              next.disabled = row.scrollLeft >= max - 4;
+            };
+            prev.addEventListener('click', () => row.scrollBy({ left: -step(), behavior: 'smooth' }));
+            next.addEventListener('click', () => row.scrollBy({ left: step(), behavior: 'smooth' }));
+            row.addEventListener('scroll', update, { passive: true });
+            if (typeof ResizeObserver !== 'undefined') {
+              new ResizeObserver(update).observe(row);
+            }
+            requestAnimationFrame(update);
+          });
+        }
+
+        function bindCards(root) {
+          root.querySelectorAll('[data-open]').forEach(el => {
+            el.addEventListener('click', () => openScript(el.getAttribute('data-open')));
+          });
+        }
+
+        let returnTo = null;
+        let ignoreNextHash = false;
+
+        function setHash(hash) {
+          const cur = location.hash || '#/';
+          const same = cur === hash || (hash === '#/' && (cur === '' || cur === '#' || cur === '#/'));
+          if (same) return;
+          ignoreNextHash = true;
+          location.hash = hash;
+        }
+
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+        function scrollPage(y) {
+          const top = typeof y === 'number' ? y : 0;
+          const go = () => window.scrollTo(0, top);
+          go();
+          requestAnimationFrame(() => {
+            go();
+            requestAnimationFrame(go);
+          });
+        }
+
+        function openScript(id, fromRoute) {
+          const s = allScripts.find(x => x.id === id);
+          if (!s) return;
+          if (!fromRoute) {
+            const h = location.hash || '#/';
+            if (!h.startsWith('#/script/')) {
+              returnTo = { hash: h, y: window.scrollY };
+            }
+          }
+          currentScript = s;
+          setHash('#/script/' + id);
+          showView('detail');
+          document.getElementById('detailTitle').textContent = s.name;
+          document.getElementById('detailDesc').textContent = s.description || '';
+          document.getElementById('detailMeta').innerHTML = `
+            <span class="px-2 py-0.5 rounded bg-rb-elev border border-[#5a3044] text-xs font-semibold">${escapeHtml(s.category)}</span>
+            <span class="inline-flex items-center gap-1 text-xs"><i class="fa-solid fa-thumbs-up"></i> ${ratingOf(s.name)}%</span>
+            <span class="inline-flex items-center gap-1 text-xs"><i class="fa-solid fa-user"></i> ${playersOf(s.name)}</span>
+          `;
+          document.getElementById('detailThumb').innerHTML = thumbHTML(s, true);
+          document.getElementById('detailCode').textContent = s.code;
+          setActiveNav(null);
+          scrollPage(0);
+        }
+
+        function showToast(msg) {
+          const t = document.getElementById('toast');
+          t.innerHTML = msg + ' <i class="fa-solid fa-check text-rb-yellow ml-1"></i>';
+          t.classList.add('show');
+          clearTimeout(showToast._tm);
+          showToast._tm = setTimeout(() => t.classList.remove('show'), 2200);
+        }
+
+        async function copyScript() {
+          if (!currentScript) return;
+          try {
+            await navigator.clipboard.writeText(currentScript.code);
+            showToast('Copiado');
+          } catch (e) {
+            const ta = document.createElement('textarea');
+            ta.value = currentScript.code;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+            showToast('Copiado');
+          }
+        }
+
+        const VIEWS = ['home','scripts','nuevos','videos','detail','roblox-clon','ugphone','creditos','about'];
+        function showView(name) {
+          VIEWS.forEach(v => {
+            const el = document.getElementById('view-' + v);
+            if (el) el.classList.toggle('active', v === name);
+          });
+        }
+
+        function setActiveNav(name) {
+          document.querySelectorAll('.nav-item[data-nav]').forEach(btn => {
+            btn.classList.toggle('active', name && btn.getAttribute('data-nav') === name);
+          });
+        }
+
+        function navigate(name, opts) {
+          closeExecGuide();
+          closeSidebar();
+          const y = opts && typeof opts.scrollY === 'number' ? opts.scrollY : 0;
+          if (name === 'home') {
+            setHash('#/');
+            showView('home');
+            setActiveNav('home');
+            renderHome();
+          } else if (name === 'scripts') {
+            setHash('#/scripts');
+            showView('scripts');
+            setActiveNav('scripts');
+            renderScriptsGrid();
+          } else if (name === 'nuevos') {
+            setHash('#/nuevos');
+            showView('nuevos');
+            setActiveNav('nuevos');
+            renderNuevos();
+          } else if (name === 'videos') {
+            setHash('#/videos');
+            showView('videos');
+            setActiveNav('videos');
+            renderVideos();
+          } else {
+            setHash('#/' + name);
+            showView(name);
+            setActiveNav(name);
+          }
+          scrollPage(y);
+        }
+
+        function routeFromHash() {
+          const h = (location.hash || '#/').replace(/^#\/?/, '');
+          if (h.startsWith('script/')) {
+            openScript(h.slice(7), true);
+            return;
+          }
+          const map = {
+            '': 'home', home: 'home', scripts: 'scripts', nuevos: 'nuevos', videos: 'videos',
+            'roblox-clon': 'roblox-clon', ugphone: 'ugphone',
+            creditos: 'creditos', about: 'about'
+          };
+          navigate(map[h] || 'home');
+        }
+
+        // Sidebar
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebarBackdrop');
+        function openSidebar() { sidebar.classList.add('open'); backdrop.classList.add('open'); }
+        function closeSidebar() { sidebar.classList.remove('open'); backdrop.classList.remove('open'); }
+        document.getElementById('btnMenu').addEventListener('click', openSidebar);
+        document.getElementById('btnCloseSidebar').addEventListener('click', closeSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+
+        document.querySelectorAll('[data-nav]').forEach(el => {
+          el.addEventListener('click', (e) => {
+            const n = el.getAttribute('data-nav');
+            if (!n) return;
+            e.preventDefault();
+            navigate(n);
+          });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', () => {
+          const active = document.querySelector('.view.active');
+          if (active && active.id === 'view-scripts') renderScriptsGrid();
+          else {
+            showView('home');
+            setActiveNav('home');
+            renderHome();
+            scrollPage(0);
+          }
+        });
+
+        document.getElementById('btnCopy').addEventListener('click', copyScript);
+        const execModal = document.getElementById('execModal');
+        function openExecGuide() {
+          const name = currentScript ? currentScript.name : null;
+          document.getElementById('execSub').textContent = name
+            ? 'Tutorial para «' + name + '». Entra a ese juego, copia y pega en el executor.'
+            : 'Pasos para pegar el código en tu executor y que corra en el juego.';
+          execModal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeExecGuide() {
+          execModal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+        function setExecTab(tab) {
+          document.querySelectorAll('.exec-tab').forEach(t => t.classList.toggle('active', t.getAttribute('data-exec-tab') === tab));
+          document.querySelectorAll('.exec-pane').forEach(p => p.classList.toggle('active', p.id === 'exec-pane-' + tab));
+        }
+        document.getElementById('btnExec').addEventListener('click', openExecGuide);
+        document.getElementById('btnExecSide').addEventListener('click', openExecGuide);
+        document.getElementById('btnCloseExec').addEventListener('click', closeExecGuide);
+        execModal.addEventListener('click', (e) => { if (e.target === execModal) closeExecGuide(); });
+        document.querySelectorAll('.exec-tab').forEach(t => {
+          t.addEventListener('click', () => setExecTab(t.getAttribute('data-exec-tab')));
+        });
+        document.getElementById('btnExecCopy').addEventListener('click', async () => {
+          if (!currentScript) {
+            showToast('Abre un script primero');
+            return;
+          }
+          await copyScript();
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && execModal.classList.contains('open')) closeExecGuide();
+        });
+        document.getElementById('btnBack').addEventListener('click', () => {
+          const back = returnTo;
+          returnTo = null;
+          const raw = back && back.hash ? back.hash : '#/';
+          const h = raw.replace(/^#\/?/, '');
+          const map = {
+            '': 'home', home: 'home', scripts: 'scripts', nuevos: 'nuevos', videos: 'videos',
+            'roblox-clon': 'roblox-clon', ugphone: 'ugphone',
+            creditos: 'creditos', about: 'about'
+          };
+          navigate(map[h] || 'home', { scrollY: back ? back.y : 0 });
+        });
+
+        const CLON_UNLOCK_KEY = 'tobby-clon-unlock-v1';
+        const YT_CHANNEL_SUB = 'https://www.youtube.com/@tobby-scripts?sub_confirmation=1';
+        const YT_LATEST_VIDEO = 'https://www.youtube.com/watch?v=ww2ryXKW4QY';
+        const clonUnlock = {
+          sub: false,
+          like: false,
+          tSub: null,
+          tLike: null
+        };
+        function loadClonUnlock() {
+          try {
+            const saved = JSON.parse(localStorage.getItem(CLON_UNLOCK_KEY) || '{}');
+            clonUnlock.sub = !!saved.sub;
+            clonUnlock.like = !!saved.like;
+          } catch (e) {}
+        }
+        function saveClonUnlock() {
+          localStorage.setItem(CLON_UNLOCK_KEY, JSON.stringify({ sub: clonUnlock.sub, like: clonUnlock.like }));
+        }
+        function setUnlockStatus(el, text, ok) {
+          el.classList.add('show');
+          el.classList.toggle('is-ok', !!ok);
+          const icon = el.querySelector('i');
+          const span = el.querySelector('span');
+          if (icon) icon.className = ok ? 'fa-solid fa-check' : 'fa-solid fa-spinner fa-spin';
+          if (span) span.textContent = text;
+        }
+        function renderClonUnlock() {
+          const cardSub = document.getElementById('unlockCardSub');
+          const cardLike = document.getElementById('unlockCardLike');
+          const btnSub = document.getElementById('btnUnlockSub');
+          const btnLike = document.getElementById('btnUnlockLike');
+          const stSub = document.getElementById('unlockStatusSub');
+          const stLike = document.getElementById('unlockStatusLike');
+          const result = document.getElementById('unlockResult');
+          const title = document.getElementById('unlockResultTitle');
+          const text = document.getElementById('unlockResultText');
+          const fileBtn = document.getElementById('btnClonFile');
+          if (!cardSub) return;
+
+          cardSub.classList.toggle('is-done', clonUnlock.sub);
+          cardLike.classList.toggle('is-done', clonUnlock.like);
+          cardLike.classList.toggle('is-locked', !clonUnlock.sub);
+          if (clonUnlock.sub) {
+            btnSub.disabled = true;
+            btnSub.innerHTML = '<i class="fa-solid fa-check"></i> Suscripción verificada';
+            setUnlockStatus(stSub, 'Suscripción verificada', true);
+          }
+          if (clonUnlock.like) {
+            btnLike.disabled = true;
+            btnLike.innerHTML = '<i class="fa-solid fa-check"></i> Like verificado';
+            setUnlockStatus(stLike, 'Like verificado', true);
+          }
+          const open = clonUnlock.sub && clonUnlock.like;
+          result.classList.toggle('is-open', open);
+          title.textContent = open ? 'Descarga desbloqueada' : 'Descarga bloqueada';
+          text.textContent = open
+            ? 'Ya puedes ir al archivo. Instálalo, entra al juego y pega el script desde este hub.'
+            : 'Termina los dos pasos para revelar el botón del archivo.';
+          fileBtn.classList.toggle('btn-locked', !open);
+          fileBtn.setAttribute('aria-disabled', open ? 'false' : 'true');
+          fileBtn.innerHTML = open
+            ? '<i class="fa-solid fa-download"></i> Descargar Roblox Clon'
+            : '<i class="fa-solid fa-lock"></i> Descargar Roblox Clon';
+        }
+        function startVerify(kind) {
+          const isSub = kind === 'sub';
+          const card = document.getElementById(isSub ? 'unlockCardSub' : 'unlockCardLike');
+          const btn = document.getElementById(isSub ? 'btnUnlockSub' : 'btnUnlockLike');
+          const status = document.getElementById(isSub ? 'unlockStatusSub' : 'unlockStatusLike');
+          const label = isSub ? 'Verificando suscripción' : 'Verificando like';
+          window.open(isSub ? YT_CHANNEL_SUB : YT_LATEST_VIDEO, '_blank', 'noopener');
+          btn.disabled = true;
+          card.classList.add('is-wait');
+          let left = 5;
+          setUnlockStatus(status, label + '… ' + left + 's', false);
+          const tick = () => {
+            left -= 1;
+            if (left > 0) {
+              setUnlockStatus(status, label + '… ' + left + 's', false);
+              return;
+            }
+            clearInterval(timer);
+            if (isSub) clonUnlock.sub = true;
+            else clonUnlock.like = true;
+            card.classList.remove('is-wait');
+            saveClonUnlock();
+            renderClonUnlock();
+            showToast(isSub ? 'Suscripción verificada' : 'Like verificado');
+          };
+          const timer = setInterval(tick, 1000);
+          if (isSub) clonUnlock.tSub = timer;
+          else clonUnlock.tLike = timer;
+        }
+        loadClonUnlock();
+        renderClonUnlock();
+        document.getElementById('btnUnlockSub').addEventListener('click', () => {
+          if (clonUnlock.sub) return;
+          startVerify('sub');
+        });
+        document.getElementById('btnCopyUgCode').addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText('tobby1');
+            showToast('Código copiado');
+          } catch (e) {
+            const ta = document.createElement('textarea');
+            ta.value = 'tobby1';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+            showToast('Código copiado');
+          }
+        });
+        document.getElementById('btnUnlockLike').addEventListener('click', () => {
+          if (!clonUnlock.sub || clonUnlock.like) return;
+          startVerify('like');
+        });
+        document.getElementById('btnClonFile').addEventListener('click', (e) => {
+          if (!clonUnlock.sub || !clonUnlock.like) e.preventDefault();
+        });
+
+        window.addEventListener('hashchange', () => {
+          if (ignoreNextHash) {
+            ignoreNextHash = false;
+            return;
+          }
+          routeFromHash();
+        });
+        renderVideos();
+        routeFromHash();
+</script>
 </body>
 </html>
