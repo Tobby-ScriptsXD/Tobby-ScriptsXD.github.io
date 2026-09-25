@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Tobby Scripts</title>
 <meta name="description" content="Hub de scripts de Roblox por Tobby Scripts." />
+<link rel="icon" type="image/jpeg" href="https://tobby-scriptsxd.github.io/TobbyLogo2.jpg" />
+<link rel="apple-touch-icon" href="https://tobby-scriptsxd.github.io/TobbyLogo2.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -546,7 +548,6 @@ tailwind.config = {
       <path d="m16.391 39.375 2.679-2.658 2.68 2.658v1.794h-5.359z" fill="#FF9978"/>
     </symbol>
   </svg>
-  <!-- Topbar -->
   <header class="topbar">
     <button class="icon-btn" id="btnMenu" aria-label="Menú"><i class="fa-solid fa-bars text-lg"></i></button>
     <a href="#/" class="flex items-center gap-2 shrink-0 no-underline text-white" data-nav="home">
@@ -561,7 +562,6 @@ tailwind.config = {
     <a href="https://youtube.com/@tobby-scripts" target="_blank" rel="noopener" class="icon-btn hidden sm:inline-flex" title="YouTube" style="color:#ff0000"><i class="fa-brands fa-youtube text-lg"></i></a>
   </header>
 
-  <!-- Sidebar -->
   <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
   <aside class="sidebar" id="sidebar" aria-label="Navegación">
     <div class="p-4 border-b border-[#3d2230] flex items-center gap-3">
@@ -588,10 +588,8 @@ tailwind.config = {
   </aside>
 
   <main class="max-w-[1200px] mx-auto px-4 sm:px-5 py-5 pb-16">
-    <!-- HOME -->
     <section id="view-home" class="view active"></section>
 
-    <!-- NUEVOS -->
     <section id="view-nuevos" class="view">
       <button type="button" class="btn-secondary mb-4" data-nav="home"><i class="fa-solid fa-arrow-left"></i> Inicio</button>
       <h1 class="section-title mb-2">Scripts nuevos</h1>
@@ -599,13 +597,11 @@ tailwind.config = {
       <div id="nuevosGrid" class="grid-cards"></div>
     </section>
 
-    <!-- ALL SCRIPTS -->
     <section id="view-scripts" class="view">
       <h1 class="section-title mb-4">Todos los scripts</h1>
       <div id="scriptsGrid" class="grid-cards"></div>
     </section>
 
-    <!-- VIDEOS -->
     <section id="view-videos" class="view">
       <h1 class="section-title mb-4">Videos</h1>
       <div id="videosGrid" class="grid-cards"></div>
@@ -613,7 +609,6 @@ tailwind.config = {
       <div id="shortsGrid" class="grid-cards" hidden></div>
     </section>
 
-    <!-- DETAIL -->
     <section id="view-detail" class="view">
       <button type="button" class="btn-secondary mb-4" id="btnBack"><i class="fa-solid fa-arrow-left"></i> Volver</button>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -657,7 +652,6 @@ tailwind.config = {
       </div>
     </section>
 
-    <!-- ROBLOX CLON -->
     <section id="view-roblox-clon" class="view">
       <div class="welcome-hero tool-hero-rbx">
         <div class="welcome-inner">
@@ -718,7 +712,6 @@ tailwind.config = {
       <div class="info-note"><i class="fa-solid fa-circle-info mr-1"></i> El link se libera aquí después de los dos pasos. Instala el clon, entra al juego y pega el script desde Tobby Scripts.</div>
     </section>
 
-    <!-- UGPHONE -->
     <section id="view-ugphone" class="view">
       <div class="welcome-hero tool-hero-ugp">
         <div class="welcome-inner">
@@ -771,7 +764,6 @@ tailwind.config = {
       <div class="info-note"><i class="fa-solid fa-circle-info mr-1"></i> UgPhone es un servicio de terceros. Los tutoriales y códigos que comparte Tobby están en YouTube; el cliente se descarga desde su web oficial.</div>
     </section>
 
-    <!-- CREDITOS -->
     <section id="view-creditos" class="view">
       <h1 class="section-title">Créditos</h1>
       <div class="rounded-xl border border-[#3d2230] bg-rb-surface p-6 max-w-3xl flex flex-col sm:flex-row gap-6 items-start">
@@ -791,7 +783,6 @@ tailwind.config = {
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="view-about" class="view">
       <h1 class="section-title">Sobre mí</h1>
       <div class="rounded-xl border border-[#3d2230] bg-rb-surface p-6 md:p-8 max-w-3xl">
