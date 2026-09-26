@@ -254,6 +254,12 @@ tailwind.config = {
     display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .nav-item .nav-ico svg { width: 16px; height: 16px; display: block; }
+  .nav-item.nav-sub { position: relative; padding-left: 22px; }
+  .nav-item.nav-sub::before {
+    content: ''; position: absolute; left: 12px; top: 50%;
+    width: 9px; height: 1px; background: #5a3044; transform: translateY(-50%);
+  }
+  .nav-item.nav-sub i { color: #fff; opacity: .92; }
   .topbar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 40;
     height: 56px; background: #1c1016;
@@ -293,6 +299,7 @@ tailwind.config = {
   .section-title {
     font-size: 18px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em;
   }
+  #clon-unlock { scroll-margin-top: 76px; }
   .btn-primary {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     background: #e3c01a; color: #1a0c12; font-weight: 700; border: 0;
@@ -502,6 +509,19 @@ tailwind.config = {
   }
   .unlock-card h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
   .unlock-card p { margin: 0 0 12px; color: #d2c0c6; font-size: 13px; line-height: 1.5; }
+  .unlock-target {
+    display: none;
+    align-items: center; gap: 8px;
+    margin: -4px 0 12px; padding: 8px 10px;
+    background: #2a1620; border: 1px solid #4a2838; border-radius: 8px;
+    color: #d2c0c6; font-size: 12px; line-height: 1.4;
+  }
+  .unlock-target.show { display: flex; }
+  .unlock-target i { color: #ff0000; flex-shrink: 0; }
+  .unlock-target span {
+    min-width: 0; overflow: hidden; text-overflow: ellipsis;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  }
   .unlock-status {
     display: none;
     align-items: center;
@@ -575,7 +595,7 @@ tailwind.config = {
     <nav class="p-3 flex flex-col gap-1 overflow-y-auto flex-1">
       <button class="nav-item active" data-nav="home"><i class="fa-solid fa-house"></i> Inicio</button>
       <button class="nav-item" data-nav="scripts"><i class="fa-solid fa-code"></i> Scripts</button>
-      <button class="nav-item" data-nav="nuevos"><i class="fa-solid fa-sparkles"></i>⤷ Scripts nuevos</button>
+      <button class="nav-item nav-sub" data-nav="nuevos"><i class="fa-solid fa-folder-open"></i> Scripts nuevos</button>
       <button class="nav-item" data-nav="videos"><i class="fa-solid fa-play"></i> Videos</button>
       <button class="nav-item" data-nav="roblox-clon"><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#logo-roblox"/></svg></span> Roblox Clon</button>
       <button class="nav-item" data-nav="ugphone"><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 38 42"><use href="#logo-ugphone"/></svg></span> UgPhone</button>
@@ -663,7 +683,7 @@ tailwind.config = {
             <h1>Roblox Clon</h1>
             <p class="lead">Versión modificada de Roblox lista para usar con ArceusX y executors. Suscríbete, dale like al último video y desbloquea la descarga.</p>
             <div class="welcome-actions">
-              <button type="button" class="btn-primary" data-nav="roblox-clon"><i class="fa-solid fa-unlock"></i> Desbloquear descarga</button>
+              <button type="button" class="btn-primary" data-scroll="clon-unlock"><i class="fa-solid fa-unlock"></i> Desbloquear descarga</button>
               <button type="button" class="btn-secondary" data-nav="scripts"><i class="fa-solid fa-code"></i> Ir a scripts</button>
             </div>
           </div>
@@ -700,6 +720,7 @@ tailwind.config = {
           <div class="n">2</div>
           <h3>Like al último video</h3>
           <p>Te abro el video más reciente. Dale like y vuelve para que se verifique.</p>
+          <div class="unlock-target" id="unlockLatest"><i class="fa-brands fa-youtube"></i> <span></span></div>
           <button type="button" class="btn-primary" id="btnUnlockLike"><i class="fa-solid fa-thumbs-up"></i> Ir a dar like</button>
           <div class="unlock-status" id="unlockStatusLike"><i class="fa-solid fa-spinner fa-spin"></i> <span>Verificando like… 5s</span></div>
         </article>
@@ -1457,7 +1478,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
               <div>
                 <div class="welcome-kicker">Bienvenido</div>
                 <h1>Tobby Scripts</h1>
-                <p class="lead">Scripts para copiar y pegar, el clon, UgPhone y lo que voy subiendo al canal. Busca tu juego y listo.</p>
+                <p class="lead">${nScripts}+ scripts de Roblox. Eliges la tarjeta, le das Copiar y pegas el código en tu executor: ArceusX, Delta, PC o UgPhone.</p>
                 <div class="welcome-actions">
                   <button type="button" class="btn-primary" data-nav="scripts"><i class="fa-solid fa-code"></i> Ver scripts</button>
                   <a class="btn-secondary" href="https://discord.com/invite/VAcR3GpbVU" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord</a>
@@ -1816,6 +1837,27 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
           });
         });
 
+        function scrollToAnchor(id) {
+          const target = document.getElementById(id);
+          if (!target) return false;
+          const view = target.closest('.view');
+          if (view && !view.classList.contains('active')) {
+            showView(view.id.replace(/^view-/, ''));
+          }
+          const top = window.scrollY + target.getBoundingClientRect().top - 76;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+          return true;
+        }
+
+        document.querySelectorAll('[data-scroll]').forEach(el => {
+          el.addEventListener('click', (e) => {
+            const id = el.getAttribute('data-scroll');
+            if (!id) return;
+            e.preventDefault();
+            scrollToAnchor(id);
+          });
+        });
+
         document.getElementById('searchInput').addEventListener('input', () => {
           const active = document.querySelector('.view.active');
           if (active && active.id === 'view-scripts') renderScriptsGrid();
@@ -1877,22 +1919,32 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
 
         const CLON_UNLOCK_KEY = 'tobby-clon-unlock-v1';
         const YT_CHANNEL_SUB = 'https://www.youtube.com/@tobby-scripts?sub_confirmation=1';
-        const YT_LATEST_VIDEO = 'https://www.youtube.com/watch?v=ww2ryXKW4QY';
+        const YT_CHANNEL_VIDEOS = 'https://www.youtube.com/@tobby-scripts/videos';
+        function latestVideo() {
+          return youtubeVideos.find(v => v.kind !== 'short' && v.id) || null;
+        }
+        function latestVideoUrl() {
+          const v = latestVideo();
+          return v ? 'https://www.youtube.com/watch?v=' + v.id : YT_CHANNEL_VIDEOS;
+        }
+        function renderLatestVideo() {
+          const box = document.getElementById('unlockLatest');
+          if (!box) return;
+          const v = latestVideo();
+          const span = box.querySelector('span');
+          if (span) span.textContent = v ? v.title : 'Abrimos la pestaña de Videos del canal';
+          box.classList.toggle('show', !!v);
+        }
         const clonUnlock = {
           sub: false,
           like: false,
           tSub: null,
           tLike: null
         };
-        function loadClonUnlock() {
-          try {
-            const saved = JSON.parse(localStorage.getItem(CLON_UNLOCK_KEY) || '{}');
-            clonUnlock.sub = !!saved.sub;
-            clonUnlock.like = !!saved.like;
-          } catch (e) {}
-        }
-        function saveClonUnlock() {
-          localStorage.setItem(CLON_UNLOCK_KEY, JSON.stringify({ sub: clonUnlock.sub, like: clonUnlock.like }));
+        function resetClonUnlock() {
+          try { localStorage.removeItem(CLON_UNLOCK_KEY); } catch (e) {}
+          clonUnlock.sub = false;
+          clonUnlock.like = false;
         }
         function setUnlockStatus(el, text, ok) {
           el.classList.add('show');
@@ -1922,11 +1974,21 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
             btnSub.disabled = true;
             btnSub.innerHTML = '<i class="fa-solid fa-check"></i> Suscripción verificada';
             setUnlockStatus(stSub, 'Suscripción verificada', true);
+          } else {
+            btnSub.disabled = false;
+            btnSub.innerHTML = '<i class="fa-brands fa-youtube"></i> Ir a suscribirme';
+            stSub.classList.remove('show', 'is-ok');
+            stSub.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Verificando suscripción… 5s</span>';
           }
           if (clonUnlock.like) {
             btnLike.disabled = true;
             btnLike.innerHTML = '<i class="fa-solid fa-check"></i> Like verificado';
             setUnlockStatus(stLike, 'Like verificado', true);
+          } else {
+            btnLike.disabled = !clonUnlock.sub;
+            btnLike.innerHTML = '<i class="fa-solid fa-thumbs-up"></i> Ir a dar like';
+            stLike.classList.remove('show', 'is-ok');
+            stLike.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Verificando like… 5s</span>';
           }
           const open = clonUnlock.sub && clonUnlock.like;
           result.classList.toggle('is-open', open);
@@ -1946,7 +2008,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
           const btn = document.getElementById(isSub ? 'btnUnlockSub' : 'btnUnlockLike');
           const status = document.getElementById(isSub ? 'unlockStatusSub' : 'unlockStatusLike');
           const label = isSub ? 'Verificando suscripción' : 'Verificando like';
-          window.open(isSub ? YT_CHANNEL_SUB : YT_LATEST_VIDEO, '_blank', 'noopener');
+          window.open(isSub ? YT_CHANNEL_SUB : latestVideoUrl(), '_blank', 'noopener');
           btn.disabled = true;
           card.classList.add('is-wait');
           let left = 5;
@@ -1961,7 +2023,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
             if (isSub) clonUnlock.sub = true;
             else clonUnlock.like = true;
             card.classList.remove('is-wait');
-            saveClonUnlock();
             renderClonUnlock();
             showToast(isSub ? 'Suscripción verificada' : 'Like verificado');
           };
@@ -1969,8 +2030,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
           if (isSub) clonUnlock.tSub = timer;
           else clonUnlock.tLike = timer;
         }
-        loadClonUnlock();
+        resetClonUnlock();
         renderClonUnlock();
+        renderLatestVideo();
         document.getElementById('btnUnlockSub').addEventListener('click', () => {
           if (clonUnlock.sub) return;
           startVerify('sub');
