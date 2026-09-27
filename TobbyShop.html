@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c0c0d">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="TobbyMagoPro — tienda de fragmentos, belis y niveles de Blox Fruits. Pago con Yape en soles.">
+<title>TobbyMagoPro</title>
+<link rel="icon" href="https://files.catbox.moe/eul838.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+
+    --purple: #70248c;
+    --purple-2: #9b3fc0;
+    --purple-3: #c07ae0;
+    --cyan: #13d1e0;
+    --cyan-2: #5ce4ee;
+    --yellow: #f5c225;
+    --yellow-2: #fbdf7a;
+    --yellow-deep: #8a6a10;
+
+    --bg: #0c0c0d;
+    --bg-2: #131315;
+    --card: #191919;
+    --card-2: #212124;
+    --clay: #55555a;
+    --line: rgba(255, 255, 255, .11);
+    --line-soft: rgba(255, 255, 255, .06);
+    --line-accent: rgba(245, 194, 37, .32);
+
+    --gold: var(--yellow);
+    --gold-2: var(--yellow-2);
+    --gold-deep: var(--yellow-deep);
+    --plum: var(--purple);
+    --plum-2: var(--purple-2);
+    --teal: var(--cyan);
+    --teal-2: var(--cyan-2);
+
+    --text: #f2f2f3;
+    --muted: #9a9aa0;
+    --ok: #00e676;
+    --ok-soft: #b6ffdb;
+    --ok-glow: rgba(0, 230, 118, .60);
+    --bad: #ff2d55;
+    --bad-soft: #ffc2cd;
+    --ink: #141414;
+    --header: 78px;
+    --radius: 18px;
+    --shadow: 0 24px 60px rgba(0, 0, 0, .6);
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --display: "Archivo", "Inter", system-ui, "Segoe UI", sans-serif;
+    --eas: cubic-bezier(.22, 1, .36, 1);
+    --eas-pop: cubic-bezier(.34, 1.56, .64, 1);
+    --grad-brand: linear-gradient(120deg, var(--purple-2), var(--cyan) 55%, var(--yellow));
+    --glow-purple: 0 0 24px rgba(155, 63, 192, .35);
+    --glow-gold: 0 6px 24px rgba(245, 194, 37, .28);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scrollbar-color: #3a3a40 transparent; }
+  ::-webkit-scrollbar { width: 11px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: #333338; border-radius: 99px; border: 3px solid var(--bg);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--purple-2); }
+  ::selection { background: rgba(155, 63, 192, .55); color: #fff; }
+  img, svg, button, a { -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1100px 560px at 88% -8%, rgba(112, 36, 140, .16), transparent 62%),
+      radial-gradient(820px 480px at -8% 34%, rgba(19, 209, 224, .06), transparent 60%),
+      var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .price, .field b, .tier .price, .buybar strong, .totals .big,
+  .big, .amount-pill, .hero-facts b, .badge, .step em {
+    font-variant-numeric: tabular-nums;
+  }
+  img { max-width: 100%; display: block; }
+  button, input, select { font: inherit; color: inherit; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--gold-2); }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .skip {
+    position: absolute; left: 12px; top: -40px; background: var(--gold); color: var(--ink);
+    padding: 8px 12px; z-index: 20; border-radius: 8px;
+  }
+  .skip:focus { top: 12px; }
+
+  header.top {
+    position: sticky; top: 0; z-index: 30;
+    height: var(--header);
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    padding: 0 28px;
+    background: rgba(12, 12, 13, .88);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 18px 40px -28px rgba(0, 0, 0, .95);
+
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+    will-change: transform;
+  }
+  header.top.is-hidden { transform: translateY(-100%); }
+  header.top::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+    background: var(--line);
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px; color: var(--text); min-width: 0; flex: none;
+    border-radius: 14px; padding: 6px 12px 6px 6px; margin-left: -8px;
+    transition: background .2s ease;
+  }
+  .brand:hover { background: rgba(155, 63, 192, .12); }
+
+  .brand img {
+    height: 38px; width: auto; max-width: 150px; flex: none;
+    border-radius: 10px; object-fit: contain;
+    box-shadow: 0 0 0 1px var(--line-soft), 0 4px 14px rgba(0, 0, 0, .55);
+    transition: transform .3s var(--eas-pop), box-shadow .25s ease;
+  }
+  .brand:hover img {
+    transform: scale(1.06) rotate(-2deg);
+    box-shadow: 0 0 0 1px rgba(245, 194, 37, .4), 0 4px 18px rgba(245, 194, 37, .22);
+  }
+  .brand strong {
+    font-family: var(--display); font-weight: 800; letter-spacing: -.01em; font-size: 1.24rem;
+  }
+  .brand span { display: block; color: var(--gold); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+  nav.links { display: flex; gap: 4px; align-items: center; flex: none; }
+  nav.links a, .ghost {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+    color: var(--text); padding: 9px 14px; border-radius: 999px; font-weight: 600; font-size: .92rem;
+    background: transparent; border: 1px solid transparent;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s var(--eas);
+  }
+  nav.links a svg, .cart-btn svg, .btn svg { width: 17px; height: 17px; flex: none; }
+
+  .i-discord { color: var(--purple-2); }
+  .btn svg.i-discord, .cart-btn svg.i-discord, nav.links a svg.i-discord { width: 19px; height: 19px; }
+  .btn:hover .i-discord, a:hover .i-discord { color: var(--purple-3); }
+  .btn-gold .i-discord { color: var(--purple); }
+  .embed-mark { width: 74px; height: 74px; color: var(--purple-2); filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .6)); }
+  nav.links a:hover, .ghost:hover {
+    background: rgba(155, 63, 192, .14); color: #fff; border-color: rgba(155, 63, 192, .4);
+    transform: translateY(-1px);
+  }
+  nav.links a:hover svg { color: var(--cyan-2); }
+  nav.links a svg { transition: color .2s ease, transform .25s var(--eas-pop); }
+  nav.links a:hover svg { transform: scale(1.12); }
+  .tools { display: flex; align-items: center; gap: 12px; flex: none; }
+  .currency {
+    display: flex; flex-direction: column; gap: 2px;
+    border-left: 1px solid var(--line-soft); border-right: 1px solid var(--line-soft);
+    padding: 0 14px;
+  }
+  .currency > label { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .flag {
+    width: 18px; height: 18px; border-radius: 50%; object-fit: cover; flex: none;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .22);
+  }
+  .cur { position: relative; }
+  .cur-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--bg); border: 1px solid var(--line); color: var(--gold);
+    border-radius: 999px; padding: 6px 11px; font-weight: 700; font-size: .92rem;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .cur-btn:hover { border-color: var(--purple-2); box-shadow: var(--glow-purple); }
+  .cur-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  .cur-btn .cur-chev {
+    width: 13px; height: 13px; color: var(--muted);
+    transition: transform .25s var(--eas), color .2s ease;
+  }
+  .cur.open .cur-chev { transform: rotate(180deg); color: var(--gold); }
+  .cur-picker { position: relative; }
+  .cur-list {
+    position: absolute; top: calc(100% + 8px); right: 0; z-index: 60;
+    margin: 0; padding: 6px; list-style: none; min-width: 168px;
+    background: rgba(19, 19, 21, .97);
+    border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: 0 24px 50px -16px rgba(0, 0, 0, .85), var(--glow-purple);
+    backdrop-filter: blur(16px);
+    opacity: 0; visibility: hidden; transform: translateY(-8px) scale(.97);
+    transform-origin: top right;
+    transition: opacity .18s var(--eas), transform .22s var(--eas), visibility .18s;
+  }
+  .cur.open .cur-list { opacity: 1; visibility: visible; transform: none; }
+  .cur-item {
+    display: flex; align-items: center; gap: 10px; width: 100%;
+    padding: 8px 10px; border: 0; border-radius: 10px;
+    background: transparent; color: var(--text);
+    font-weight: 600; font-size: .9rem; text-align: left; cursor: pointer;
+    transition: background .14s ease, color .14s ease;
+  }
+  .cur-item:hover, .cur-item.is-focus { background: rgba(155, 63, 192, .16); }
+  .cur-item.on { color: var(--gold-2); background: rgba(245, 194, 37, .10); }
+  .cur-item .cur-code { margin-left: auto; font-size: .72rem; color: var(--muted); font-weight: 700; letter-spacing: .04em; }
+  .cur-item.on .cur-code { color: var(--gold); }
+  .cart-btn {
+    position: relative; display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--line); background: var(--card); color: var(--text);
+    border-radius: 999px; padding: 9px 16px; font-weight: 700;
+    transition: border-color .2s ease, color .2s ease, background .2s ease;
+  }
+  .cart-btn:hover { border-color: var(--gold); color: var(--gold-2); background: var(--card-2); box-shadow: var(--glow-gold); }
+  .cart-btn svg { transition: transform .25s var(--eas-pop); }
+  .cart-btn:hover svg { transform: scale(1.12) rotate(-4deg); }
+  .badge {
+    position: absolute; top: -6px; right: -6px; min-width: 18px; height: 18px; padding: 0 5px;
+    border-radius: 999px; background: var(--gold); color: var(--ink); font-size: .74rem; font-weight: 800;
+    display: grid; place-items: center;
+    box-shadow: 0 2px 10px rgba(245, 194, 37, .5);
+  }
+  .badge.pop { animation: badge-pop .35s var(--eas-pop); }
+  @keyframes badge-pop {
+    0% { transform: scale(.4); } 60% { transform: scale(1.35); } 100% { transform: scale(1); }
+  }
+  .menu-toggle {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    width: 42px; height: 42px; flex: none; padding: 0 9px;
+    border: 1px solid var(--line); background: var(--card);
+    border-radius: 12px; cursor: pointer;
+  }
+  .menu-toggle span {
+    display: block; height: 2px; width: 100%; border-radius: 2px;
+    background: var(--text);
+    transition: transform .25s ease, opacity .2s ease, background .2s ease;
+  }
+  .menu-toggle:hover { border-color: var(--gold); }
+  .menu-toggle:hover span { background: var(--gold-2); }
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .menu-toggle[aria-expanded="true"] { border-color: var(--gold); }
+
+  .hero {
+    position: relative; isolation: isolate;
+    min-height: calc(100svh - var(--header));
+    display: grid; align-items: end;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .slides { position: absolute; inset: 0; z-index: 0; }
+  .slide {
+    position: absolute; inset: 0; opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .slide.on { opacity: 1; }
+  .slide img {
+    width: 100%; height: 100%; object-fit: cover;
+    transform: scale(1.08);
+  }
+  .slide.on img { animation: drift 9s ease-in-out alternate infinite; }
+  @keyframes drift {
+    from { transform: scale(1.06) translate3d(0, 0, 0); }
+    to { transform: scale(1.14) translate3d(-1.6%, -1%, 0); }
+  }
+  .hero-shade {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      radial-gradient(760px 520px at 6% 82%, rgba(0, 0, 0, .88) 0%, rgba(0, 0, 0, .52) 46%, transparent 76%),
+      linear-gradient(90deg, rgba(0, 0, 0, .84) 0%, rgba(0, 0, 0, .52) 42%, rgba(0, 0, 0, .24) 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, .34) 0%, rgba(0, 0, 0, 0) 26%, var(--bg) 100%);
+  }
+  .hero-copy {
+    position: relative; z-index: 2;
+    width: min(820px, calc(100% - 40px));
+    min-width: 0;
+    margin: 0 0 24px 28px;
+    padding: 4px 0 8px;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, .9), 0 1px 3px rgba(0, 0, 0, .8);
+  }
+  .hero-copy > * { animation: hero-in .8s var(--eas) both; }
+  .hero-copy > .hero-facts { animation-delay: .1s; }
+  .hero-copy > .row { animation-delay: .2s; }
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: none; }
+  }
+  h1 {
+    font-family: var(--display); font-weight: 900; letter-spacing: -.03em;
+    font-size: clamp(3.4rem, 9.5vw, 8.5rem); line-height: .98; margin: 0 0 20px;
+    color: #fff;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, .85), 0 2px 8px rgba(0, 0, 0, .7);
+  }
+  .hero-facts {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px; margin: 0 0 20px; padding: 14px 0 0; list-style: none;
+    border-top: 1px solid rgba(245, 194, 37, .22);
+  }
+  .hero-facts b {
+    display: block; font-family: var(--display); font-size: 1.3rem;
+    letter-spacing: 0; color: var(--gold);
+  }
+  .hero-facts span { font-size: .82rem; color: var(--muted); }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border-radius: 999px; padding: 12px 18px; font-weight: 800; border: 1px solid transparent;
+    transition: transform .22s var(--eas), background .2s ease, border-color .2s ease, box-shadow .25s ease, color .2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0) scale(.98); }
+  .btn-gold {
+    background: linear-gradient(120deg, var(--gold), var(--yellow-2)); color: var(--ink);
+    box-shadow: 0 4px 18px rgba(245, 194, 37, .25);
+  }
+  .btn-gold:hover { background: linear-gradient(120deg, var(--yellow-2), #ffe9a8); color: var(--ink); box-shadow: var(--glow-gold); }
+  .btn-gold .i-discord { color: var(--purple); }
+
+  .hero-copy .btn { text-shadow: none; }
+  .btn-line { background: rgba(19, 19, 21, .8); color: var(--text); border-color: var(--line); backdrop-filter: blur(6px); }
+  .btn-line:hover { border-color: var(--purple-2); color: #fff; box-shadow: var(--glow-purple); }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+  .dots {
+    position: absolute; right: 28px; bottom: 36px; z-index: 2;
+    display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; max-width: 240px;
+  }
+  .dots button {
+    width: 8px; height: 8px; border-radius: 99px; border: 0; padding: 0;
+    background: rgba(242, 242, 243, .35);
+    transition: width .3s var(--eas), background .3s ease, transform .2s ease;
+  }
+  .dots button:hover { transform: scale(1.3); background: rgba(255, 255, 255, .7); }
+  .dots button.on { background: var(--gold); width: 22px; box-shadow: 0 0 10px rgba(245, 194, 37, .8); }
+
+  main { width: min(1180px, calc(100% - 36px)); margin: 0 auto; padding: 28px 0 80px; }
+  .section-head { display: flex; justify-content: space-between; gap: 18px; align-items: end; margin: 18px 0 18px; }
+  h2 {
+    font-family: var(--display); font-weight: 700; letter-spacing: -.01em; font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.2;
+    margin: 0 0 6px;
+  }
+  .sub { color: var(--muted); margin: 0; max-width: 62ch; }
+  main > section { animation: view-in .5s var(--eas) both; }
+  @keyframes view-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes card-in {
+    from { opacity: 0; transform: translateY(18px) scale(.985); }
+    to { opacity: 1; transform: none; }
+  }
+  .grid > *, .menu-grid > *, .steps > *, .staff-grid > *, .cart-list > *, .tiers > * {
+    animation: card-in .45s var(--eas) both;
+  }
+  .grid > *:nth-child(2), .menu-grid > *:nth-child(4n+2), .steps > *:nth-child(2),
+  .staff-grid > *:nth-child(2), .cart-list > *:nth-child(2), .tiers > *:nth-child(2) { animation-delay: .06s; }
+  .grid > *:nth-child(3), .menu-grid > *:nth-child(4n+3), .steps > *:nth-child(3),
+  .cart-list > *:nth-child(3), .tiers > *:nth-child(3) { animation-delay: .12s; }
+  .grid > *:nth-child(4), .menu-grid > *:nth-child(4n+4), .steps > *:nth-child(4),
+  .cart-list > *:nth-child(4), .tiers > *:nth-child(4) { animation-delay: .18s; }
+  .grid > *:nth-child(5), .grid > *:nth-child(6), .tiers > *:nth-child(n+5),
+  .menu-grid > *:nth-child(n+5), .cart-list > *:nth-child(n+5) { animation-delay: .22s; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .embed {
+    text-align: left; width: 100%;
+    background: var(--card-2);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius);
+    padding: 0; overflow: hidden; color: var(--text);
+    box-shadow: var(--shadow);
+    transition: border-color .22s ease, transform .25s var(--eas), box-shadow .3s ease;
+  }
+  .embed:hover {
+    border-color: rgba(155, 63, 192, .55); transform: translateY(-4px);
+    box-shadow: var(--shadow), var(--glow-purple);
+  }
+  .embed:active { transform: translateY(-1px) scale(.995); }
+  .embed-visual {
+    height: 168px; background: var(--bg-2);
+    display: grid; place-items: center; position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .embed-visual::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .07) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform .7s var(--eas);
+  }
+  .embed:hover .embed-visual::after { transform: translateX(120%); }
+  .embed-visual img {
+    height: 124px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .6));
+    transition: transform .4s var(--eas);
+  }
+  .embed:hover .embed-visual img:not(.level-shot):not(.level-icon):not(.wide-shot):not(.beli-stack) { transform: scale(1.07) rotate(-1deg); }
+
+  .embed-visual img.level-shot {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; filter: none;
+  }
+  .embed-visual img.level-shot.pos-left  { object-position: 22% 50%; }
+  .embed-visual img.level-shot.pos-mid   { object-position: 50% 50%; }
+  .embed-visual img.level-shot.pos-right { object-position: 78% 50%; }
+  .embed-visual img.level-icon {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 42%; filter: none;
+  }
+
+  .embed-visual.wide { height: auto; aspect-ratio: 16 / 9; }
+  .embed-visual img.wide-shot {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 50%; padding: 0; filter: none;
+  }
+  .embed-visual img.beli-stack { height: 148px; width: 168px; object-fit: cover; object-position: 20% center; }
+
+  .tiled .tile {
+    position: absolute; display: block; pointer-events: none;
+    background-image: var(--tile); background-repeat: no-repeat;
+    background-position: center; background-size: contain;
+  }
+  .embed-visual.tiled .t1 { left: 1%;  right: 66%; top: 16%; bottom: 12%; transform: rotate(-15deg); opacity: .82; }
+  .embed-visual.tiled .t2 { left: 30%; right: 34%; top: 6%;  bottom: 6%;  transform: rotate(3deg); }
+  .embed-visual.tiled .t3 { left: 63%; right: 1%;  top: 20%; bottom: 10%; transform: rotate(16deg); opacity: .9; }
+  .embed-visual.tiled .tile { filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .6)); }
+
+  .poster.tiled .tile { filter: drop-shadow(0 12px 20px rgba(0, 0, 0, .7)); }
+  .poster.tiled .t1 { left: 8%;  right: 55%; top: 42%; bottom: 14%; transform: rotate(-16deg); opacity: .8; }
+  .poster.tiled .t2 { left: 24%; right: 24%; top: 12%; bottom: 26%; transform: rotate(2deg); }
+  .poster.tiled .t3 { left: 52%; right: 6%;  top: 44%; bottom: 12%; transform: rotate(17deg); opacity: .88; }
+  .poster img.level-shot, .poster img.level-icon {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .poster img.level-shot.pos-left  { object-position: 22% 50%; }
+  .poster img.level-shot.pos-mid   { object-position: 50% 50%; }
+  .poster img.level-shot.pos-right { object-position: 78% 50%; }
+  .poster img.level-icon { object-position: 50% 42%; }
+  .poster.wide { height: auto; aspect-ratio: 16 / 9; min-height: 0; padding: 0; }
+  .poster img.wide-shot { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; padding: 0; max-height: none; }
+  .embed-body { padding: 16px 16px 18px; }
+  .embed h3 { margin: 0 0 6px; font-size: 1.1rem; letter-spacing: 0; line-height: 1.35; }
+  .embed p { margin: 0; color: var(--muted); font-size: .92rem; }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .field {
+    background: var(--bg); border: 1px solid var(--line-soft); border-radius: 12px; padding: 8px 10px;
+  }
+  .field small { display: block; color: var(--muted); font-size: .74rem; letter-spacing: .07em; text-transform: uppercase; font-weight: 700; }
+  .field b { color: var(--teal-2); font-size: 1rem; }
+  .embed-foot {
+    margin-top: 12px; color: var(--gold); font-weight: 800; font-size: .88rem;
+  }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+  .step {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 16px;
+    min-height: 160px;
+    transition: border-color .22s ease, transform .25s var(--eas), box-shadow .25s ease;
+  }
+  .step:hover {
+    border-color: rgba(19, 209, 224, .45); transform: translateY(-3px);
+    box-shadow: 0 10px 30px -12px rgba(19, 209, 224, .25);
+  }
+  .step em {
+    font-style: normal; color: var(--gold-2); background: linear-gradient(135deg, var(--purple-2), var(--purple)); font-weight: 800;
+    width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 10px;
+    box-shadow: 0 0 0 3px rgba(155, 63, 192, .2);
+    transition: transform .3s var(--eas-pop);
+  }
+  .step:hover em { transform: scale(1.15); }
+  .step h3 { margin: 0 0 6px; font-size: 1rem; }
+  .step p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+  .panel {
+    background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 22px;
+  }
+  .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--muted); font-weight: 700; background: none; border: 0;
+    padding: 0 0 14px; font-size: .95rem; cursor: pointer;
+  }
+  .back:hover { color: var(--gold); }
+  .product { display: grid; grid-template-columns: 300px 1fr; gap: 22px; }
+  .poster {
+    background: var(--bg-2);
+    border: 1px solid var(--line); border-radius: 20px;
+    min-height: 280px; height: 320px; display: grid; place-items: center; padding: 18px;
+    position: sticky; top: 90px; align-self: start;
+  }
+  .poster img { max-height: 240px; max-width: 100%; width: auto; object-fit: contain; }
+  .poster img.beli-stack { width: 230px; height: 210px; object-fit: cover; object-position: 18% center; }
+
+  .poster.tiled { padding: 0; overflow: hidden; display: block; }
+  .rate { color: var(--gold); font-weight: 800; letter-spacing: .04em; text-transform: uppercase; font-size: .82rem; }
+  .product h2 { margin-top: 6px; }
+  .tiers { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+  .tier {
+    width: 100%; text-align: left; display: grid; grid-template-columns: 1fr auto; gap: 8px 16px;
+    background: var(--bg); border: 1px solid var(--line-soft); border-radius: 14px; padding: 12px 14px;
+    transition: border-color .18s ease, background .18s ease, transform .2s var(--eas), box-shadow .2s ease;
+  }
+  .tier:hover { border-color: rgba(155, 63, 192, .5); transform: translateX(4px); }
+  .tier.on {
+    border-color: var(--gold); background: rgba(245, 194, 37, .10);
+    box-shadow: inset 0 0 0 1px rgba(245, 194, 37, .35), 0 0 18px -6px rgba(245, 194, 37, .4);
+  }
+  .tier b { font-size: 1rem; grid-column: 1; grid-row: 1; }
+  .tier span { color: var(--muted); font-size: .88rem; grid-column: 1; grid-row: 2; }
+  .tier .price { color: var(--gold-2); font-weight: 800; grid-column: 2; grid-row: 1 / span 2; align-self: center; justify-self: end; text-align: right; }
+  .buybar {
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--line-soft); padding-top: 14px;
+  }
+  .buybar strong { font-family: var(--display); font-size: 1.7rem; letter-spacing: 0; }
+  .yape-note { color: var(--muted); font-size: .92rem; margin: 4px 0 0; }
+  .yape-note.no-refund {
+    margin-top: 10px; padding: 8px 11px; font-size: .86rem; font-weight: 600;
+    color: var(--yellow-2); background: rgba(245, 194, 37, .10);
+    border: 1px solid var(--line); border-radius: 10px;
+  }
+  .note {
+    margin-top: 14px; color: var(--muted); font-size: .94rem;
+    border-left: 2px solid var(--teal); padding-left: 12px;
+  }
+
+  .cart-list { display: flex; flex-direction: column; gap: 10px; }
+  .cart-item {
+    display: grid; grid-template-columns: 72px 1fr auto; gap: 12px; align-items: center;
+    background: var(--bg); border: 1px solid var(--line-soft); border-radius: 16px; padding: 10px;
+  }
+  .cart-item img { width: 72px; height: 72px; object-fit: contain; background: var(--bg-2); border-radius: 12px; }
+  .qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .qty button { width: 32px; height: 32px; border: 0; background: transparent; color: var(--gold); font-weight: 800; }
+  .qty span { min-width: 22px; text-align: center; font-weight: 700; }
+  .remove {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: 1px solid transparent; border-radius: 8px;
+    color: var(--muted); font-weight: 700; font-size: .84rem;
+    padding: 5px 9px; margin-top: 8px;
+    transition: color .18s ease, border-color .18s ease, background .18s ease;
+  }
+  .remove svg { width: 16px; height: 16px; flex: none; }
+  .remove:hover {
+    color: #ffc2cd; border-color: rgba(255, 45, 85, .6);
+    background: rgba(255, 45, 85, .12);
+  }
+  .totals { margin-top: 16px; display: flex; justify-content: space-between; gap: 12px; align-items: end; }
+  .totals .big { font-family: var(--display); font-size: 1.9rem; margin: 0; }
+
+  .pay-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items: start; }
+  .qr-card {
+    background: var(--bg); border: 1px solid var(--line); border-radius: 22px; padding: 16px; text-align: center;
+  }
+  .qr-card img { width: min(100%, 380px); margin: 0 auto 10px; border-radius: 16px; }
+  .amount-pill {
+    display: inline-block; margin-top: 6px; background: var(--gold); color: var(--ink);
+    font-weight: 800; border-radius: 999px; padding: 8px 14px;
+  }
+  .legal {
+    color: #e2e2e5;
+    background: transparent; border: 0; padding: 0; border-radius: 0;
+    max-width: 780px;
+  }
+  .legal h2 {
+    margin: 4px 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid transparent;
+    border-image: var(--grad-brand) 1;
+    border-image-slice: 1;
+  }
+  .legal h3 {
+    margin: 28px 0 8px; font-size: 1.05rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .legal h3::before {
+    content: ""; width: 4px; height: 1.05em; flex: none; border-radius: 2px;
+    background: var(--grad-brand); background-size: 100% 300%;
+  }
+  .legal p, .legal li { color: #c2c2c7; }
+  .legal p + .legal p { margin-top: 10px; }
+  .legal ul { padding-left: 18px; }
+  .legal ol { padding-left: 20px; }
+  .legal ol li { margin-bottom: 8px; }
+  .legal ol li::marker { color: var(--gold); font-weight: 800; }
+  .legal ul li::marker { color: var(--cyan); }
+  .legal li { margin-bottom: 7px; }
+  .legal b { color: var(--text); }
+  .legal .sub { color: var(--muted); margin: 2px 0 10px; max-width: 74ch; font-size: .86rem; }
+  .legal p { max-width: 82ch; }
+
+  .status {
+    margin: 18px 0 6px;
+    border: 1px solid var(--line-soft);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--card) 70%, transparent);
+    overflow: hidden;
+  }
+  .status-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 16px;
+    cursor: pointer; list-style: none;
+    transition: background .18s ease;
+  }
+  .status-head::-webkit-details-marker { display: none; }
+  .status-head:hover { background: rgba(255, 255, 255, .03); }
+  .status-head:focus-visible { outline: 2px solid var(--purple-2); outline-offset: -2px; }
+
+  .status-led {
+    width: 8px; height: 8px; border-radius: 99px; flex: none;
+    background: var(--ok); box-shadow: 0 0 0 3px rgba(0, 230, 118, .16);
+  }
+  .status-title {
+    font-size: .95rem; font-weight: 600; color: var(--text); letter-spacing: -.01em;
+  }
+  .status-badge {
+    font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ok-soft);
+  }
+  .status-meta {
+    margin-left: auto; font-size: .78rem; color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .status-chevron {
+    width: 16px; height: 16px; flex: none; color: var(--muted);
+    transition: transform .22s cubic-bezier(.4, 0, .2, 1);
+  }
+  .status[open] .status-chevron { transform: rotate(180deg); }
+
+  .status-body {
+    padding: 2px 16px 15px;
+    border-top: 1px solid var(--line-soft);
+    animation: status-in .22s ease both;
+  }
+  @keyframes status-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .status-list {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0; padding: 0; list-style: none;
+  }
+  .status-list li {
+    display: flex; align-items: center; gap: 10px;
+    padding: 11px 0; font-size: .9rem; color: var(--muted);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .status-list li:nth-child(odd)  { padding-right: 18px; }
+  .status-list li:nth-child(even) { padding-left: 18px; border-left: 1px solid var(--line-soft); }
+  .status-list li:nth-last-child(-n+2) { border-bottom: 0; }
+  .dot {
+    width: 7px; height: 7px; border-radius: 99px; flex: none;
+    background: var(--ok); box-shadow: 0 0 8px var(--ok-glow);
+  }
+  .dot.warn { background: var(--gold); box-shadow: 0 0 8px rgba(245, 194, 37, .7); }
+  .dot.down { background: var(--bad); box-shadow: 0 0 8px rgba(255, 45, 85, .7); }
+  .status-note {
+    margin: 13px 0 0; color: var(--muted); font-size: .85rem;
+  }
+  .status-note b { color: var(--text); font-weight: 600; }
+
+  .status.is-warn .status-led { background: var(--gold); box-shadow: 0 0 0 3px rgba(245, 194, 37, .18); }
+  .status.is-warn .status-badge { color: var(--gold-2); }
+  .status.is-down .status-led { background: var(--bad); box-shadow: 0 0 0 3px rgba(255, 45, 85, .18); }
+  .status.is-down .status-badge { color: var(--bad-soft); }
+
+  .staff-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px; margin-top: 10px;
+    max-width: 660px; margin-right: auto;
+  }
+  .member {
+    display: flex; flex-direction: column; gap: 12px;
+    background: var(--card-2);
+    border: 1px solid var(--line-soft); border-radius: var(--radius);
+    padding: 14px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .member:hover { border-color: var(--line); transform: translateY(-3px); }
+
+  .member-photo {
+    width: 100%; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+  }
+  .member-photo img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .member-info { min-width: 0; padding: 0 4px 4px; }
+  .member-info h3 {
+    margin: 0 0 2px; font-family: var(--display); font-weight: 800;
+    font-size: 1.18rem; letter-spacing: -.01em; color: var(--text);
+  }
+  .member-role {
+    display: block;
+    font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  footer.site {
+    position: relative;
+    border-top: 1px solid var(--line);
+    padding: 44px 22px 0; overflow: hidden;
+    width: min(1180px, calc(100% - 36px)); margin: 0 auto;
+    color: var(--muted);
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 1.5fr) repeat(3, minmax(140px, 1fr));
+    gap: 32px 28px;
+  }
+  .foot-brand { min-width: 0; }
+  .foot-logo { height: 40px; width: auto; display: block; margin-bottom: 14px; }
+  .foot-tag {
+    margin: 0 0 18px; max-width: 34ch;
+    font-size: .88rem; line-height: 1.6; color: var(--muted);
+  }
+  .foot-h {
+    margin: 0 0 12px;
+    font-family: var(--font); font-size: .72rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--text);
+  }
+  .foot-col ul { margin: 0; padding: 0; list-style: none; }
+  .foot-col li + li { margin-top: 2px; }
+  .foot-col a {
+    display: inline-block; padding: 5px 0;
+    font-size: .9rem; color: var(--muted); text-decoration: none;
+    transition: color .16s ease;
+  }
+  .foot-col a:hover { color: var(--gold-2); }
+
+  .foot-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px 24px; flex-wrap: wrap;
+    margin-top: 34px; padding: 18px 0 26px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .foot-copy, .foot-credit {
+    margin: 0; font-size: .8rem; color: var(--muted);
+  }
+  .foot-credit { letter-spacing: .02em; }
+  .foot-credit b { color: var(--text); font-weight: 700; }
+  .foot-mark {
+    margin: 8px auto -0.28em; padding: 0;
+    font-family: var(--display); font-weight: 900; letter-spacing: .02em;
+    font-size: min(8rem, max(1.5rem, 11vw - 9px)); line-height: 1; text-align: center;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--bg) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    user-select: none; pointer-events: none;
+  }
+  @media (max-width: 680px) { .foot-mark { letter-spacing: 0; } }
+
+  .footer-cta {
+    display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px;
+    border: 1px solid var(--line); border-radius: 14px;
+    background: var(--card-2);
+    padding: 11px 16px; text-decoration: none;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+  }
+  .footer-cta:hover {
+    border-color: var(--gold); transform: translateY(-2px);
+    background: var(--card-2);
+  }
+  .footer-cta-label {
+    color: var(--gold); font-weight: 800; font-size: .98rem; letter-spacing: -.01em;
+  }
+  .footer-cta:hover .footer-cta-label { color: var(--gold-2); }
+  .footer-cta-sub { color: var(--muted); font-size: .78rem; font-weight: 600; }
+
+  .menu-group { margin: 26px 0 8px; }
+  .menu-group:first-of-type { margin-top: 12px; }
+  .menu-group-head {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding-bottom: 10px; margin-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .menu-group-head img {
+    width: 46px; height: 46px; border-radius: 12px; object-fit: cover; flex: none;
+    border: 1px solid var(--line); background: var(--bg-2);
+  }
+  .menu-group-head img.icon-contain { object-fit: contain; padding: 5px; }
+  .menu-group-title { min-width: 0; }
+  .menu-group-title h2 { margin: 0; font-size: clamp(1.2rem, 2.2vw, 1.6rem); }
+  .menu-group-title p { margin: 2px 0 0; color: var(--muted); font-size: .88rem; }
+  .menu-count {
+    margin-left: auto; font-size: .74rem; font-weight: 800; letter-spacing: .06em;
+    color: var(--muted); background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 999px; padding: 4px 11px; white-space: nowrap;
+  }
+  .menu-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 12px;
+  }
+  .plan {
+    display: flex; flex-direction: column; gap: 4px;
+    background: var(--card-2);
+    border: 1px solid var(--line-soft); border-radius: 16px;
+    padding: 14px 15px 13px; text-align: left; color: var(--text); width: 100%;
+    transition: border-color .18s ease, transform .18s ease, background .18s ease;
+  }
+  .plan:hover {
+    border-color: var(--gold); transform: translateY(-3px);
+    background: var(--card);
+    box-shadow: 0 12px 28px -14px rgba(245, 194, 37, .35);
+  }
+  .plan-label { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -.01em; }
+  .plan-meta { color: var(--muted); font-size: .82rem; }
+  .plan-foot {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 10px;
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line-soft);
+  }
+  .plan-price { font-family: var(--display); font-weight: 800; font-size: 1.16rem; color: var(--gold-2); }
+  .plan-eta { display: block; color: var(--muted); font-size: .74rem; font-weight: 600; }
+  .plan-add {
+    border: 1px solid var(--line); background: var(--bg); color: var(--gold);
+    border-radius: 999px; padding: 7px 13px; font-weight: 800; font-size: .82rem;
+    white-space: nowrap; transition: background .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .plan-add:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+  .plan-add.in-cart { border-color: rgba(0, 230, 118, .6); color: var(--ok-soft); background: rgba(0, 230, 118, .16); }
+  .toast {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%) translateY(24px) scale(.92);
+    background: linear-gradient(120deg, var(--gold), var(--yellow-2)); color: var(--ink);
+    font-weight: 800; padding: 12px 16px; border-radius: 999px;
+    box-shadow: var(--glow-gold), 0 14px 34px rgba(0, 0, 0, .5);
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s ease, transform .35s var(--eas-pop); z-index: 50;
+  }
+  .toast.on { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  [hidden] { display: none !important; }
+
+  @media (max-width: 1240px) {
+    .brand div { display: none; }
+    .brand { padding: 0; margin-left: 0; }
+    header.top { padding: 0 18px; gap: 12px; }
+  }
+
+  @media (max-width: 1200px) {
+    nav.links a { padding: 9px 10px; font-size: .86rem; gap: 6px; }
+  }
+
+  @media (max-width: 1200px) {
+    nav.links { display: none; }
+    nav.links.open {
+      display: flex; flex-direction: column; align-items: stretch; gap: 4px;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(12, 12, 13, .985);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px 16px; z-index: 40;
+      box-shadow: 0 28px 50px -24px rgba(0, 0, 0, .95);
+      max-height: calc(100svh - var(--header));
+      overflow-y: auto;
+    }
+    nav.links.open a {
+      width: 100%; padding: 13px 14px; font-size: 1rem; border-radius: 12px;
+      border: 1px solid var(--line-soft);
+    }
+    nav.links.open a svg { width: 19px; height: 19px; }
+    .menu-toggle { display: inline-flex; }
+  }
+
+  @media (max-width: 980px) {
+    .grid, .steps, .pay-grid { grid-template-columns: 1fr 1fr; }
+    .product { grid-template-columns: 1fr; }
+    .poster { position: relative; min-height: 220px; }
+    header.top { position: sticky; }
+  }
+  @media (max-width: 680px) {
+    .grid, .steps, .pay-grid { grid-template-columns: 1fr; }
+    header.top { padding: 0 10px; gap: 8px; }
+    .brand div { display: none; }
+    .brand { padding: 0; margin-left: 0; }
+  .hero-copy {
+    margin: 0 16px 18px; width: auto; max-width: calc(100% - 32px);
+    padding: 0 0 4px;
+  }
+    h1 { font-size: 2.6rem; letter-spacing: -.02em; }
+    .hero-facts { grid-template-columns: 1fr; gap: 8px; }
+    .status-head { padding: 12px 14px; gap: 10px; }
+    .status-body { padding: 2px 14px 13px; }
+    .status-list { grid-template-columns: 1fr; }
+    .status-list li:nth-child(odd), .status-list li:nth-child(even) { padding-left: 0; padding-right: 0; border-left: 0; }
+    .status-list li:last-child { border-bottom: 0; }
+    .status-title { font-size: .9rem; }
+    .staff-grid { grid-template-columns: 1fr; gap: 12px; max-width: 300px; }
+    .member { gap: 11px; padding: 12px; }
+    .menu-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .plan { padding: 12px 12px 11px; }
+    .plan-label { font-size: 1rem; }
+    .plan-foot { flex-direction: column; align-items: stretch; gap: 8px; }
+    .plan-add { width: 100%; }
+    .hero-facts li { display: flex; align-items: baseline; gap: 8px; }
+    .hero-facts b { font-size: 1.1rem; }
+    .currency { border: 0; padding: 0; }
+    .currency > label { display: none; }
+    .cur-btn { padding: 6px 9px; font-size: .84rem; }
+    .cur-list { right: -12px; }
+    .brand img { height: 34px; max-width: 120px; border-radius: 8px; }
+    .cart-btn { padding: 8px 10px; }
+    .cart-btn .cart-label { display: none; }
+    main { width: min(1180px, calc(100% - 24px)); }
+    .cart-item { grid-template-columns: 56px 1fr; }
+    .cart-item .side { grid-column: 2; }
+    .dots { display: none; }
+    footer.site { padding: 32px 16px 24px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+    .foot-brand { grid-column: 1 / -1; }
+    .foot-tag { max-width: none; }
+    .foot-bottom { margin-top: 26px; padding-top: 15px; gap: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important; transition: none !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top">
+  <a class="brand" href="#inicio" data-go="inicio">
+    <img src="https://files.catbox.moe/eul838.svg" alt="Logo de TobbyMagoPro">
+    <div>
+      <span>Tienda</span>
+      <strong>TobbyMagoPro</strong>
+    </div>
+  </a>
+  <nav class="links" id="nav">
+    <a href="#servicios" data-go="servicios"><svg viewBox="-1 0 26 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8L4 7Z"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7"/></svg>Servicios</a>
+    <a href="#menu" data-go="menu"><svg viewBox="-1 0 26 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16M4 12h16M4 18.5h10"/></svg>Menú completo</a>
+    <a href="#como-pagar" data-go="como-pagar"><svg viewBox="-1 0 26 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/><path d="M6.5 14.5h4"/></svg>Cómo pagar</a>
+    <a href="https://discord.gg/WetNf3MGBF" target="_blank" rel="noopener" class="nav-discord"><svg class="i-discord" viewBox="-1 0 26 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.042-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.697.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-2.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419Zm7.975 0c-1.182 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419Z"/></svg>Soporte</a>
+    <a href="#privacidad" data-go="privacidad"><svg viewBox="-1 0 26 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5.5c0 4.4 2.9 8.1 7 9.5 4.1-1.4 7-5.1 7-9.5V6l-7-3Z"/><path d="m9.2 12 2 2 3.6-3.8"/></svg>Privacidad</a>
+    <a href="#terminos" data-go="terminos"><svg viewBox="-1 0 26 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>Términos</a>
+  </nav>
+  <div class="tools">
+    <div class="currency">
+      <label id="currency-label">Moneda</label>
+      <div class="cur" id="currency">
+        <button class="cur-btn" id="cur-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="currency-label cur-current">
+          <img class="flag" id="cur-flag" src="" alt="" width="18" height="18">
+          <span id="cur-current"></span>
+          <svg class="cur-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="cur-list" id="cur-list" role="listbox" aria-label="Moneda de visualización"></ul>
+      </div>
+    </div>
+    <a class="cart-btn" href="#carrito" data-go="carrito">
+      <svg viewBox="-1 0 26 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.3 11.1a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6.4"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+      <span class="cart-label">Carrito</span> <span class="badge" id="badge">0</span>
+    </a>
+  </div>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="hero" id="hero" aria-label="Bienvenida">
+  <div class="slides" id="slides"></div>
+  <div class="hero-shade"></div>
+  <div class="hero-copy">
+    <h1>TobbyMagoPro</h1>
+    <ul class="hero-facts">
+      <li><b>6</b><span>Servicios en el catálogo</span></li>
+      <li><b>20 min – 18 h</b><span>Entrega según el tamaño del pedido</span></li>
+      <li><b>S/ 3.50</b><span>Precio mínimo por encargo</span></li>
+    </ul>
+    <div class="row">
+      <a class="btn btn-gold" href="#servicios" data-go="servicios">Ver servicios</a>
+      <a class="btn btn-line" href="#como-pagar" data-go="como-pagar">Cómo se paga</a>
+      <a class="btn btn-line" href="https://discord.gg/WetNf3MGBF" target="_blank" rel="noopener">
+        <svg class="i-discord" viewBox="-1 0 26 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.042-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.697.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-2.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419Zm7.975 0c-1.182 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419Z"/></svg>
+        Discord
+      </a>
+    </div>
+  </div>
+  <div class="dots" id="dots"></div>
+</section>
+
+<main id="contenido">
+  <section id="view-home">
+    <details class="status" id="status">
+      <summary class="status-head">
+        <span class="status-led" aria-hidden="true"></span>
+        <span class="status-title">Estado del servicio</span>
+        <span class="status-badge" id="status-badge"><span id="status-label">Operativo</span></span>
+        <span class="status-meta" id="status-meta"></span>
+        <svg class="status-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="status-body">
+        <ul class="status-list" id="status-list"></ul>
+        <p class="status-note" id="status-note"></p>
+      </div>
+    </details>
+
+    <div class="section-head" id="servicios">
+      <div>
+        <h2>Servicios</h2>
+      </div>
+    </div>
+    <div class="grid" id="catalog"></div>
+    <div class="row" style="margin-top:16px; justify-content:center">
+      <a class="btn btn-line" href="#menu" data-go="menu" id="open-full-menu">
+        <svg viewBox="-1 0 26 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16M4 12h16M4 18.5h10"/></svg>
+        Ver menú completo
+      </a>
+    </div>
+
+    <div class="section-head" id="como-pagar" style="margin-top:42px">
+      <div>
+        <h2>Cómo se paga</h2>
+        <p class="sub">Yape, en soles. La moneda del menú solo cambia cómo ves los precios.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <article class="step"><em>1</em><h3>Pagas por Yape</h3><p>Escaneas el QR con el monto exacto de tu carrito, en soles.</p></article>
+      <article class="step"><em>2</em><h3>Abres ticket</h3><p>Entras al Discord y abres un ticket con tu pedido.</p></article>
+      <article class="step"><em>3</em><h3>Mandas la captura</h3><p>Adjuntas la captura del pago para confirmar la compra.</p></article>
+      <article class="step"><em>4</em><h3>Pasas la cuenta</h3><p>Cuando confirmemos el pago, nos das la cuenta donde quieres el servicio.</p></article>
+    </div>
+    <div class="row" style="margin-top:16px">
+      <a class="btn btn-gold" href="#pagar" data-go="pagar">Ir a pagar</a>
+      <a class="btn btn-line" href="https://discord.gg/WetNf3MGBF" target="_blank" rel="noopener"><svg class="i-discord" viewBox="-1 0 26 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.042-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.697.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-2.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419Zm7.975 0c-1.182 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419Z"/></svg>Abrir Discord</a>
+      <a class="btn btn-line" href="https://wa.me/Ugphone_Tobby" target="_blank" rel="noopener">WhatsApp @Ugphone_Tobby</a>
+      <a class="btn btn-line" href="#soporte" data-go="soporte">Ver canales de soporte</a>
+    </div>
+
+    <div class="section-head" id="soporte" style="margin-top:42px">
+      <div>
+        <h2>Soporte</h2>
+        <p class="sub">Tickets y seguimiento por Discord. También por WhatsApp.</p>
+      </div>
+    </div>
+    <div class="grid">
+      <a class="embed" href="https://discord.gg/WetNf3MGBF" target="_blank" rel="noopener">
+        <div class="embed-visual"><svg class="i-discord embed-mark" viewBox="-1 0 26 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.042-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.697.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-2.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419Zm7.975 0c-1.182 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419Z"/></svg></div>
+        <div class="embed-body">
+          <h3>Discord</h3>
+          <p>discord.gg/WetNf3MGBF</p>
+          <div class="embed-foot">Abrir servidor</div>
+        </div>
+      </a>
+      <a class="embed" href="https://wa.me/Ugphone_Tobby" target="_blank" rel="noopener">
+        <div class="embed-body">
+          <h3>WhatsApp</h3>
+          <p>@Ugphone_Tobby</p>
+          <div class="embed-foot">Escribir</div>
+        </div>
+      </a>
+      <a class="embed" href="#pagar" data-go="pagar">
+        <div class="embed-body">
+          <h3>Pagar con Yape</h3>
+          <p>QR de la tienda y el total de tu carrito en soles.</p>
+          <div class="embed-foot">Ver QR</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="section-head" id="creditos" style="margin-top:42px">
+      <div>
+        <h2>Staff</h2>
+        <p class="sub">El ticket lo responde una persona real, no un bot.</p>
+      </div>
+    </div>
+    <div class="staff-grid" id="staff"></div>
+  </section>
+
+  <section id="view-menu" hidden></section>
+  <section id="view-product" class="panel" hidden></section>
+  <section id="view-cart" class="panel" hidden></section>
+  <section id="view-pay" class="panel" hidden></section>
+
+  <section id="view-privacy" class="panel legal" hidden>
+    <a class="back" href="#inicio" data-go="inicio">← Inicio</a>
+    <h2>Política de privacidad</h2>
+    <p class="sub">Última actualización: 2026 · Al comprar en TobbyMagoPro aceptas esta política.</p>
+    <p>En esta página te explicamos qué datos te pedimos, por qué los necesitamos y qué hacemos con ellos. Solo usamos tus datos para cobrar, entregar el servicio y dar soporte. No vendemos, alquilamos ni compartimos tus datos con terceros, y puedes pedir su eliminación cuando quieras.</p>
+
+    <h3>Qué datos te pedimos</h3>
+    <ul>
+      <li><b>El detalle del pedido y el monto:</b> qué servicio pides, qué tranche elegiste y cuánto pagaste.</li>
+      <li><b>La captura de tu pago por Yape:</b> la usamos únicamente para verificar que el monto llegó a la cuenta del QR.</li>
+      <li><b>Tu usuario de Discord o WhatsApp:</b> para abrir el ticket, mandarte la confirmación y resolver cualquier reclamo.</li>
+      <li><b>Tu usuario de Roblox:</b> la cuenta en la que quieres el servicio, por ejemplo <em>NombreDeCuenta</em> o el ID numérico.</li>
+      <li><b>El correo y la contraseña con los que inicias sesión en Roblox:</b> es el acceso que nos habilitas para poder entrar a <b>esa cuenta de Roblox</b> y dejar los fragmentos, belis o niveles. Ese correo casi siempre es un Gmail, pero lo que admitimos es el acceso al juego, no a tu correo. Lo detallamos abajo.</li>
+    </ul>
+
+    <h3>Acceso a tu cuenta de Roblox</h3>
+    <p>Para entregarte el servicio necesitamos entrar a <b>tu cuenta de Roblox</b>, la del juego Blox Fruits. El método que usamos es el acceso por correo: nos pasas el <b>correo con el que inicias sesión en Roblox</b> y la <b>contraseña</b> de ese correo, y con eso entramos al juego para hacer el trabajo.</p>
+    <p><b>Aclaración importante:</b> lo que entregamos y lo que modificamos es tu <b>cuenta de Roblox</b> (tus fragmentos, belis y niveles). <b>No entramos a tu cuenta de Google.</b> El correo es solo la forma de demostrar quién eres e iniciar sesión en Roblox, igual que tú lo haces cada vez que abres el juego. No leemos tu correo, no buscamos correos y no tocamos nada de tu cuenta de Google: ni Documentos, ni Drive, ni fotos, ni ninguna otra cosa.</p>
+    <p>Dicho eso, el acceso a Roblox sigue siendo el dato más delicado que manejamos, porque desde tu cuenta se ve información que no tiene nada que ver con tu pedido. Por eso exigimos las siguientes reglas, y por eso te pedimos que leas esta sección con calma:</p>
+    <ul>
+      <li><b>Solo para el pedido.</b> El acceso se usa exclusivamente para entregar lo que pagaste dentro de Roblox. No se usa para explorar tu cuenta, ver tu inventario, ni para nada dentro del juego.</li>
+      <li><b>Solo con tu autorización.</b> Nunca entramos sin que tú lo pidas. Tú decides el momento en que se nos da el acceso, siempre después de confirmar tu pago.</li>
+      <li><b>Nadie más lo recibe.</b> El correo y la contraseña con los que entras a Roblox no se comparten con clientes, con colaboradores externos ni con ninguna otra persona fuera de quien está haciendo la entrega. No se publican, no se venden y no se usan para publicidad ni contactarte.</li>
+      <li><b>No se anotan aparte.</b> No mantenemos una lista, una base de datos ni un archivo con correos y contraseñas de clientes. Se usan en el momento de la entrega.</li>
+      <li><b>Se elimina al terminar.</b> Cuando el servicio está entregado, borramos el correo y la contraseña de nuestros registros, chats y notas. No queda guardada "por si acaso".</li>
+      <li><b>Tú debes cambiar la contraseña.</b> Recomendamos que cambies la contraseña de tu cuenta de Roblox (y, si quieres, también la del correo) apenas recibas el servicio. Es la medida que más protege tu cuenta, incluso si algo sale mal de nuestro lado.</li>
+      <li><b>Tú controlas la sesión.</b> Si quieres terminar antes, cierra la sesión o cambia la contraseña en cualquier momento. Podemos cortar el acceso cuando me lo pidas, aunque el pedido quede incompleto.</li>
+      <li><b>Solo del pedido en curso.</b> En un momento dado trabajamos un solo acceso a la vez. No acumulamos accesos de varios clientes.</li>
+    </ul>
+    <p><b>Importante:</b> asume que mientras estés en un pedido con nosotros, tu cuenta de Roblox está accesible. No abras otras sesiones del juego con datos sensibles, no guardes robux en esa cuenta mientras dure la entrega, y si detectas algo raro, cambia la contraseña de inmediato y avísanos por el Discord.</p>
+
+    <h3>Cookies y esta página</h3>
+    <p>Esta web no usa cookies de seguimiento ni publicidad de terceros. Tu carrito y la moneda que elegiste se guardan en el <b>localStorage</b> de tu navegador, en este dispositivo. No se envían a ningún servidor nuestro. Si borras los datos del navegador, se borra también el carrito.</p>
+
+    <h3>Pago</h3>
+    <p>Yape muestra el nombre del titular del QR. No vemos más datos de tu pago que el nombre y el monto: la captura se revisa solo para confirmar tu compra. Nunca pedimos tu clave de Yape, tu PIN ni el código de verificación, y si alguien te lo pide, no somos nosotros.</p>
+
+    <h3>Cuánto tiempo conservamos tus datos</h3>
+    <p>La conversación del ticket y el detalle del pedido se conservan lo necesario para entregar el pedido y resolver un reclamo, y no más. El correo y la contraseña con los que entras a Roblox se eliminan en cuanto el servicio está entregado. Puedes pedir que borremos el resto de los datos escribiendo en el Discord o al WhatsApp @Ugphone_Tobby, y los borramos.</p>
+
+    <h3>Tus derechos</h3>
+    <p>Puedes pedir en cualquier momento que te digamos qué datos tenemos tuyos, que los corrijamos o que los eliminemos. Escríbenos por el Discord o al WhatsApp y lo atendemos. También puedes cancelar el pedido antes de que entreguemos, y en ese caso el acceso a tu cuenta se corta de inmediato.</p>
+
+    <h3>Seguridad</h3>
+    <p>Las contraseñas se manejan únicamente en el canal que tú elijas para dar el acceso (ticket de Discord o WhatsApp), nunca en canales públicos. El acceso se hace únicamente desde una sesión iniciada por nosotros, y al terminar se cierra la sesión y se eliminan los datos.</p>
+
+    <h3>Cambios en esta política</h3>
+    <p>Si actualizamos esta política, la fecha de arriba cambia y la nueva versión queda en esta misma página. Los pedidos ya confirmados se rigen por la versión que estaba publicada cuando los hiciste.</p>
+
+    <h3>Contacto</h3>
+    <p>Para cualquier duda sobre datos, acceso a tu cuenta o para pedir su eliminación:<br>Discord: <a href="https://discord.gg/WetNf3MGBF" target="_blank" rel="noopener">discord.gg/WetNf3MGBF</a><br>WhatsApp: <a href="https://wa.me/Ugphone_Tobby" target="_blank" rel="noopener">@Ugphone_Tobby</a></p>
+  </section>
+
+  <section id="view-terms" class="panel legal" hidden>
+    <a class="back" href="#inicio" data-go="inicio">← Inicio</a>
+    <h2>Términos de uso</h2>
+    <p class="sub">Última actualización: 26 de septiembre de 2026 · Al pagar un pedido aceptas estos términos.</p>
+    <p>Estos términos regulan las compras en TobbyMagoPro. En resumen: los precios están en soles y Yape se paga en soles; sin pago confirmado y ticket abierto no hay entrega; los tiempos son estimaciones; no hay devoluciones de dinero bajo ningún contexto; y TobbyMagoPro no está afiliado a Roblox Corporation ni a Blox Fruits.</p>
+
+    <h3>1. Quiénes somos y qué vendemos</h3>
+    <p>TobbyMagoPro es una tienda oficial de servicios para <b>Blox Fruits</b>, el juego de Roblox. Vendemos tres cosas: <b>fragmentos</b>, <b>belis</b> y <b>subida de niveles</b>. No vendemos cuentas, no vendemos robux, no vendemos objetos ni frutas, y no hacemos servicios a medida fuera de la lista publicada.</p>
+    <p>No estamos afiliados, patrocinados ni aprobados por Roblox Corporation ni por Blox Fruits. Blox Fruits es un juego de Roblox, y todas las marcas citadas pertenecen a sus respectivos titulares.</p>
+
+    <h3>2. Precios y moneda</h3>
+    <ul>
+      <li>Los precios de la lista están en <b>soles peruanos (PEN)</b>.</li>
+      <li>El selector de moneda de esta página es <b>solo referencial</b>. Usa la tasa del 26 de septiembre de 2026 y no cambia lo que se cobra.</li>
+      <li><b>Yape se paga siempre en soles.</b> El monto que transfieres es el que muestra el carrito: ni el equivalente en otra moneda ni el de otra cuenta.</li>
+      <li>El precio de un servicio o de un paquete es el que aparece en la ficha del servicio el día que armas el carrito. Si el precio cambia después, tu pedido conserva el que viste.</li>
+      <li>No hay comisiones de intermediación. Lo que ves es lo que pagas.</li>
+    </ul>
+
+    <h3>3. Cómo se hace un pedido</h3>
+    <ol>
+      <li>Armas tu carrito en esta página y anotas el total en soles.</li>
+      <li>Pagas ese monto por Yape al QR de la tienda.</li>
+      <li>Abres un <b>ticket en nuestro Discord</b> con el detalle de lo que pediste.</li>
+      <li>Mandas la <b>captura del pago</b> dentro de ese ticket.</li>
+      <li>Cuando confirmamos el pago, nos pasas el usuario de Roblox y el correo y la contraseña con los que inicias sesión en esa cuenta.</li>
+      <li>Trabajamos en tu cuenta y te avisamos por el ticket cuando esté entregado.</li>
+    </ol>
+    <p>Sin captura de pago no confirmamos nada. Sin cuenta y sin acceso, el pedido <b>no arranca</b> y no corre ningún tiempo de entrega. La cola empieza cuando tenemos las tres cosas: pago verificado, ticket abierto y acceso.</p>
+
+    <h3>4. Pagos y no devoluciones</h3>
+    <p><b>Regla principal: TobbyMagoPro no realiza devoluciones bajo ningún contexto.</b> Una vez confirmado el pago, el monto es definitivo: no se devuelve, no se reembolsa y no se cambia por crédito, saldo ni por nota. Lee esta sección antes de pagar.</p>
+    <ul>
+      <li><b>Confirmación del pago:</b> el pago se da por confirmado cuando vemos el abono y coincide con el total del carrito. Si el monto es distinto, no entregamos hasta que lo aclares en el ticket.</li>
+      <li><b>Sin devoluciones, en ningún caso:</b> no hay devolución por servicio entregado, incompleto, tardío, mal ejecutado, o por una cuenta que ya no cumple los requisitos. Tampoco hay devolución si te equivocaste al elegir el servicio, la cantidad o el producto.</li>
+      <li><b>Sin reembolso por cambios de opinión:</b> si compraste y luego ya no lo quieres, no se devuelve el dinero. Decide antes de pagar.</li>
+      <li><b>Sin reembolso por uso del servicio:</b> una vez que los fragmentos, belis o niveles están en tu cuenta, el servicio se consumió. No se devuelve aunque no los hayas usado todavía.</li>
+      <li><b>Sin reembolso por causas externas:</b> tampoco hay devolución si el servicio se pierde por un bloqueo o sanción de Roblox, un cambio en las reglas del juego, una caída o mantenimiento del servicio, la suspensión o cierre de tu cuenta, o porque la cuenta no estuviera disponible.</li>
+      <li><b>Sin reembolso por perder la cuenta:</b> si borraste el servicio, lo vendiste, lo regalaste o lo entregaste a otro jugador, no hay devolución.</li>
+      <li><b>Un pedido, un pago:</b> no acumulamos saldo a favor, no guardamos créditos para pedidos futuros y no emitimos notas de crédito.</li>
+      <li><b>Pagos no verificados:</b> si nunca confirmamos tu pago, no hay entrega y no hay nada que devolver. Eso no es una devolución: es un pago que no se cobró.</li>
+    </ul>
+    <p><b>Lo único que hacemos si algo sale mal:</b> si el error es nuestro y es claro, lo <b>repetimos sin costo</b> dentro de un plazo razonable. Eso es cortesía comercial y <b>no es una devolución de dinero</b>: el monto que pagaste sigue siendo definitivo. Si preferimos no repetir, no hay devolución.</p>
+    <p>Reporta cualquier problema <b>dentro de las 48 horas</b> de la entrega por el ticket de Discord o por WhatsApp. Pasado ese plazo damos el pedido por aceptado y sin observaciones. Aunque lo reportes, la regla de no devolución sigue igual.</p>
+
+    <h3>5. Acceso a tu cuenta de Roblox</h3>
+    <p>Para entregarte el servicio necesitamos entrar a <b>tu cuenta de Roblox</b>, y para eso nos pasas el <b>correo con el que inicias sesión en Roblox</b> y la <b>contraseña</b> de ese correo. Aclarado: lo que entregamos y modificamos es tu cuenta de Roblox; <b>no entramos a tu cuenta de Google</b>, el correo es solo la vía de inicio de sesión, como cuando tú abres el juego. Aun así, desde tu cuenta se ve información ajena a tu pedido, y por eso aceptas estas condiciones:</p>
+    <ul>
+      <li>El acceso vale <b>solo para el pedido en curso</b>. No lo usamos para explorar tu cuenta, tu inventario ni nada dentro del juego.</li>
+      <li>No lo compartimos con clientes, con colaboradores externos ni con ninguna otra persona fuera de quien hace la entrega. No lo vendemos ni lo publicamos.</li>
+      <li>No mantenemos archivos ni listas con esos correos y contraseñas. Se usan en el momento y se eliminan al terminar.</li>
+      <li>Puedes <b>cortar el acceso cuando quieras</b>, aunque el pedido quede incompleto. Si lo haces después de que empecemos, se factura lo proporcional a lo entregado.</li>
+      <li>Debes tener la cuenta <b>disponible</b> mientras trabajamos. Si cambias la contraseña a mitad del proceso, el pedido se detiene y el tiempo se vuelve a contar desde que vuelvas a dar acceso.</li>
+      <li>Te recomendamos <b>cambiar la contraseña de tu cuenta de Roblox</b> (y, si quieres, también la del correo) apenas recibas el servicio. Es la medida que más protege tu cuenta.</li>
+      <li>Mientras dure el pedido, asume que tu cuenta de Roblox está accesible: no guardes robux ni abras otras sesiones sensibles del juego en ella.</li>
+    </ul>
+    <p>El detalle completo está en la <a href="#privacidad" data-go="privacidad">política de privacidad</a>.</p>
+
+    <h3>6. Tiempos de entrega</h3>
+    <p>Cada ficha muestra un <b>tiempo estimado</b>. No es una hora garantizada ni un plazo exigible, porque depende de cosas que no controlamos:</p>
+    <ul>
+      <li>La cola de pedidos y cuántos estamos trabajando al mismo tiempo.</li>
+      <li>Que tu cuenta esté libre y accesible cuando hay que trabajar en ella.</li>
+      <li>Cierres de mantenimiento, caídas y lentitud del servicio de Roblox.</li>
+      <li>Que el nivel o el objeto que pides esté disponible en el momento de la entrega.</li>
+    </ul>
+    <p>Como referencia: los fragmentos y belis pequeños suelen resolverse en minutos; una subida de 700 niveles lleva varias horas; y un pedido grande (de 0 a 2880) puede tardar medio día o más. Si necesitas algo para una hora concreta, <b>pregúntanos antes de pagar</b> y te decimos si llegamos.</p>
+    <p>Si un pedido se pasa de lo razonable sin que te avises, escríbenos y lo revisamos. Preferimos decirte que se va a tardar antes que dejarte esperando.</p>
+
+    <h3>7. Belis y niveles: qué se aplica</h3>
+    <ul>
+      <li>La lista <b>«con pase x2»</b> aplica si tu cuenta tiene el pase de doble dinero. Si no lo tiene, corresponde la lista <b>«sin pase x2»</b>, que es más cara. Nos dices cuál es tu caso antes de pagar.</li>
+      <li>Si pagaste la tarifa de «con pase x2» y tu cuenta no tenía el pase, se corrige al precio de «sin pase x2» en el ticket, antes de entregar.</li>
+      <li>Los <b>paquetes por servicio</b> siguen los bloques publicados de 700 niveles. El cierre de 2,800 a 2,880 son 80 niveles y sale en S/ 2.00.</li>
+      <li>Si tu nivel no cae en uno de los puntos publicados, lo cotizamos por Discord <b>antes</b> de que pagues. No inventamos un precio fuera de la tabla.</li>
+    </ul>
+
+    <h3>8. Lo que no incluye el servicio</h3>
+    <ul>
+      <li>No prometemos objetos, frutas, títulos ni contrabanditos que no estén en la lista publicada.</li>
+      <li>No compramos cuentas, no las vendemos y no damos cuentas Roblox.</li>
+      <li>No garantizamos que una cuenta siga funcionando después del pago de una suscripción de Roblox o de Robux que ya estaba por vencer. Si tu cuenta se cae por eso, no es responsabilidad nuestra y no hay devolución.</li>
+      <li>No respondemos por baneos ni suspensiones de Roblox, ni por objetos tuyos que se perdieron antes de nuestro trabajo.</li>
+      <li>No hacemos coaching, no enseñamos a farmear, y no damos soporte fuera del ticket.</li>
+    </ul>
+
+    <h3>9. Reglas del juego y riesgo de la cuenta</h3>
+    <p>Los servicios que vendemos pueden, <b>dependiendo del caso, entrar en conflicto con las reglas de Roblox</b> o con las de tu servidor. Esto es un riesgo que asumes al contratar con nosotros:</p>
+    <ul>
+      <li>Roblox puede detectar o limitar el uso de servicios como el nuestro, y puede suspender cuentas que los usen.</li>
+      <li>Nosotros <b>no inducimos</b> a romper ninguna regla a propósito, pero el resultado del trabajo en tu cuenta es responsabilidad tuya como usuario del juego.</li>
+      <li>Una suspensión de Roblox <b>no genera devolución</b>, porque el servicio sí se entregó y el bloqueo viene del juego, no de nosotros.</li>
+      <li>Por eso preferimos que uses una cuenta que puedas recuperar. No entregues la cuenta que más te importa si no estás dispuesto a arriesgarla.</li>
+    </ul>
+
+    <h3>10. Responsabilidad y límites</h3>
+    <ul>
+      <li>Respondemos por el servicio que contrataste: la cantidad de fragmentos, belis o niveles que compraste.</li>
+      <li>No respondemos por daños indirectos: pérdida de progreso, tiempo perdido, beneficios que no llegaste a usar, o perder un evento del juego.</li>
+      <li>No respondemos por actos de terceros, por incidentes fuera de nuestro control, ni por cosas que no figurent en la lista.</li>
+      <li>Nuestra responsabilidad máxima en cualquier pedido es <b>el monto que pagaste por ese pedido</b>. Nada más.</li>
+      <li>No operamos con servicios que rocen con cuentas ajenas, spam, doxxing ni fraude. Si un pedido cae en eso, lo rechazamos antes de cobrarlo y no se te cobra nada. Una vez confirmado el pago, aplica la regla de no devoluciones de la sección 4.</li>
+    </ul>
+
+    <h3>11. Cambios en estos términos</h3>
+    <p>Podemos actualizar estos términos. La fecha de arriba cambia y la versión nueva queda en esta misma página. Los pedidos ya confirmados se rigen por la versión publicada el día que los hiciste, así que guardar la fecha es responsabilidad tuya si quieres citarlos más adelante.</p>
+
+    <h3>12. Ley aplicable y contacto</h3>
+    <p>Estos términos se rigen por las leyes del Perú. Cualquier controversia se trata por escrito en el Discord o por WhatsApp antes de buscar otra vía; casi siempre se resuelve ahí.</p>
+    <p>Para dudas, reclamos o seguimiento de un pedido:<br>Discord: <a href="https://discord.gg/WetNf3MGBF" target="_blank" rel="noopener">discord.gg/WetNf3MGBF</a><br>WhatsApp: <a href="https://wa.me/Ugphone_Tobby" target="_blank" rel="noopener">@Ugphone_Tobby</a></p>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <img class="foot-logo" src="https://files.catbox.moe/eul838.svg" alt="TobbyMagoPro">
+      <p class="foot-tag">Fragmentos, belis y niveles de Blox Fruits. Pagas con Yape y recibes todo en tu cuenta.</p>
+      <a class="footer-cta" href="https://tobby-scriptsxd.github.io/" target="_blank" rel="noopener">
+        <span class="footer-cta-label">Tobby Scripts</span>
+        <span class="footer-cta-sub">Página principal de Tobby</span>
+      </a>
+    </div>
+
+    <nav class="foot-col" aria-label="Navegación">
+      <h2 class="foot-h">Navegación</h2>
+      <ul>
+        <li><a href="#inicio" data-go="inicio">Inicio</a></li>
+        <li><a href="#servicios" data-go="servicios">Servicios</a></li>
+        <li><a href="#menu" data-go="menu">Menú completo</a></li>
+        <li><a href="#como-pagar" data-go="como-pagar">Cómo se paga</a></li>
+      </ul>
+    </nav>
+
+    <nav class="foot-col" aria-label="Ayuda y legales">
+      <h2 class="foot-h">Ayuda</h2>
+      <ul>
+        <li><a href="#soporte" data-go="soporte">Soporte</a></li>
+        <li><a href="#creditos" data-go="creditos">Miembros del staff</a></li>
+        <li><a href="#privacidad" data-go="privacidad">Política de privacidad</a></li>
+        <li><a href="#terminos" data-go="terminos">Términos de uso</a></li>
+      </ul>
+    </nav>
+
+    <div class="foot-col">
+      <h2 class="foot-h">Contacto</h2>
+      <ul>
+        <li><a href="https://discord.gg/WetNf3MGBF" target="_blank" rel="noopener">Discord</a></li>
+        <li><a href="https://wa.me/Ugphone_Tobby" target="_blank" rel="noopener">WhatsApp @Ugphone_Tobby</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <p class="foot-copy">© 2026 TobbyMagoPro · Tienda oficial, sin afiliación con Roblox ni Blox Fruits.</p>
+    <p class="foot-credit">Desarrollado por <b>TheRealBanHammer</b></p>
+  </div>
+  <div class="foot-mark" aria-hidden="true">TobbyMagoPro</div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const BANNERS = [
+  "https://files.catbox.moe/dsy382.png",
+  "https://files.catbox.moe/7fe4fx.png",
+  "https://files.catbox.moe/99v23h.png",
+  "https://files.catbox.moe/212nhu.png",
+  "https://files.catbox.moe/opwoz5.png",
+  "https://files.catbox.moe/hxuf5r.png",
+  "https://files.catbox.moe/xwgrxi.png",
+  "https://files.catbox.moe/by69p6.png",
+  "https://files.catbox.moe/81wqz4.jpg",
+  "https://files.catbox.moe/dmc06z.jpg",
+  "https://files.catbox.moe/0ugvu9.jpg",
+  "https://files.catbox.moe/izj0ab.jpg",
+  "https://files.catbox.moe/mqq8o0.jpg"
+];
+
+const RATES = {
+  PEN: { rate: 1, label: "S/ PEN", digits: 2, flag: "pe", country: "Perú" },
+  USD: { rate: 0.293465, label: "US$", digits: 2, flag: "us", country: "Estados Unidos" },
+  MXN: { rate: 5.191503, label: "MX$", digits: 2, flag: "mx", country: "México" },
+  EUR: { rate: 0.257436, label: "EUR €", digits: 2, flag: "eu", country: "Eurozona" },
+  COP: { rate: 961.672056, label: "COP", digits: 0, flag: "co", country: "Colombia" },
+  CLP: { rate: 283.98474, label: "CLP", digits: 0, flag: "cl", country: "Chile" },
+  ARS: { rate: 447.226778, label: "ARS", digits: 0, flag: "ar", country: "Argentina" },
+  BRL: { rate: 1.523588, label: "R$", digits: 2, flag: "br", country: "Brasil" },
+  BOB: { rate: 3.496055, label: "BOB", digits: 2, flag: "bo", country: "Bolivia" },
+  GBP: { rate: 0.221453, label: "GBP £", digits: 2, flag: "gb", country: "Reino Unido" }
+};
+function flagUrl(code) { return "https://flagcdn.com/w80/" + code + ".png"; }
+
+const STATUS = {
+  items: [
+    { label: "Farm fragmentos",     state: "ok" },
+    { label: "Farm belis / dinero", state: "ok" },
+    { label: "Level Max",           state: "ok" },
+    { label: "Pedidos por ticket",  state: "ok" }
+  ],
+  note: "Puedes abrir ticket con normalidad. <b>Entregas activas.</b>"
+};
+
+const STAFF = [
+  {
+    img: "https://files.catbox.moe/442mse.png",
+    name: "Tobby",
+    role: "Dueño del proyecto"
+  },
+  {
+    img: "https://files.catbox.moe/venxqj.png",
+    name: "BanHammer",
+    role: "Dev de la web · Mod del Discord"
+  }
+];
+
+const PRODUCTS = [
+  {
+    id: "fragmentos",
+    name: "Fragmentos",
+    image: "https://files.catbox.moe/1nnwnv.webp",
+    imageClass: "",
+    tile: 3,
+    alt: "Fragmentos de Blox Fruits",
+    rate: "S/ 3.50 cada 5,000",
+    blurb: "Fragmentos para tu cuenta. La tarifa es lineal: 3.50 soles por cada 5,000.",
+    detail: "Se entregan en la cuenta que nos pases después de confirmar el Yape. Sirven para lo que ya uses en el juego: despertar frutas, estilos y el resto de la tienda de fragmentos.",
+    tiers: Array.from({ length: 20 }, (_, i) => {
+      const amount = (i + 1) * 5000;
+      const pen = Math.round((amount / 5000) * 350) / 100;
+      const eta = amount <= 25000 ? "20–45 min" : amount <= 60000 ? "45–90 min" : "2–4 h";
+      return { id: "f" + amount, label: amount.toLocaleString("es-PE"), meta: "fragmentos", pen, eta };
+    })
+  },
+  {
+    id: "belis-x2",
+    name: "Belis — con pase x2",
+    image: "https://files.catbox.moe/5k7iq2.webp",
+    imageClass: "beli-stack",
+    alt: "Dinero de Blox Fruits",
+    rate: "S/ 5.00 cada 10M",
+    blurb: "Beli para cuentas que ya tienen el pase de doble dinero.",
+    detail: "El precio con pase x2 es de 5 soles por cada 10 millones. La cuenta tiene que tener ese pase. Si no lo tiene, usa la lista sin pase.",
+    tiers: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250, 300, 400, 500].map((m) => ({
+      id: "x" + m,
+      label: m + "M",
+      meta: "beli con pase x2",
+      pen: (m / 10) * 5,
+      eta: m <= 50 ? "30–60 min" : m <= 150 ? "1–2 h" : "2–3 h"
+    }))
+  },
+  {
+    id: "belis",
+    name: "Belis — sin pase x2",
+    image: "https://files.catbox.moe/4xg290.webp",
+    imageClass: "",
+    tile: 3,
+    alt: "Belis de Blox Fruits",
+    rate: "S/ 8.00 cada 10M",
+    blurb: "Beli para cuentas sin el pase de doble dinero.",
+    detail: "Sin el pase, la tarifa es de 8 soles por cada 10 millones. Es la lista que aplica cuando la cuenta farmea el dinero a ritmo normal.",
+    tiers: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250, 300, 400, 500].map((m) => ({
+      id: "n" + m,
+      label: m + "M",
+      meta: "beli sin pase x2",
+      pen: (m / 10) * 8,
+      eta: m <= 50 ? "30–60 min" : m <= 150 ? "1–2.5 h" : "3–5 h"
+    }))
+  },
+  {
+    id: "tramos",
+    name: "Paquetes por servicio",
+    image: "https://files.catbox.moe/psuz5y.jpg",
+    imageClass: "wide-shot",
+    alt: "Comparativa de un personaje de Blox Fruits con todas las estadísticas al máximo",
+    rate: "S/ 15.00 cada 700 niveles",
+    blurb: "Solo el bloque que elijas, no desde el nivel 0.",
+    detail: "Cada servicio de 700 niveles cuesta 15 soles. El cierre de 2800 a 2880 son 80 niveles: la proporción da cerca de 1.71 soles y queda en 2 soles.",
+    tiers: [
+      ["0 → 700", 15, "2–4 h", "700 niveles"],
+      ["700 → 1400", 15, "2–4 h", "700 niveles"],
+      ["1400 → 2100", 15, "2–4 h", "700 niveles"],
+      ["2100 → 2800", 15, "2–4 h", "700 niveles"],
+      ["2800 → 2880", 2, "30–60 min", "80 niveles, redondeado a S/ 2.00"]
+    ].map((t, i) => ({ id: "t" + i, label: t[0], pen: t[1], eta: t[2], meta: t[3] }))
+  },
+  {
+    id: "desde-cero",
+    name: "Desde nivel 0",
+    image: "https://files.catbox.moe/cmui5m.jpg",
+    imageClass: "wide-shot",
+    alt: "Comparativa de un personaje de Blox Fruits del nivel 1 al 2550 con sus gossip",
+    rate: "Precio acumulado",
+    blurb: "Desde el nivel 0 hasta el nivel que elijas. Ya suma los servicios.",
+    detail: "Es el acumulado de los paquetes por servicio. 0 a 2880 queda en 62 soles: cuatro bloques de 15 más el cierre de 2.",
+    tiers: [
+      ["0 → 700", 15, "2–4 h", "700 niveles"],
+      ["0 → 1400", 30, "4–7 h", "1,400 niveles"],
+      ["0 → 2100", 45, "7–11 h", "2,100 niveles"],
+      ["0 → 2800", 60, "10–16 h", "2,800 niveles"],
+      ["0 → 2880", 62, "12–18 h", "2,880 niveles"]
+    ].map((t, i) => ({ id: "z" + i, label: t[0], pen: t[1], eta: t[2], meta: t[3] }))
+  },
+  {
+    id: "hasta-2880",
+    name: "Desde tu nivel hasta 2880",
+    image: "https://files.catbox.moe/vb20se.jpg",
+    imageClass: "wide-shot",
+    alt: "Comparativa de un personaje de Blox Fruits del nivel 1 al 2800 con su inventario",
+    rate: "Unos S/ 15.00 por 700 niveles",
+    blurb: "Lo que falta para llegar a 2880, según el nivel de partida.",
+    detail: "Referencias cada 700 niveles. Si tu nivel está entre dos puntos, escríbenos por Discord antes de pagar y te cotizamos ese servicio. No inventamos un precio fuera de esta tabla.",
+    tiers: [
+      ["Desde 0", 62, "12–18 h", "hasta 2880"],
+      ["Desde 700", 47, "10–15 h", "hasta 2880"],
+      ["Desde 1400", 32, "7–11 h", "hasta 2880"],
+      ["Desde 2100", 17, "4–7 h", "hasta 2880"],
+      ["Desde 2800", 2, "30–60 min", "hasta 2880"]
+    ].map((t, i) => ({ id: "h" + i, label: t[0], pen: t[1], eta: t[2], meta: t[3] }))
+  }
+];
+
+const state = {
+  currency: localStorage.getItem("tmp-currency") || "PEN",
+  cart: JSON.parse(localStorage.getItem("tmp-cart") || "[]"),
+  pick: {}
+};
+if (!RATES[state.currency]) state.currency = "PEN";
+
+const $ = (s, r = document) => r.querySelector(s);
+const views = ["home", "menu", "product", "cart", "pay", "privacy", "terms"];
+
+function soles(pen) {
+  return new Intl.NumberFormat("es-PE", { style: "currency", currency: "PEN", minimumFractionDigits: 2 }).format(pen);
+}
+function money(pen) {
+  const c = RATES[state.currency];
+  const value = pen * c.rate;
+  return new Intl.NumberFormat("es-PE", {
+    style: "currency",
+    currency: state.currency,
+    minimumFractionDigits: c.digits,
+    maximumFractionDigits: c.digits
+  }).format(value);
+}
+function priceLine(pen) {
+  if (state.currency === "PEN") return soles(pen);
+  return money(pen) + " · Yape " + soles(pen);
+}
+function saveCart() { localStorage.setItem("tmp-cart", JSON.stringify(state.cart)); paintBadge(); }
+function cartCount() { return state.cart.reduce((n, i) => n + i.qty, 0); }
+function cartPen() { return state.cart.reduce((n, i) => n + i.pen * i.qty, 0); }
+function paintBadge() {
+  const b = $("#badge");
+  const n = String(cartCount());
+  if (b.textContent !== n) {
+    b.textContent = n;
+    b.classList.remove("pop");
+    void b.offsetWidth;
+    b.classList.add("pop");
+  }
+}
+function toast(text) {
+  const el = $("#toast");
+  el.textContent = text;
+  el.classList.add("on");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove("on"), 2200);
+}
+function productById(id) { return PRODUCTS.find((p) => p.id === id); }
+
+function show(name) {
+  views.forEach((v) => $("#view-" + v).hidden = v !== name);
+  $("#hero").hidden = name !== "home";
+  if (name !== "home") window.scrollTo(0, 0);
+  if (typeof setMenu === "function") setMenu(false);
+
+  if (typeof unlockHeader === "function") unlockHeader(700);
+  if (typeof setHeaderHidden === "function") { setHeaderHidden(false); lastY = window.scrollY; }
+}
+
+function renderFullMenu() {
+  const inCart = new Set(state.cart.map((i) => i.key));
+  $("#view-menu").innerHTML = `
+    <a class="back" href="#servicios" data-go="servicios">← Servicios</a>
+    <h2>Menú completo</h2>
+    <p class="sub">Todos los planes con precio y tiempo estimado. Agrega al carrito desde aquí.</p>
+    ${PRODUCTS.map((p) => `
+      <div class="menu-group">
+        <div class="menu-group-head">
+          <img class="${p.imageClass.includes("level") || p.imageClass.includes("beli-stack") ? "" : "icon-contain"}"
+               src="${p.image}" alt="${p.alt}" loading="lazy" decoding="async">
+          <div class="menu-group-title">
+            <h2>${p.name}</h2>
+            <p>${p.rate}</p>
+          </div>
+          <span class="menu-count">${p.tiers.length} ${p.tiers.length === 1 ? "plan" : "planes"}</span>
+        </div>
+        <div class="menu-grid">
+          ${p.tiers.map((t) => {
+            const key = p.id + ":" + t.id;
+            const has = inCart.has(key);
+            return `
+            <div class="plan">
+              <span class="plan-label">${t.label}</span>
+              <span class="plan-meta">${t.meta}</span>
+              <div class="plan-foot">
+                <div>
+                  <span class="plan-price">${priceLine(t.pen)}</span>
+                  <span class="plan-eta">estimado ${t.eta}</span>
+                </div>
+                <button class="plan-add${has ? " in-cart" : ""}" type="button"
+                        data-add="${key}" aria-label="Agregar ${p.name} ${t.label} al carrito">
+                  ${has ? "Agregado" : "Agregar"}
+                </button>
+              </div>
+            </div>`;
+          }).join("")}
+        </div>
+      </div>`).join("")}
+    <p class="note" style="margin-top:22px">Entramos a tu cuenta solo para entregar esto. No compartimos tus datos de acceso. Después de pagar, el pedido se confirma en un ticket de Discord con la captura del Yape.</p>
+    <p class="yape-note no-refund" style="max-width:640px">Al confirmar el pago no hay devoluciones. Revisa los <a href="#terminos" data-go="terminos">términos</a> antes de pagar.</p>`;
+
+  $("#view-menu").querySelectorAll("[data-add]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const i = btn.dataset.add.indexOf(":");
+      addToCart(btn.dataset.add.slice(0, i), btn.dataset.add.slice(i + 1), false);
+      const nowIn = state.cart.some((x) => x.key === btn.dataset.add);
+      btn.classList.toggle("in-cart", nowIn);
+      btn.textContent = nowIn ? "Agregado" : "Agregar";
+    });
+  });
+  show("menu");
+}
+
+function renderStatus() {
+  const cls = { ok: "", warn: " warn", down: " down" };
+  const words = { ok: "Operativo", warn: "Con avisos", down: "Con baja" };
+  $("#status-list").innerHTML = STATUS.items.map((it) => `
+    <li><span class="dot${cls[it.state] ?? ""}" aria-hidden="true"></span>${it.label}</li>`).join("");
+  const anyDown = STATUS.items.some((i) => i.state === "down");
+  const anyWarn = STATUS.items.some((i) => i.state === "warn");
+  $("#status-label").textContent = words[anyDown ? "down" : anyWarn ? "warn" : "ok"];
+
+  $("#status").classList.toggle("is-warn", !anyDown && anyWarn);
+  $("#status").classList.toggle("is-down", anyDown);
+  const up = STATUS.items.filter((i) => i.state === "ok").length;
+  $("#status-meta").textContent = STATUS.items.length === 1
+    ? "1 servicio"
+    : `${STATUS.items.length} servicios · ${up} ok`;
+  $("#status-note").innerHTML = STATUS.note;
+}
+
+function renderStaff() {
+  $("#staff").innerHTML = STAFF.map((m) => `
+    <article class="member">
+      <div class="member-photo">
+        <img src="${m.img}" alt="Foto de ${m.name}" loading="lazy" decoding="async">
+      </div>
+      <div class="member-info">
+        <h3>${m.name}</h3>
+        <span class="member-role">${m.role}</span>
+      </div>
+    </article>`).join("");
+}
+
+function renderCatalog() {
+  $("#catalog").innerHTML = PRODUCTS.map((p) => {
+    const low = Math.min(...p.tiers.map((t) => t.pen));
+    const fast = p.tiers[0].eta;
+
+    const visual = p.tile
+      ? `<div class="embed-visual tiled" style="--tile:url('${p.image}')" role="img" aria-label="${p.alt}">
+           <i class="tile t1"></i><i class="tile t2"></i><i class="tile t3"></i>
+         </div>`
+      : `<div class="embed-visual${p.imageClass === "wide-shot" ? " wide" : ""}"><img class="${p.imageClass}" src="${p.image}" alt="${p.alt}"></div>`;
+    return `<button class="embed" type="button" data-product="${p.id}">
+      ${visual}
+      <div class="embed-body">
+        <h3>${p.name}</h3>
+        <p>${p.blurb}</p>
+        <div class="fields">
+          <div class="field"><small>Desde</small><b>${priceLine(low)}</b></div>
+          <div class="field"><small>Tiempo</small><b>${fast}</b></div>
+        </div>
+        <div class="embed-foot">${p.rate} · Ver servicios</div>
+      </div>
+    </button>`;
+  }).join("");
+}
+
+function productVisual(p, extraClass) {
+  const cls = "poster" + (extraClass ? " " + extraClass : "");
+  if (p.tile) {
+    return `<div class="${cls} tiled" style="--tile:url('${p.image}')" role="img" aria-label="${p.alt}">
+      <i class="tile t1"></i><i class="tile t2"></i><i class="tile t3"></i>
+    </div>`;
+  }
+  const wide = p.imageClass === "wide-shot" ? " wide" : "";
+  return `<div class="${cls}${wide}"><img class="${p.imageClass}" src="${p.image}" alt="${p.alt}"></div>`;
+}
+
+function renderProduct(id) {
+  const p = productById(id);
+  if (!p) { location.hash = "#servicios"; return; }
+  if (!state.pick[id]) state.pick[id] = p.tiers[0].id;
+  const tier = p.tiers.find((t) => t.id === state.pick[id]) || p.tiers[0];
+  $("#view-product").innerHTML = `
+    <a class="back" href="#servicios" data-go="servicios">← Servicios</a>
+    <div class="product">
+      ${productVisual(p)}
+      <div>
+        <div class="rate">${p.rate}</div>
+        <h2>${p.name}</h2>
+        <p class="sub">${p.detail}</p>
+        <div class="tiers">
+          ${p.tiers.map((t) => `<button class="tier ${t.id === tier.id ? "on" : ""}" type="button" data-tier="${t.id}">
+            <b>${t.label}</b>
+            <span>${t.meta} · estimado ${t.eta}</span>
+            <div class="price">${priceLine(t.pen)}</div>
+          </button>`).join("")}
+        </div>
+        <div class="buybar">
+          <div>
+            <strong id="pick-price">${priceLine(tier.pen)}</strong>
+            <p class="yape-note" id="pick-note">Tiempo estimado: ${tier.eta} para conseguir el item y dejarlo en tu cuenta, no para procesar ni aceptar tu pedido. El cobro de Yape es ${soles(tier.pen)}.</p>
+          </div>
+          <div class="row">
+            <button class="btn btn-gold" type="button" id="add">Agregar al carrito</button>
+            <button class="btn btn-line" type="button" id="addpay">Agregar y pagar</button>
+          </div>
+        </div>
+        <p class="note">Entramos a tu cuenta solo para entregar esto. No compartimos tus datos de acceso. Después de pagar, el pedido se confirma en un ticket de Discord con la captura del Yape.</p>
+      </div>
+    </div>`;
+  $("#view-product").querySelectorAll("[data-tier]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (state.pick[id] === btn.dataset.tier) return;
+      state.pick[id] = btn.dataset.tier;
+      const current = p.tiers.find((t) => t.id === state.pick[id]) || p.tiers[0];
+      $("#view-product").querySelectorAll("[data-tier]").forEach((b) => {
+        b.classList.toggle("on", b.dataset.tier === current.id);
+      });
+      $("#pick-price").textContent = priceLine(current.pen);
+      $("#pick-note").textContent = "Tiempo estimado: " + current.eta + " para conseguir el item y dejarlo en tu cuenta, no para procesar ni aceptar tu pedido. El cobro de Yape es " + soles(current.pen) + ".";
+      const bar = $(".buybar");
+      if (bar) {
+        const r = bar.getBoundingClientRect();
+        if (r.bottom > window.innerHeight || r.top < 0) {
+          bar.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
+      }
+    });
+  });
+  const add = (goPay) => addToCart(id, state.pick[id], goPay);
+  $("#add").addEventListener("click", () => add(false));
+  $("#addpay").addEventListener("click", () => add(true));
+  show("product");
+}
+
+function addToCart(productId, tierId, goPay) {
+  const p = productById(productId);
+  if (!p) return;
+  const current = p.tiers.find((t) => t.id === tierId) || p.tiers[0];
+  const key = p.id + ":" + current.id;
+  const found = state.cart.find((i) => i.key === key);
+  if (found) found.qty += 1;
+  else state.cart.push({
+    key, product: p.id, name: p.name, label: current.label, meta: current.meta,
+    pen: current.pen, eta: current.eta, image: p.image, imageClass: p.imageClass, qty: 1
+  });
+  saveCart();
+  toast(p.name + " · " + current.label + " agregado");
+  if (goPay) location.hash = "#pagar";
+}
+
+function renderCart() {
+  const box = $("#view-cart");
+  if (!state.cart.length) {
+    box.innerHTML = `<a class="back" href="#servicios" data-go="servicios">← Servicios</a>
+      <h2>Carrito</h2><p class="sub">Todavía no hay nada. Elige un servicio y vuelve aquí.</p>
+      <div class="row" style="margin-top:14px"><a class="btn btn-gold" href="#servicios" data-go="servicios">Ver servicios</a></div>`;
+    show("cart");
+    return;
+  }
+  box.innerHTML = `<a class="back" href="#servicios" data-go="servicios">← Seguir viendo</a>
+    <h2>Carrito</h2>
+    <div class="cart-list">
+      ${state.cart.map((i) => `<article class="cart-item">
+        <img class="${i.imageClass}" src="${i.image}" alt="">
+        <div>
+          <b>${i.name}</b>
+          <div class="sub">${i.label} · ${i.meta}</div>
+          <div class="sub">Estimado ${i.eta} · ${priceLine(i.pen)} c/u</div>
+          <button class="remove" type="button" data-remove="${i.key}" aria-label="Quitar ${i.name} ${i.label} del carrito" title="Quitar del carrito">
+            <svg viewBox="-1 0 26 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5h16"/><path d="M9.5 6.5V4.8A1.3 1.3 0 0 1 10.8 3.5h2.4a1.3 1.3 0 0 1 1.3 1.3v1.7"/><path d="M6.2 6.5 7 19a1.6 1.6 0 0 0 1.6 1.5h6.8A1.6 1.6 0 0 0 17 19l.8-12.5"/><path d="M10.3 10v6.6M13.7 10v6.6"/></svg>
+            Quitar
+          </button>
+        </div>
+        <div class="side">
+          <div class="qty">
+            <button type="button" data-dec="${i.key}" aria-label="Menos">−</button>
+            <span>${i.qty}</span>
+            <button type="button" data-inc="${i.key}" aria-label="Más">+</button>
+          </div>
+          <div style="margin-top:6px;font-weight:800;color:var(--gold-2)">${priceLine(i.pen * i.qty)}</div>
+        </div>
+      </article>`).join("")}
+    </div>
+    <div class="totals">
+      <div>
+        <p class="sub">Total a pagar por Yape</p>
+        <p class="big">${soles(cartPen())}</p>
+        ${state.currency === "PEN" ? "" : `<p class="yape-note">Equivalente en ${RATES[state.currency].label}: ${money(cartPen())}</p>`}
+        <p class="yape-note no-refund">Al confirmar el pago no hay devoluciones. Revisa los <a href="#terminos" data-go="terminos">términos</a> antes de pagar.</p>
+      </div>
+      <div class="row">
+        <button class="btn btn-line" type="button" id="clear">Vaciar carrito</button>
+        <a class="btn btn-gold" href="#pagar" data-go="pagar">Pagar con Yape</a>
+      </div>
+    </div>`;
+  box.querySelectorAll("[data-inc]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.inc, 1)));
+  box.querySelectorAll("[data-dec]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.dec, -1)));
+  box.querySelectorAll("[data-remove]").forEach((b) => b.addEventListener("click", () => {
+    const item = state.cart.find((i) => i.key === b.dataset.remove);
+    state.cart = state.cart.filter((i) => i.key !== b.dataset.remove);
+    saveCart();
+    renderCart();
+    toast((item ? item.label + " · " : "") + "quitado del carrito");
+  }));
+  $("#clear").addEventListener("click", () => { state.cart = []; saveCart(); renderCart(); toast("Carrito vaciado"); });
+  show("cart");
+}
+function changeQty(key, delta) {
+  const item = state.cart.find((i) => i.key === key);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty < 1) state.cart = state.cart.filter((i) => i.key !== key);
+  saveCart();
+  renderCart();
+}
+
+function renderPay() {
+  const total = cartPen();
+  const lines = state.cart.map((i) => `<li>${i.qty} × ${i.name} — ${i.label} · ${priceLine(i.pen * i.qty)}</li>`).join("");
+  $("#view-pay").innerHTML = `
+    <a class="back" href="#carrito" data-go="carrito">← Carrito</a>
+    <h2>Pagar con Yape</h2>
+    <p class="sub">Paga en soles el total de abajo. Luego abre ticket, manda la captura y, cuando confirmemos, pásanos la cuenta.</p>
+    <div class="pay-grid" style="margin-top:16px">
+      <div>
+        <div class="steps" style="grid-template-columns:1fr 1fr">
+          <article class="step"><em>1</em><h3>Paga este monto</h3><p>En Yape, con el QR. El total del carrito es el que debes transferir.</p></article>
+          <article class="step"><em>2</em><h3>Abre ticket</h3><p>En el Discord de TobbyMagoPro, con el detalle de lo que pediste.</p></article>
+          <article class="step"><em>3</em><h3>Manda la captura</h3><p>La captura del Yape confirma la compra.</p></article>
+          <article class="step"><em>4</em><h3>Pasa la cuenta</h3><p>Cuando te confirmemos, nos das la cuenta donde quieres el servicio.</p></article>
+        </div>
+        <div class="panel" style="margin-top:14px;background:#000">
+          <h3 style="margin:0 0 8px">Tu pedido</h3>
+          ${state.cart.length ? `<ul>${lines}</ul>` : `<p class="sub">El carrito está vacío. Arma el pedido y el monto de arriba del QR va a coincidir con lo que debes pagar.</p>`}
+          <p class="big" style="font-family:var(--display);font-size:1.9rem;line-height:1.2;margin:8px 0 0">${state.cart.length ? soles(total) : soles(0)}</p>
+          ${state.currency === "PEN" || !state.cart.length ? "" : `<p class="yape-note">Ves ${money(total)} por la moneda elegida. En Yape se paga ${soles(total)}.</p>`}
+          <div class="row" style="margin-top:12px">
+            <a class="btn btn-gold" href="https://discord.gg/WetNf3MGBF" target="_blank" rel="noopener"><svg class="i-discord" viewBox="-1 0 26 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.042-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.697.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-2.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419Zm7.975 0c-1.182 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419Z"/></svg>Abrir ticket en Discord</a>
+            <a class="btn btn-line" href="https://wa.me/Ugphone_Tobby" target="_blank" rel="noopener">WhatsApp @Ugphone_Tobby</a>
+            <button class="btn btn-line" type="button" id="copy" ${state.cart.length ? "" : "disabled"}>Copiar monto</button>
+          </div>
+        </div>
+      </div>
+      <aside class="qr-card">
+        <img src="https://files.catbox.moe/fryy86.jpg" alt="QR de Yape para pagar en TobbyMagoPro">
+        <div>Escanea y paga</div>
+        <div class="amount-pill">${state.cart.length ? soles(total) : "Arma tu carrito"}</div>
+        <p class="yape-note">El nombre del titular sale en el QR. Paga solo a este código.</p>
+      </aside>
+    </div>`;
+  const copy = $("#copy");
+  if (copy) copy.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(soles(total));
+      toast("Monto copiado: " + soles(total));
+    } catch {
+      toast(soles(total));
+    }
+  });
+  show("pay");
+}
+
+function route() {
+  const hash = (location.hash || "#inicio").slice(1);
+  renderStatus();
+  renderStaff();
+  renderCatalog();
+  if (hash === "inicio" || hash === "servicios" || hash === "como-pagar" || hash === "soporte" || hash === "creditos" || hash === "") {
+    show("home");
+    const target = document.getElementById(hash);
+    if (target && hash !== "inicio") target.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+  if (productById(hash)) { renderProduct(hash); return; }
+  if (hash === "menu") { renderFullMenu(); return; }
+  if (hash === "carrito") { renderCart(); return; }
+  if (hash === "pagar") { renderPay(); return; }
+  if (hash === "privacidad") { show("privacy"); return; }
+  if (hash === "terminos") { show("terms"); return; }
+  show("home");
+}
+
+function setupBanners() {
+  const slides = $("#slides");
+  const dots = $("#dots");
+  BANNERS.forEach((src, i) => {
+    const fig = document.createElement("div");
+    fig.className = "slide" + (i === 0 ? " on" : "");
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Banner de Blox Fruits";
+    fig.appendChild(img);
+    slides.appendChild(fig);
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = i === 0 ? "on" : "";
+    b.setAttribute("aria-label", "Banner " + (i + 1));
+    b.addEventListener("click", () => go(i, true));
+    dots.appendChild(b);
+  });
+  let index = 0;
+  let timer = 0;
+  function go(i, manual) {
+    index = (i + BANNERS.length) % BANNERS.length;
+    [...slides.children].forEach((el, n) => el.classList.toggle("on", n === index));
+    [...dots.children].forEach((el, n) => el.classList.toggle("on", n === index));
+    if (manual) arm();
+  }
+  function arm() {
+    clearInterval(timer);
+    timer = setInterval(() => go(index + 1, false), 3000);
+  }
+  arm();
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) clearInterval(timer);
+    else arm();
+  });
+}
+
+function setupCurrency() {
+  const box = $("#currency");
+  const btn = $("#cur-btn");
+  const list = $("#cur-list");
+  const flag = $("#cur-flag");
+  const current = $("#cur-current");
+
+  list.innerHTML = Object.entries(RATES).map(([k, v]) => `
+    <li><button class="cur-item${k === state.currency ? " on" : ""}" type="button" role="option"
+        data-cur="${k}" aria-selected="${k === state.currency}">
+      <img class="flag" src="${flagUrl(v.flag)}" alt="" width="18" height="18" loading="lazy">
+      <span>${v.country}</span>
+      <span class="cur-code">${v.label}</span>
+    </button></li>`).join("");
+
+  function paint() {
+    const v = RATES[state.currency];
+    flag.src = flagUrl(v.flag);
+    flag.alt = "Bandera de " + v.country;
+    current.textContent = v.label;
+    list.querySelectorAll(".cur-item").forEach((el) => {
+      const on = el.dataset.cur === state.currency;
+      el.classList.toggle("on", on);
+      el.setAttribute("aria-selected", on ? "true" : "false");
+    });
+  }
+  function open(openIt) {
+    box.classList.toggle("open", openIt);
+    btn.setAttribute("aria-expanded", openIt ? "true" : "false");
+    if (openIt) {
+      if (typeof setHeaderHidden === "function") { unlockHeader(600); setHeaderHidden(false); }
+      const sel = list.querySelector(".cur-item.on") || list.querySelector(".cur-item");
+      if (sel) sel.focus();
+    }
+  }
+  btn.addEventListener("click", () => open(!box.classList.contains("open")));
+  list.addEventListener("click", (e) => {
+    const it = e.target.closest(".cur-item");
+    if (!it) return;
+    state.currency = it.dataset.cur;
+    localStorage.setItem("tmp-currency", state.currency);
+    paint();
+    open(false);
+    btn.focus();
+    route();
+  });
+  box.addEventListener("keydown", (e) => {
+    const items = [...list.querySelectorAll(".cur-item")];
+    const i = items.indexOf(document.activeElement);
+    if (e.key === "Escape" && box.classList.contains("open")) { open(false); btn.focus(); }
+    else if (e.key === "ArrowDown" && i < items.length - 1) { e.preventDefault(); items[i + 1].focus(); }
+    else if (e.key === "ArrowUp" && i > 0) { e.preventDefault(); items[i - 1].focus(); }
+  });
+  document.addEventListener("click", (e) => {
+    if (box.classList.contains("open") && !box.contains(e.target)) open(false);
+  });
+  paint();
+}
+
+document.addEventListener("click", (e) => {
+  const go = e.target.closest("[data-go]");
+  if (go) {
+
+    if (typeof unlockHeader === "function") { unlockHeader(900); setHeaderHidden(false); }
+    if (location.hash === "#" + go.dataset.go) {
+      e.preventDefault();
+      route();
+    }
+  }
+  const card = e.target.closest("[data-product]");
+  if (card) {
+    e.preventDefault();
+    if (typeof unlockHeader === "function") { unlockHeader(700); setHeaderHidden(false); }
+    location.hash = "#" + card.dataset.product;
+  }
+});
+
+const menuToggle = $(".menu-toggle");
+const nav = $("#nav");
+function setMenu(open) {
+  nav.classList.toggle("open", open);
+  menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  menuToggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+
+  if (open && typeof setHeaderHidden === "function") { unlockHeader(600); setHeaderHidden(false); }
+}
+menuToggle.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+document.addEventListener("click", (e) => {
+  if (nav.classList.contains("open") && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+    setMenu(false);
+  }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && nav.classList.contains("open")) { setMenu(false); menuToggle.focus(); }
+});
+window.addEventListener("resize", () => { if (window.innerWidth > 1200) setMenu(false); });
+
+const headerEl = $("header.top");
+let hideHeader = false;
+let lockUntil = 0;
+
+function setHeaderHidden(on) {
+  if (hideHeader === on) return;
+  hideHeader = on;
+  headerEl.classList.toggle("is-hidden", on);
+}
+function unlockHeader(ms) { lockUntil = performance.now() + (ms || 0); }
+
+function headerBusy() {
+  if (nav.classList.contains("open")) return true;
+  const curBox = $("#currency");
+  if (curBox && curBox.classList.contains("open")) return true;
+  const a = document.activeElement;
+  if (a && /^(SELECT|INPUT|TEXTAREA)$/.test(a.tagName)) return true;
+  return performance.now() < lockUntil;
+}
+
+let lastY = window.scrollY;
+let rafPending = false;
+function onScroll() {
+  rafPending = false;
+  const y = Math.max(0, window.scrollY);
+  if (!headerBusy()) {
+    if (y < 90) setHeaderHidden(false);
+    else if (y > lastY + 3) setHeaderHidden(true);
+    else if (y < lastY - 3) setHeaderHidden(false);
+  }
+  lastY = y;
+}
+window.addEventListener("scroll", () => {
+  if (!rafPending) { rafPending = true; requestAnimationFrame(onScroll); }
+}, { passive: true });
+
+document.querySelectorAll("select").forEach((s) => {
+  s.addEventListener("focus", () => setHeaderHidden(false));
+  s.addEventListener("mousedown", () => setHeaderHidden(false));
+});
+
+setupBanners();
+setupCurrency();
+paintBadge();
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
