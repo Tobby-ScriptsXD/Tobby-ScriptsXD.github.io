@@ -1024,11 +1024,12 @@ end`
                 code: `loadstring(game:HttpGet('https://raw.githubusercontent.com/hungquan99/SkullHub/main/loader.lua'))()`
             },
             {
-                name: "Dead Rails (Script Crackeado)",
+                id: "dead-rails-autobond",
+                name: "Dead Rails (Auto Bonos)",
                 category: "Survival",
                 icon: "fa-skull",
                 description: "Script para Dead Rails con autobonos, instakill zombies, bringitems, sin key.",
-                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/FloppHub-Team/Scripts-idk/refs/heads/main/DeadRails.lua"))()`
+                code: `loadstring(game:HttpGet('https://raw.githubusercontent.com/afkar-gg/sc/refs/heads/main/auto-bond'))()`
             },
             {
                 name: "Campos de Batalla",
@@ -1248,6 +1249,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
 
 
         const youtubeVideos = [
+            { id: "yNzrW1lHxrE", kind: "video", title: "🔥 ¡SCRIPT OP PARA DEAD RAILS! 🚂 AUTO BOND FARM + FARMEAR AFK SIN ESFUERZO 😱💜" },
             { id: "ppi1U7jf5HA", kind: "video", title: "🔥 SCRIPT OP PARA RIDE A PET 😱 | ¡EL SCRIPT QUE TODOS ESTÁN USANDO!" },
             { id: "zAs1PfaZaRw", kind: "video", title: "🔥 SCRIPT DE MUSCLE LEGENDS OP 2026 💪 | AUTO FARM + KEYLESS" },
             { id: "_QlmFyHRx38", kind: "video", title: "🔥 STEAL A EGG SCRIPT OP 🤯 ¡NO KEY + INSTA CATCH!" },
@@ -1310,7 +1312,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
             "Superman (Universal)": {"id": "superman-universal", "placeId": null, "thumbUrl": null, "iconUrl": null, "tone": "move"},
             "99 Noches en el Bosque": {"id": "99-noches-en-el-bosque", "placeId": 79546208627805, "thumbUrl": "https://tr.rbxcdn.com/180DAY-c5215eabc21f46723f0084f99bb7622c/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-a368c7e179ae4b0a6757cf945a028420/512/512/Image/Png/noFilter"},
             "Dead Rails": {"id": "dead-rails", "placeId": 116495829188952, "thumbUrl": "https://tr.rbxcdn.com/180DAY-ffa0a3617465f28976b9b18485e0ac50/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-73310f33b2ecd73ed0e37b9b24407bf4/512/512/Image/Png/noFilter"},
-            "Dead Rails (Script Crackeado)": {"id": "dead-rails-script-crackeado", "placeId": 116495829188952, "thumbUrl": "https://tr.rbxcdn.com/180DAY-eec3678a2a53d4bdc3d778451a8dd374/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-73310f33b2ecd73ed0e37b9b24407bf4/512/512/Image/Png/noFilter"},
+            "Dead Rails (Auto Bonos)": {"id": "dead-rails-autobond", "placeId": 116495829188952, "thumbUrl": "https://tr.rbxcdn.com/180DAY-eec3678a2a53d4bdc3d778451a8dd374/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-73310f33b2ecd73ed0e37b9b24407bf4/512/512/Image/Png/noFilter"},
             "Campos de Batalla": {"id": "campos-de-batalla", "placeId": 10449761463, "thumbUrl": "https://tr.rbxcdn.com/180DAY-c947df5b221c30672c3591247a8c6495/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-68c92fc62a8753793f7963e146b5197f/512/512/Image/Png/noFilter"},
             "Hitbox Universal": {"id": "hitbox-universal", "placeId": null, "thumbUrl": null, "iconUrl": null, "tone": "universal"},
             "Aimbot Weaponry": {"id": "aimbot-weaponry", "placeId": 3297964905, "thumbUrl": "https://tr.rbxcdn.com/180DAY-0a900af4843904f7665a456f0d497c8a/768/432/Image/Png/noFilter", "iconUrl": "https://tr.rbxcdn.com/180DAY-af1d30820e3d5308838efa45fbe18fb3/512/512/Image/Png/noFilter"},
@@ -1350,7 +1352,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
 
         function enrich(s) {
           const m = scriptMeta[s.name] || {};
-          return Object.assign({}, s, m);
+          return Object.assign({}, m, s);
         }
 
         const allScripts = scripts.map(enrich);
@@ -1920,8 +1922,77 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
         const CLON_UNLOCK_KEY = 'tobby-clon-unlock-v1';
         const YT_CHANNEL_SUB = 'https://www.youtube.com/@tobby-scripts?sub_confirmation=1';
         const YT_CHANNEL_VIDEOS = 'https://www.youtube.com/@tobby-scripts/videos';
+        const YT_CHANNEL_ID = 'UC048S_VZANm1V8zldchemCQ';
         function latestVideo() {
           return youtubeVideos.find(v => v.kind !== 'short' && v.id) || null;
+        }
+        function parseYoutubeFeed(raw) {
+          let text = String(raw || '');
+          const jsonStart = text.indexOf('{');
+          if (jsonStart === 0) {
+            try {
+              const data = JSON.parse(text);
+              text = data.contents || data.content || data.data || text;
+            } catch (e) {}
+          }
+          text = text
+            .replace(/\\u003c/gi, '<')
+            .replace(/\\u003e/gi, '>')
+            .replace(/\\n/g, '\n')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+          const blocks = text.split(/<entry\b/i).slice(1);
+          return blocks.map(block => {
+            const id = (block.match(/<yt:videoId>([^<]+)<\/yt:videoId>/i) || [])[1]
+              || (block.match(/<videoId>([^<]+)<\/videoId>/i) || [])[1]
+              || '';
+            const title = (block.match(/<title>([^<]*)<\/title>/i) || [])[1] || 'Video';
+            const published = (block.match(/<published>([^<]+)<\/published>/i) || [])[1] || '';
+            return { id: id.trim(), kind: 'video', title: title.trim(), published: published.trim() };
+          }).filter(v => v.id);
+        }
+        async function refreshYoutubeFeed() {
+          const rss = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + YT_CHANNEL_ID;
+          const encoded = encodeURIComponent(rss);
+          const proxies = [
+            'https://api.allorigins.win/raw?url=' + encoded,
+            'https://api.allorigins.win/get?url=' + encoded,
+            'https://corsproxy.io/?' + encoded,
+            'https://corsproxy.org/?' + encoded,
+            'https://api.codetabs.com/v1/proxy?quest=' + encoded
+          ];
+          let fresh = [];
+          for (const url of proxies) {
+            try {
+              const res = await fetch(url);
+              if (!res.ok) continue;
+              const body = await res.text();
+              const parsed = parseYoutubeFeed(body);
+              if (parsed.length) { fresh = parsed; break; }
+            } catch (e) {}
+          }
+          if (!fresh.length) return;
+          fresh.sort((a, b) => (b.published || '').localeCompare(a.published || ''));
+          if (!fresh.length) return;
+          const known = new Set(youtubeVideos.map(v => v.id));
+          const missing = fresh.filter(v => !known.has(v.id));
+          if (missing.length) youtubeVideos.unshift(...missing);
+          const newest = fresh[0];
+          const currentIndex = youtubeVideos.findIndex(v => v.id === newest.id);
+          if (currentIndex > 0) {
+            const [item] = youtubeVideos.splice(currentIndex, 1);
+            item.title = newest.title || item.title;
+            item.published = newest.published;
+            youtubeVideos.unshift(item);
+          } else if (currentIndex === 0) {
+            youtubeVideos[0].title = newest.title || youtubeVideos[0].title;
+            youtubeVideos[0].published = newest.published;
+          }
+          renderVideos();
+          renderLatestVideo();
+          const home = document.getElementById('view-home');
+          if (home && home.classList.contains('active')) renderHome();
         }
         function latestVideoUrl() {
           const v = latestVideo();
@@ -2068,6 +2139,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tzuanyeuban/TzuanHub/
         });
         renderVideos();
         routeFromHash();
+        refreshYoutubeFeed();
 </script>
 </body>
 </html>
